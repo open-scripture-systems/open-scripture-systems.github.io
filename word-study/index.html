@@ -583,5 +583,83 @@ show(cur);
   }
 })();
 </script>
+<!-- ows-feedback -->
+<style>
+.owsfb-btn { position: fixed; z-index: 50; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  font: 600 14px system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: #fff; background: #1c1917; border: 2px solid #fff;
+  border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.owsfb-btn:focus-visible, .owsfb button:focus-visible, .owsfb textarea:focus-visible, .owsfb input:focus-visible { outline: 3px solid #ffb800; outline-offset: 2px; }
+.owsfb { position: fixed; z-index: 51; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  width: min(380px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; box-sizing: border-box; padding: 16px;
+  font: 15px/1.6 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: #1c1917; background: #fff; border: 1px solid #a8a29e;
+  border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+.owsfb h2 { font: 650 17px/1.3 system-ui, -apple-system, "Hiragino Sans", sans-serif !important; margin: 0 0 6px; letter-spacing: 0; }
+.owsfb p { margin: 0 0 10px; font-size: 14px; color: #44403c; }
+.owsfb label { display: block; font-size: 14px; font-weight: 600; margin: 8px 0 4px; }
+.owsfb textarea, .owsfb input { width: 100%; box-sizing: border-box; font: inherit; color: inherit; background: #fff; border: 1px solid #78716c; border-radius: 8px; padding: 8px; }
+.owsfb textarea { min-height: 110px; resize: vertical; }
+.owsfb .row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.owsfb button { font: 600 15px system-ui, sans-serif; min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid #1c1917; background: #fff; color: #1c1917; cursor: pointer; }
+.owsfb button.send { background: #1c1917; color: #fff; }
+.owsfb .msg { font-weight: 600; color: #1c1917; }
+@media (prefers-color-scheme: dark) {
+  .owsfb { color: #e7e5e4; background: #292524; border-color: #57534e; } .owsfb p { color: #d6d3d1; } .owsfb .msg { color: #e7e5e4; }
+  .owsfb textarea, .owsfb input { background: #1c1917; border-color: #a8a29e; }
+  .owsfb button { background: #292524; color: #e7e5e4; border-color: #e7e5e4; } .owsfb button.send { background: #e7e5e4; color: #1c1917; }
+}
+</style>
+<script>
+(function () {
+  var CFG = {"endpoint": "https://docs.google.com/forms/d/e/1FAIpQLScbdIFMa6fK2oNm-3XzsN3w24x-2OJOV3LlElWYLEPMZq3wag/formResponse", "fields": {"message": "entry.1109621352", "page": "entry.1392149875", "lang": "entry.1696363649", "contact": "entry.720795985"}, "page": "word-study"}, root = document.documentElement;
+  var S = {
+    btn: ['Feedback', 'ご意見'], title: ['Tell us what you think', 'ご意見をお聞かせください'],
+    lead: ['What helped, what did not, what is missing? A mistake in the data is useful too.', '役に立った点、使いにくい点、足りないもの。データの誤りの指摘も助かります。'],
+    msg: ['Your note', 'ご意見'], contact: ['Email, only if you would like a reply (optional)', 'メールアドレス（返信が必要な場合のみ・任意）'],
+    priv: ['Your note goes to a Google Form, so Google receives it, as it does any web request. Sent with it: the name of this page and its language, and your email only if you write one. No account and no tracking on this site. Your words are read privately and are not published.',
+           'ご意見は Google フォームに送られるため、通常のウェブの通信と同じく Google が受け取ります。一緒に送られるのは、このページの名前と表示言語だけです（メールアドレスは書いた場合のみ）。このサイトにはアカウントも追跡もありません。いただいた文面は非公開で読み、公開しません。'],
+    send: ['Send', '送信'], close: ['Close', '閉じる'], empty: ['Please write a few words first.', '先にひとことお書きください。'],
+    ok: ['Sent. Thank you.', '送信しました。ありがとうございます。'],
+    fail: ['Could not send. Your note is still here; please check your connection and try again.', '送信できませんでした。文面は残っています。接続を確認して、もう一度お試しください。'],
+    preview: ['Preview only: the form is not connected yet, so nothing was sent.', 'プレビューです。フォームがまだつながっていないため、送信されていません。']
+  };
+  function ja() { return window.WS && WS.state ? WS.state.lang !== 'en' : root.classList.contains('owsja'); }
+  function s(k) { return S[k][ja() ? 1 : 0]; }
+  var btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'owsfb-btn'; btn.setAttribute('aria-haspopup', 'dialog');
+  function label() { btn.textContent = s('btn'); }
+  label(); setTimeout(label, 3000);
+  document.body.appendChild(btn);
+  var box = null;
+  function close() { if (box) { box.remove(); box = null; btn.hidden = false; btn.focus(); } }
+  function esc(x) { return x.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  btn.addEventListener('click', function () {
+    label();
+    box = document.createElement('div');
+    box.className = 'owsfb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-labelledby', 'owsfb-t'); box.lang = ja() ? 'ja' : 'en';
+    box.innerHTML = '<h2 id="owsfb-t">' + esc(s('title')) + '</h2><p>' + esc(s('lead')) + '</p>' +
+      '<label for="owsfb-m">' + esc(s('msg')) + '</label><textarea id="owsfb-m" maxlength="4000"></textarea>' +
+      '<label for="owsfb-c">' + esc(s('contact')) + '</label><input id="owsfb-c" type="email" autocomplete="off" maxlength="200">' +
+      '<p style="margin-top:10px">' + esc(s('priv')) + '</p><p class="msg" role="status" aria-live="polite"></p>' +
+      '<div class="row"><button type="button" class="x">' + esc(s('close')) + '</button><button type="button" class="send">' + esc(s('send')) + '</button></div>';
+    document.body.appendChild(box); btn.hidden = true;
+    var m = box.querySelector('#owsfb-m'), c = box.querySelector('#owsfb-c'), out = box.querySelector('.msg');
+    m.focus();
+    box.querySelector('.x').addEventListener('click', close);
+    box.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    box.querySelector('.send').addEventListener('click', function () {
+      var text = m.value.trim();
+      if (!text) { out.textContent = s('empty'); m.focus(); return; }
+      if (!CFG.endpoint) { out.textContent = s('preview'); return; }
+      var body = new URLSearchParams(), f = CFG.fields;
+      body.set(f.message, text); body.set(f.page, CFG.page); body.set(f.lang, ja() ? 'ja' : 'en');
+      if (c.value.trim()) body.set(f.contact, c.value.trim());
+      // no-cors: the browser sends the note and tells the page nothing back, so "Sent" means the request left without a network error
+      fetch(CFG.endpoint, { method: 'POST', mode: 'no-cors', body: body, credentials: 'omit', referrerPolicy: 'no-referrer' }).then(function () {
+        out.textContent = s('ok'); m.value = ''; c.value = ''; box.querySelector('.send').hidden = true;
+      }, function () { out.textContent = s('fail'); });
+    });
+  });
+})();
+</script>
 
 </html>
