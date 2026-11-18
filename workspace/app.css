@@ -286,3 +286,13 @@ html.noruby .t-ja { line-height: 1.9; }
 .gsr .gform input, .gsr .gform select { font: inherit; color: var(--ink); padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
 .gsr .gform input { font-size: 16px; }
 .gsr ol { padding-left: 1.4em; }
+
+/* Word use */
+.use h3 { font-size: 14px; margin: 10px 0 4px; }
+.use .ulist { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.use .ulist button { width: 100%; text-align: left; border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; background: var(--bg); cursor: pointer; }
+
+/* Sentence parts under Greek words */
+.iw .pt { display: block; font-size: 11px; font-weight: 600; border-radius: 4px; padding: 0 4px; margin-top: 2px; width: fit-content; }
+.pt-s { background: rgba(80, 150, 240, .22); } .pt-o { background: rgba(240, 110, 170, .22); } .pt-io { background: rgba(255, 150, 60, .24); }
+.pt-p { background: rgba(80, 200, 120, .24); } .pt-v { background: rgba(255, 214, 64, .32); }

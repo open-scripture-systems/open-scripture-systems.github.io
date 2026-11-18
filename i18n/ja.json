@@ -18,7 +18,8 @@
   "Public domain in Japan; open question in the United States (see below). Source. The Japan Bible Society on its copyright.": "日本ではパブリックドメイン。米国での扱いは未確定です（下記）。<1>出典</1>。<2>著作権についての日本聖書協会の説明</2>。",
   "Public domain, by its makers' statement. Source.": "作った人たちの表明によりパブリックドメイン。<1>出典</1>。",
   "Free tools for studying the words of the Bible in Greek and Hebrew. No account and no cost. Every source and its licence is listed on the sources page.": "<1>聖書のことばをギリシャ語とヘブライ語で学ぶための無料ツールです。</1> アカウントも費用もいりません。使っている資料とライセンスは、すべて<2>出典ページ</2>に載せています。",
-  "Every source and its licence: see sources and licences.": "使っている資料とライセンスは、<1>出典とライセンス</1>のページにすべて載せています。"
+  "Every source and its licence: see sources and licences.": "使っている資料とライセンスは、<1>出典とライセンス</1>のページにすべて載せています。",
+  "Biblica, Inc., at github.com/Clear-Bible. CC BY 4.0. Source.": "Biblica, Inc.（github.com/Clear-Bible）。<1>CC BY 4.0</1>。<2>出典</2>。"
  },
  "text": {
   "Free Bible study tools from open data": "オープンデータで作った無料の聖書研究ツール",
@@ -311,6 +312,9 @@
   "Added Greek search to the Study Workspace: find verses by a Greek word in dictionary form or a Strong's number, with an optional grammar filter (for example aorist or imperative), and a second word joined by AND, OR, NOT or NEAR, in one book or the whole New Testament. The list can be saved as a file.": "スタディ・ワークスペースに「原語検索」を加えました。ギリシア語の見出し語かストロング番号で節を探せます。文法（アオリスト、命令法など）でしぼることができ、2つ目の語を「かつ」「または」「除く」「近接」でつなげます。範囲はこの書か新約全体です。結果の一覧はファイルに保存できます。",
   "The site is hosted on GitHub Pages. Like any web host, GitHub may keep standard server logs, such as IP addresses; this site adds no tracking of its own.": "このサイトは GitHub Pages に置いています。ほかのウェブサーバーと同じく、GitHub は IP アドレスなどの通常の記録を残すことがあります。このサイト自身は、追跡するものを何も加えていません。",
   "Added a fourth layout to the Study Workspace, Guided study: the guide beside the Bible text and the Greek, with cross references and notes below. Pick it from the Layout menu at the top.": "スタディ・ワークスペースに4つ目のレイアウト「学びの手引き」を加えました。手引きの横に本文とギリシア語、下に関連箇所とメモが並びます。上の「レイアウト」から選べます。",
+  "Added Word use to the Study Workspace: for a Greek verb, the words most often its subject and its object across the New Testament, counted from MACULA Greek (CC BY 4.0). Open it from the word card or the left menu.": "スタディ・ワークスペースに「語の使われ方」を加えました。ギリシア語の動詞について、新約全体で主語・目的語になることが多い語を、MACULA Greek（CC BY 4.0）から数えて並べます。語のカードか、左のメニューから開けます。",
+  "Who does what in a Greek sentence: the parts of each sentence (subject, verb, object) marked under the Greek words, and the usual subjects and objects of each verb in the Word use panel of the Study Workspace. Its semantic domain fields are not used.": "ギリシア語の文で「誰が何をするか」のデータです。スタディ・ワークスペースで、ギリシア語の語の下に文の成分（主語、動詞、目的語など）を表示し、「語の使われ方」で動詞ごとの主語・目的語を数えています。意味分類の項目は使っていません。",
+  "In the Study Workspace's Greek interlinear, a new switch shows the parts of each sentence under the words: subject, verb, object, indirect object and predicate, from MACULA Greek (CC BY 4.0).": "スタディ・ワークスペースのギリシア語逐語に、文の成分を表示する切り替えを加えました。語の下に、主語、動詞、目的語、間接目的語、補語が出ます。MACULA Greek（CC BY 4.0）の構文データからです。",
   "Study Workspace": "スタディ・ワークスペース",
   "The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku with furigana, and the Denmo Bible, a modern Japanese draft of 13 books), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.": "本文を並べて読める作業画面です。タイルはドラッグで動かせます。口語訳と文語訳（ふりがな付き）、現代語の電網聖書（13書の草稿）、単語ごとに文法の付いたギリシア語、英訳、辞書、語句研究。新約聖書。試作です。日本語の語とギリシア語の語の対応は機械による下書きです。人が確認したのは一部の抜き取りだけで、画面にも下書きと表示しています。"
  },

@@ -56,11 +56,28 @@
   }
 
   /* ---------- Greek interlinear ---------- */
+  /* Sentence parts (MACULA Greek, CC BY 4.0): the head words of subject, object and so on, marked under the word */
+  var PART = { s: { en: 'subj', ja: '主語' }, o: { en: 'obj', ja: '目的語' }, io: { en: 'ind obj', ja: '間接目的語' }, p: { en: 'pred', ja: '補語' }, v: { en: 'verb', ja: '動詞' } };
+  var PT = { on: { en: 'Show sentence parts', ja: '文の成分を表示' }, off: { en: 'Hide sentence parts', ja: '文の成分を隠す' },
+    note: { en: 'Sentence parts: the head word of each part, from MACULA Greek (CC BY 4.0).', ja: '文の成分：各成分の中心となる語に、MACULA Greek（CC BY 4.0）の構文データから付けています。' } };
+  function PL(x) { return state.lang === 'en' ? x.en : x.ja; }
   function greek(el) {
+    var parts = null;
+    el.addEventListener('click', function (ev) {
+      if (!ev.target.closest('[data-parts]')) return;
+      WS.store.set('ws.parts', !WS.store.get('ws.parts', false)); WS.emit('lang', null);
+    });
     return {
       texts: function () { return ['grc']; },
+      ready: function () {
+        parts = null;
+        if (!WS.store.get('ws.parts', false)) return Promise.resolve();
+        return WS.getJSON('role/' + state.book + '/' + state.ch + '.json').then(function (d) { parts = d; }, function () { parts = {}; });
+      },
       render: function () {
-        el.innerHTML = heading('SBLGNT') + verseNumbers().map(function (v) {
+        var on = WS.store.get('ws.parts', false);
+        el.innerHTML = heading('SBLGNT') + '<p class="small"><button class="btn" data-parts="1" aria-pressed="' + on + '">' + esc(PL(on ? PT.off : PT.on)) + '</button>' +
+          (on ? ' ' + esc(PL(PT.note)) : '') + '</p>' + verseNumbers().map(function (v) {
           var gv = WS.verse('grc', v);
           if (!gv) {
             var p = WS.pointer('grc', v);
@@ -72,6 +89,7 @@
             return '<button class="iw" data-v="' + v + '" data-i="' + w.i + '" data-s="' + esc(w.s) + '" data-g="' + v + ':' + w.i + '">' +
               '<span class="s" lang="grc">' + esc(w.t) + '</span><span class="g">' + esc(w.g) + '</span>' +
               '<span class="m">' + esc(w.s) + ' ' + esc(w.m) + '</span>' +
+              (parts && parts[v] && parts[v][w.i] ? '<span class="pt pt-' + parts[v][w.i] + '">' + esc(PL(PART[parts[v][w.i]])) + '</span>' : '') +
               (!state.align ? '' : !l ? '<span class="j">&nbsp;</span>' :
                 l.u ? '<span class="j un" title="' + esc(WS.stateText(l)) + '">' + (state.lang === 'en' ? 'unlinked' : '未リンク') + '</span>' :
                   '<span class="j st-' + l.st + '" lang="ja" title="' + esc(WS.stateText(l)) + '">' + esc(l.ja) + (l.where ? ' <small>→' + esc(l.where) + '</small>' : '') + '</span>') + '</button>';

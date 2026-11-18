@@ -6,7 +6,7 @@
   var state = WS.state, esc = WS.esc, card = null;
   var M = {
     lemma: { en: 'Lemma', ja: '見出し語' }, parse: { en: 'Parsing', ja: '解析' }, gloss: { en: 'Gloss', ja: '語釈' },
-    study: { en: 'Word Study', ja: '語の研究' }, lex: { en: 'Lexicon', ja: '辞書' }, note: { en: 'Note on this verse', ja: 'この節にメモ' },
+    study: { en: 'Word Study', ja: '語の研究' }, lex: { en: 'Lexicon', ja: '辞書' }, note: { en: 'Note on this verse', ja: 'この節にメモ' }, use: { en: 'Word use', ja: '使われ方' },
     copy: { en: 'Copy', ja: 'コピー' }, copied: { en: 'Copied.', ja: 'コピーしました。' }, close: { en: 'Close', ja: '閉じる' }
   };
   function L(k) { return state.lang === 'en' ? M[k].en : M[k].ja; }
@@ -32,7 +32,7 @@
       '<dt>' + esc(L('parse')) + '</dt><dd>' + esc(parse(w.m) || w.m) + ' <span class="small">(' + esc(w.m) + ')</span></dd>' +
       '<dt>' + esc(L('gloss')) + '</dt><dd lang="en">' + esc(w.g || lx.g || '') + '</dd></dl>' +
       '<div class="wm-a"><button class="btn" data-m="study">' + esc(L('study')) + '</button><button class="btn" data-m="lex">' + esc(L('lex')) + '</button>' +
-      '<button class="btn" data-m="note">' + esc(L('note')) + '</button><button class="btn" data-m="copy">' + esc(L('copy')) + '</button></div>' +
+      '<button class="btn" data-m="use">' + esc(L('use')) + '</button>' + '<button class="btn" data-m="note">' + esc(L('note')) + '</button><button class="btn" data-m="copy">' + esc(L('copy')) + '</button></div>' +
       '<p class="small wm-msg" role="status"></p>';
     document.body.appendChild(card);
     var r = el.getBoundingClientRect(), cw = Math.min(320, window.innerWidth - 16);
@@ -47,6 +47,7 @@
       if (k === 'x') return close();
       if (k === 'study') { WS.selectWord(v, i, w.s); var p = WS.ensurePanel('word'); if (p) p.api.setActive(); return close(); }
       if (k === 'lex') { WS.selectWord(v, i, w.s); var q = WS.ensurePanel('lexicon'); if (q) q.api.setActive(); return close(); }
+      if (k === 'use') { WS.selectWord(v, i, w.s); var u = WS.ensurePanel('usage'); if (u) u.api.setActive(); return close(); }
       if (k === 'note') { WS.selectVerse(v); var n = WS.ensurePanel('notes'); if (n) n.api.setActive(); return close(); }
       if (k === 'copy') {
         var txt = w.t + ' (' + (lx.l || '') + ', ' + w.s + ', ' + (parse(w.m) || w.m) + ') ' + ref;
