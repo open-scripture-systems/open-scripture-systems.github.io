@@ -296,3 +296,10 @@ html.noruby .t-ja { line-height: 1.9; }
 .iw .pt { display: block; font-size: 11px; font-weight: 600; border-radius: 4px; padding: 0 4px; margin-top: 2px; width: fit-content; }
 .pt-s { background: rgba(80, 150, 240, .22); } .pt-o { background: rgba(240, 110, 170, .22); } .pt-io { background: rgba(255, 150, 60, .24); }
 .pt-p { background: rgba(80, 200, 120, .24); } .pt-v { background: rgba(255, 214, 64, .32); }
+
+/* word details (hover) */
+.hv .hv-w { font-size: 1.5em; margin-bottom: .3em; }
+.hv dl { display: grid; grid-template-columns: max-content 1fr; gap: .25em .8em; margin: 0 0 .6em; }
+.hv dt { color: var(--mute); }
+.hv dd { margin: 0; min-width: 0; }
+.hv .hv-lx { font-size: .92em; line-height: 1.5; }

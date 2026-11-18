@@ -378,7 +378,7 @@ window.WS = (function () {
             else { paint(el); if (api.paint) api.paint(); if (origin !== self) reveal(el); }
           });
         },
-        dispose: function () { if (off) off(); }
+        dispose: function () { if (off) off(); if (api && api.dispose) api.dispose(); }
       };
     };
   }

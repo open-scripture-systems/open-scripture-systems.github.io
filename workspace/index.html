@@ -74,6 +74,7 @@
 <script src="xrefs.js"></script>
 <script src="gsearch.js"></script>
 <script src="usage.js"></script>
+<script src="hover.js"></script>
 <script>WS.start();</script>
 <!-- ows-feedback -->
 <style>
@@ -166,7 +167,7 @@
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#20", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-18#21", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
