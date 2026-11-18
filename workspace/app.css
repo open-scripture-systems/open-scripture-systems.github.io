@@ -244,3 +244,16 @@ html.noruby .t-ja { line-height: 1.9; }
 .guide textarea { width: 100%; min-height: 90px; box-sizing: border-box; font: inherit; }
 .guide .grow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 @media (prefers-color-scheme: dark) { .guide .gdraft { background: #3a2a10; color: #f3d9a6; border-color: #6b5228; } }
+
+/* Verse notes and highlights (colours chosen to keep text readable in both themes) */
+.hl-y { background: rgba(255, 214, 64, .32) !important; } .hl-g { background: rgba(80, 200, 120, .26) !important; }
+.hl-b { background: rgba(80, 150, 240, .24) !important; } .hl-p { background: rgba(240, 110, 170, .24) !important; }
+.hl-o { background: rgba(255, 150, 60, .28) !important; }
+.notes textarea { width: 100%; min-height: 80px; box-sizing: border-box; font: inherit; }
+.notes .vcol { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; align-items: center; }
+.notes .sw { min-width: 30px; min-height: 30px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; background: var(--bg); }
+.notes .sw[aria-pressed="true"] { outline: 2px solid var(--accent); outline-offset: 1px; }
+.notes .vlist { list-style: none; padding: 0; margin: 6px 0; display: grid; gap: 4px; }
+.notes .vlist button { width: 100%; text-align: left; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: var(--bg); cursor: pointer; }
+.notes .grow { display: flex; flex-wrap: wrap; gap: 6px; }
+.vn .nmark { margin-left: 2px; font-size: .8em; color: var(--accent); }

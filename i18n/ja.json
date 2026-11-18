@@ -304,6 +304,7 @@
   "Home": "ホーム",
   "Everything in one screen. To use one thing at a time, the single tools are below.": "すべてを1つの画面で使えます。1つずつ使いたいときは、下の単体ツールへどうぞ。",
   "Added Guided study to the Study Workspace: nine steps through one passage, with a note box for each, saved on your device and exportable as a file. It is a draft that a pastor or teacher has not checked yet, and the panel says so.": "スタディ・ワークスペースに「学びの手引き」を加えました。1つの箇所を9つの段階で学び、段階ごとにメモを書けます。メモはこの端末に保存され、ファイルにも書き出せます。まだ牧師や先生の確認を受けていない下書きで、パネルにもそう表示しています。",
+  "Notes in the Study Workspace now belong to a verse: write a note on the verse you clicked, give it one of five highlight colours, see all your notes in a list, save them as a file or a backup and load a backup again. Notes you wrote before stay, as chapter notes.": "スタディ・ワークスペースのメモを、節ごとに書けるようにしました。押した節にメモを書き、5色から色を付けられます。メモは一覧で見られ、ファイルやバックアップに保存し、バックアップを読み込むこともできます。前に書いたメモは、章のメモとして残っています。",
   "Study Workspace": "スタディ・ワークスペース",
   "The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku with furigana, and the Denmo Bible, a modern Japanese draft of 13 books), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.": "本文を並べて読める作業画面です。タイルはドラッグで動かせます。口語訳と文語訳（ふりがな付き）、現代語の電網聖書（13書の草稿）、単語ごとに文法の付いたギリシア語、英訳、辞書、語句研究。新約聖書。試作です。日本語の語とギリシア語の語の対応は機械による下書きです。人が確認したのは一部の抜き取りだけで、画面にも下書きと表示しています。"
  },

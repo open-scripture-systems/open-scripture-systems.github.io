@@ -48,7 +48,8 @@
         el.innerHTML = heading(WS.textName(id)) + verseNumbers().map(function (v) {
           var html = WS.verseHTML(id, v);
           if (!html) return '';
-          return '<p class="vs ' + WS.textClass(id) + '" lang="' + info.lang + '" data-text="' + id + '" data-verse="' + v + '"><span class="vn">' + v + '</span>' + html + '</p>';
+          var vn = WS.vnote && WS.vnote(state.book, state.ch, v);
+          return '<p class="vs ' + WS.textClass(id) + (vn && vn.c ? ' hl-' + vn.c : '') + '" lang="' + info.lang + '" data-text="' + id + '" data-verse="' + v + '"><span class="vn">' + v + (vn && vn.text ? '<span class="nmark" title="' + esc(vn.text.slice(0, 80)) + '">✎</span>' : '') + '</span>' + html + '</p>';
         }).join('');
       }
     };
@@ -186,31 +187,106 @@
   }
 
   /* ---------- Notes: plain text in this browser, one note a chapter, exportable ---------- */
+  /* ---------- Notes: one note per verse, with an optional highlight colour ----------
+   * Stored on this device in ws.vnotes: { "Jhn.3.16": { text, c, t } }. A chapter note from the older box
+   * (ws.notes.<book>.<ch>) is moved in as verse 0 of that chapter the first time; the old key is kept as it was. */
+  var COLORS = ['y', 'g', 'b', 'p', 'o'];
+  var NS = {
+    verse: { en: 'Note on', ja: 'メモ：' }, chapterNote: { en: 'Chapter note', ja: '章のメモ' },
+    color: { en: 'Highlight', ja: '色' }, none: { en: 'No colour', ja: '色なし' },
+    here: { en: 'This chapter', ja: 'この章' }, all: { en: 'All notes', ja: 'すべてのメモ' },
+    empty: { en: 'No notes yet. Click a verse, then write here.', ja: 'まだメモはありません。節を押してから、ここに書いてください。' },
+    md: { en: 'Save as a file (Markdown)', ja: 'ファイルに保存（Markdown）' }, backup: { en: 'Back up (JSON)', ja: 'バックアップ（JSON）' },
+    load: { en: 'Load a backup', ja: 'バックアップを読み込む' }, loaded: { en: 'Loaded. Notes already here were kept.', ja: '読み込みました。今あるメモはそのまま残しています。' },
+    device: { en: 'Saved on this device only.', ja: 'この端末にだけ保存されます。' }
+  };
+  function NL(k) { return state.lang === 'en' ? NS[k].en : NS[k].ja; }
+  function allNotes() {
+    var n = WS.store.get('ws.vnotes', null);
+    if (!n) {  // first run: bring in the older chapter notes, losing nothing
+      n = {};
+      WS.store.keys().forEach(function (k) {
+        var m = /^ws\.notes\.([^.]+)\.(\d+)$/.exec(k);
+        if (m) { var txt = WS.store.get(k, ''); if (txt) n[m[1] + '.' + m[2] + '.0'] = { text: txt, c: '', t: Date.now() }; }
+      });
+      WS.store.set('ws.vnotes', n);
+    }
+    return n;
+  }
+  WS.vnote = function (book, ch, v) { return allNotes()[book + '.' + ch + '.' + v] || null; };
+  function refName(key) {
+    var p = key.split('.'), b = WS.manifest.books[p[0]];
+    if (!b) return key;
+    var name = state.lang === 'en' ? b.en : b.short || b.ja;
+    return name + ' ' + p[1] + (p[2] !== '0' ? ':' + p[2] : '');
+  }
+  function sortKey(k) { var p = k.split('.'); return [WS.manifest.order.indexOf(p[0]), +p[1], +p[2]]; }
+  function cmp(a, b) { var x = sortKey(a), y = sortKey(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; }
   function notes(el) {
     el.classList.add('notes');
-    var key = function () { return 'ws.notes.' + state.book + '.' + state.ch; };
-    el.addEventListener('input', function (ev) { if (ev.target.tagName === 'TEXTAREA') WS.store.set(key(), ev.target.value); });
-    el.addEventListener('click', function (ev) {
-      if (!ev.target.closest('[data-export]')) return;
-      var out = [];
-      WS.manifest.order.forEach(function (code) {
-        var b = WS.manifest.books[code];
-        for (var c = 1; c <= b.chapters; c++) {
-          var n = WS.store.get('ws.notes.' + code + '.' + c, '');
-          if (n) out.push('# ' + b.en + ' ' + c + '\n\n' + n);
-        }
-      });
+    var scope = 'here';
+    function here() { return state.book + '.' + state.ch + '.' + (state.v || 0); }
+    function put(key, patch) {
+      var n = allNotes(), cur = n[key] || { text: '', c: '', t: 0 };
+      Object.keys(patch).forEach(function (k) { cur[k] = patch[k]; });
+      cur.t = Date.now();
+      if (!cur.text && !cur.c) delete n[key]; else n[key] = cur;
+      WS.store.set('ws.vnotes', n);
+    }
+    function download(name, type, body) {
       var a = document.createElement('a');
-      a.href = URL.createObjectURL(new Blob([out.join('\n\n')], { type: 'text/plain' }));
-      a.download = 'study-notes.txt'; a.click();
+      a.href = URL.createObjectURL(new Blob([body], { type: type })); a.download = name; a.click();
+    }
+    el.addEventListener('input', function (ev) {
+      if (ev.target.id === 'vnote') { put(here(), { text: ev.target.value }); list(); }
     });
-    return {
-      render: function () {
-        el.innerHTML = heading(t('notes')) + '<textarea aria-label="' + esc(t('notes')) + '"></textarea>' +
-          '<p class="small">' + esc(t('notesHint')) + '</p>' + (window.WS_PACK ? '' : '<button class="btn" data-export="1">' + esc(t('export')) + '</button>');
-        el.querySelector('textarea').value = WS.store.get(key(), '');
+    el.addEventListener('change', function (ev) {
+      if (ev.target.id !== 'vload' || !ev.target.files[0]) return;
+      var r = new FileReader();
+      r.onload = function () {
+        try {
+          var inc = JSON.parse(r.result).notes || {}, n = allNotes();
+          Object.keys(inc).forEach(function (k) { if (!n[k] && inc[k] && typeof inc[k].text === 'string') n[k] = inc[k]; });
+          WS.store.set('ws.vnotes', n); el.querySelector('.vmsg').textContent = NL('loaded'); list(); WS.emit('lang', null);
+        } catch (e) { el.querySelector('.vmsg').textContent = String(e); }
+      };
+      r.readAsText(ev.target.files[0]);
+    });
+    el.addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-c],[data-go],[data-scope],[data-md],[data-backup]'); if (!b) return;
+      if (b.dataset.c !== undefined) { put(here(), { c: b.dataset.c }); draw(); WS.emit('lang', null); return; }
+      if (b.dataset.scope) { scope = b.dataset.scope; list(); return; }
+      if (b.dataset.go) { var p = b.dataset.go.split('.'); WS.go(p[0], +p[1], +p[2] || 1); return; }
+      var n = allNotes(), keys = Object.keys(n).sort(cmp);
+      if (b.dataset.md !== undefined) {
+        download('study-notes.md', 'text/markdown', keys.map(function (k) { return '## ' + refName(k) + (n[k].c ? ' (' + n[k].c + ')' : '') + '\n\n' + (n[k].text || '-'); }).join('\n\n') + '\n');
+      } else {
+        download('study-notes-backup.json', 'application/json', JSON.stringify({ app: 'mikotoba-kobo', version: 1, notes: n }, null, 1));
       }
-    };
+    });
+    function list() {
+      var n = allNotes(), pre = state.book + '.' + state.ch + '.', keys = Object.keys(n).filter(function (k) { return scope === 'all' || k.indexOf(pre) === 0; }).sort(cmp);
+      var box = el.querySelector('.vlist'); if (!box) return;
+      box.innerHTML = keys.length ? keys.map(function (k) {
+        return '<li><button data-go="' + esc(k) + '" class="' + (n[k].c ? 'hl-' + esc(n[k].c) : '') + '"><b>' + esc(refName(k)) + '</b> ' + esc((n[k].text || '').slice(0, 80)) + '</button></li>';
+      }).join('') : '<li class="small">' + esc(NL('empty')) + '</li>';
+    }
+    function draw() {
+      var cur = WS.vnote(state.book, state.ch, state.v || 0) || { text: '', c: '' };
+      el.innerHTML = heading(t('notes')) +
+        '<label class="small" for="vnote">' + esc(state.v ? NL('verse') + ' ' + refName(here()) : NL('chapterNote')) + '</label>' +
+        '<textarea id="vnote">' + esc(cur.text) + '</textarea>' +
+        '<div class="vcol" role="group" aria-label="' + esc(NL('color')) + '">' + COLORS.map(function (c) {
+          return '<button data-c="' + c + '" class="sw hl-' + c + '" aria-pressed="' + (cur.c === c) + '" aria-label="' + esc(NL('color') + ' ' + c) + '"></button>';
+        }).join('') + '<button data-c="" class="sw" aria-pressed="' + (!cur.c) + '">' + esc(NL('none')) + '</button></div>' +
+        '<p class="small">' + esc(NL('device')) + '</p>' +
+        '<div class="seg"><button data-scope="here" aria-pressed="' + (scope === 'here') + '">' + esc(NL('here')) + '</button><button data-scope="all" aria-pressed="' + (scope === 'all') + '">' + esc(NL('all')) + '</button></div>' +
+        '<ul class="vlist"></ul>' +
+        '<div class="grow"><button class="btn" data-md="1">' + esc(NL('md')) + '</button><button class="btn" data-backup="1">' + esc(NL('backup')) + '</button>' +
+        '<label class="btn">' + esc(NL('load')) + '<input id="vload" type="file" accept="application/json,.json" hidden></label></div><p class="small vmsg" role="status"></p>';
+      list();
+    }
+    return { render: draw };
   }
 
   /* ---------- Sources and licences, straight from the manifest ---------- */
