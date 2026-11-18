@@ -257,3 +257,13 @@ html.noruby .t-ja { line-height: 1.9; }
 .notes .vlist button { width: 100%; text-align: left; border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: var(--bg); cursor: pointer; }
 .notes .grow { display: flex; flex-wrap: wrap; gap: 6px; }
 .vn .nmark { margin-left: 2px; font-size: .8em; color: var(--accent); }
+
+/* Word menu card */
+.wmenu { position: fixed; z-index: 60; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.22); padding: 10px 12px; font-size: 14px; box-sizing: border-box; }
+.wmenu .wm-h { display: flex; align-items: baseline; gap: 8px; }
+.wmenu .wm-h b { font-size: 20px; }
+.wmenu .wm-x { margin-left: auto; min-width: 30px; min-height: 30px; border: 1px solid var(--line); border-radius: 999px; background: transparent; cursor: pointer; }
+.wmenu dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; margin: 6px 0; }
+.wmenu dt { color: var(--mute); } .wmenu dd { margin: 0; }
+.wmenu .wm-a { display: flex; flex-wrap: wrap; gap: 6px; }
