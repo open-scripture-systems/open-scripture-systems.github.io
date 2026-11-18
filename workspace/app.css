@@ -279,3 +279,10 @@ html.noruby .t-ja { line-height: 1.9; }
 /* Cross references */
 .xr .xlist { padding-left: 1.4em; display: grid; gap: 8px; }
 .xr .xlist p { margin: 2px 0 4px; font-size: 14px; }
+
+/* Greek search */
+.gsr .gform { display: grid; gap: 6px; max-width: 520px; }
+.gsr .gform label { display: grid; gap: 2px; font-size: 13px; color: var(--mute); }
+.gsr .gform input, .gsr .gform select { font: inherit; color: var(--ink); padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.gsr .gform input { font-size: 16px; }
+.gsr ol { padding-left: 1.4em; }
