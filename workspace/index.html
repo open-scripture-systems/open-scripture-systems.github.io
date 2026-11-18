@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study Workspace (prototype) | Open Word Study</title>
+<meta name="description" content="A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag.">
+<meta property="og:title" content="Study Workspace (prototype) | Open Word Study">
+<meta property="og:description" content="A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vadneyk.github.io/open-word-study-site/workspace/">
+<meta name="twitter:card" content="summary">
+<script>try{if(/[?&]lang=ja\b/.test(location.search)||(!/[?&]lang=en\b/.test(location.search)&&localStorage.getItem("ows-lang")!=="en"))document.documentElement.classList.add("owsja")}catch(e){}</script>
+<!-- ows-seo -->
+<link rel="canonical" href="https://vadneyk.github.io/open-word-study-site/workspace/">
+<link rel="alternate" hreflang="en" href="https://vadneyk.github.io/open-word-study-site/workspace/">
+<link rel="alternate" hreflang="ja" href="https://vadneyk.github.io/open-word-study-site/workspace/?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://vadneyk.github.io/open-word-study-site/workspace/">
+<meta property="og:site_name" content="Open Word Study">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Study Workspace (prototype)", "alternateName": "聖書スタディ・ワークスペース（試作）", "url": "https://vadneyk.github.io/open-word-study-site/workspace/", "description": "A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "audience": {"@type": "EducationalAudience", "educationalRole": "student, teacher, pastor"}, "isPartOf": {"@type": "WebSite", "name": "Open Word Study", "url": "https://vadneyk.github.io/open-word-study-site/"}, "disambiguatingDescription": "新約聖書の無料の学習用ワークスペース。口語訳・文語訳（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。"}</script>
+<script>(function(){if(!document.documentElement.classList.contains("owsja"))return;var J={"t": "聖書スタディ・ワークスペース（試作） | Open Word Study", "d": "新約聖書の無料の学習用ワークスペース。口語訳・文語訳（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。", "u": "https://vadneyk.github.io/open-word-study-site/workspace/?lang=ja"};function A(){document.title=J.t;var q=function(s){return document.querySelector(s)},c=q('link[rel="canonical"]');if(c)c.href=J.u;["meta[name=\"description\"]","meta[property=\"og:description\"]"].forEach(function(s){var m=q(s);if(m)m.content=J.d});var o=q('meta[property="og:title"]');if(o)o.content=J.t;o=q('meta[property="og:url"]');if(o)o.content=J.u;}A();addEventListener("DOMContentLoaded",A)})();</script>
+<!-- /ows-seo -->
+
+<link rel="stylesheet" href="app.css">
+<script>try{if(/[?&]text=large\b/.test(location.search)||localStorage.getItem('ows-text')==='large')document.documentElement.classList.add('owsbig')}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <button id="railToggle" class="icon" aria-label="メニュー" aria-expanded="true">☰</button>
+  <h1 class="brand"><a href="../">Open Word Study</a> <span>ワークスペース（試作）</span></h1>
+  <form id="cmd" role="search">
+    <input id="cmdBox" type="search" autocomplete="off" spellcheck="false" aria-label="聖書箇所へ移動、ストロング番号、または語を検索">
+  </form>
+  <div class="chap">
+    <button id="prevCh" class="icon" aria-label="前の章">‹</button>
+    <span id="chLabel" aria-live="polite"></span>
+    <button id="nextCh" class="icon" aria-label="次の章">›</button>
+  </div>
+  <div class="seg" role="group" aria-label="表示言語" id="langSeg">
+    <button data-lang="ja">日本語</button><button data-lang="en">EN</button><button data-lang="both">日英</button>
+  </div>
+  <label class="lay"><span id="layLabel"></span>
+    <select id="layoutPick" aria-label="レイアウト"></select>
+  </label>
+  <button id="bigText" class="bigbtn" type="button" aria-pressed="false"><span class="glyph" aria-hidden="true">Aa</span><span class="lbl"></span></button>
+  <label class="flag" id="flagWrap"><input type="checkbox" id="alignFlag"> <span id="flagLabel"></span></label>
+</header>
+<div role="region" id="notices" aria-label="お知らせ">
+  <div id="draftBanner" class="banner" hidden></div>
+  <div id="alignLegend" class="legend" hidden></div>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+</div>
+<div class="body">
+  <nav id="rail" class="rail" aria-label="ライブラリとレイアウト"></nav>
+  <main id="dock" class="dock"></main>
+</div>
+<script src="vendor/dockview/dockview-core.min.js"></script>
+<script>window.WS_SITE = {home: '../', tools: [["reader", "Interlinear Reader", "行間対訳リーダー"], ["compare", "Compare Translations", "翻訳の比較"], ["word-study", "Word Study", "語句研究"], ["hebrew", "Hebrew Word Study", "ヘブライ語の語句研究"], ["wheel", "Word Wheel", "ワードホイール（訳語の輪）"], ["workbench", "Passage Workbench", "本文ワークベンチ"], ["companion", "Passage Companion", "聖書箇所コンパニオン"], ["lens", "Grammar Lens", "文法レンズ"], ["finder", "Verse Finder", "節の検索"], ["factbook", "Factbook", "人名・地名事典"], ["sources", "Sources and licences", "出典とライセンス"]]};
+// One language choice for the whole site: ?lang= wins, then the choice made on any page (ows-lang), then Japanese.
+(function () { try { var m = /[?&]lang=(ja|en)\b/.exec(location.search), o = localStorage.getItem('ows-lang'), w = localStorage.getItem('ws.lang');
+  if (m) { window.WS_LANG_FORCE = m[1]; localStorage.setItem('ows-lang', m[1]); }
+  else if (o && !(o === 'ja' && w === '"both"')) window.WS_LANG_FORCE = o;
+  window.WS_LANG = 'ja'; } catch (e) {} })();</script>
+<script src="app.js"></script>
+<script src="panels.js"></script>
+<script src="wordstudy.js"></script>
+<script src="resources.js"></script>
+<script src="search.js"></script>
+<script>WS.start();</script>
+</body>
+</html>

@@ -8,6 +8,7 @@ Every page opens in Japanese with ?lang=ja added to its address. Greek, Hebrew a
 
 ## Tools
 
+- [Study Workspace (prototype)](https://vadneyk.github.io/open-word-study-site/workspace/): A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag. 日本語（聖書スタディ・ワークスペース（試作））：新約聖書の無料の学習用ワークスペース。口語訳・文語訳（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。
 - [Interlinear Reader](https://vadneyk.github.io/open-word-study-site/reader/): Read the Bible in English with the Greek or Hebrew word under each English word. No Greek or Hebrew needed. 日本語（行間対訳リーダー）：英語の本文を、単語ごとにギリシア語・ヘブライ語を添えて読めます。原語を読めなくても使えます。
 - [Compare Translations](https://vadneyk.github.io/open-word-study-site/compare/): See how three open English translations say the same New Testament verse, and trace differences back to the Greek. 日本語（翻訳の比較）：公開されている三つの英訳が同じ節をどう訳しているかを比べ、違いをギリシア語までたどります。
 - [Word Study](https://vadneyk.github.io/open-word-study-site/word-study/): Any Greek New Testament word: where it appears, its forms, and how open English translations render it. 日本語（語句研究）：新約聖書のギリシア語の語を一つ選び、出てくる箇所、語形、公開されている英訳での訳され方を調べます。
@@ -21,8 +22,9 @@ Every page opens in Japanese with ?lang=ja added to its address. Greek, Hebrew a
 
 ## What to know before citing it
 
-- Texts and data: SBLGNT and STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0), Berean Standard Bible, World English Bible, King James Version and 文語訳 (1917) (public domain), unfoldingWord ULT, UST and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0), Abbott-Smith lexicon (1922).
+- Texts and data: SBLGNT and STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0), Berean Standard Bible, World English Bible, King James Version, 口語訳 (1954) and 文語訳 (1917) (public domain), unfoldingWord ULT, UST and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0), Abbott-Smith lexicon (1922).
 - No copyrighted translation is used (no ESV, NIV, 新改訳, 新共同訳 or 聖書協会共同訳).
+- In the Study Workspace, the links from Japanese words to Greek words are a machine draft. A person has checked only a small sample, and the page marks them as a draft. Do not cite them as a checked concordance.
 - It is a study aid and a work in progress, not a replacement for a full Bible software library, and it is not affiliated with any Bible software company.
 
 ## More

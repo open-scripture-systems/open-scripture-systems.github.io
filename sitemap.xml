@@ -13,6 +13,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vadneyk.github.io/open-word-study-site/"/>
   </url>
   <url>
+    <loc>https://vadneyk.github.io/open-word-study-site/workspace/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vadneyk.github.io/open-word-study-site/workspace/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://vadneyk.github.io/open-word-study-site/workspace/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vadneyk.github.io/open-word-study-site/workspace/"/>
+  </url>
+  <url>
+    <loc>https://vadneyk.github.io/open-word-study-site/workspace/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vadneyk.github.io/open-word-study-site/workspace/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://vadneyk.github.io/open-word-study-site/workspace/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vadneyk.github.io/open-word-study-site/workspace/"/>
+  </url>
+  <url>
     <loc>https://vadneyk.github.io/open-word-study-site/reader/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vadneyk.github.io/open-word-study-site/reader/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://vadneyk.github.io/open-word-study-site/reader/?lang=ja"/>

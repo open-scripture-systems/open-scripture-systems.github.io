@@ -1,0 +1,237 @@
+/* Study workspace, the panels: one Bible panel per text, the Greek interlinear, the parallel view, Word Study,
+ * Notes, and Sources. Each registers itself with WS.panel(); the core loads the texts a panel names.
+ */
+(function () {
+  'use strict';
+  var WS = window.WS, esc = WS.esc, state = WS.state, T = WS.T;
+  function t(k) { return WS.t(k); }
+
+  Object.assign(T, {
+    greek: { en: 'Greek interlinear', ja: 'ギリシア語 逐語' },
+    parallel: { en: 'Parallel versions', ja: '対照聖書' },
+    parCols: { en: 'Versions shown', ja: '表示する訳' }, parDiff: { en: 'Mark differences', ja: '違いに印を付ける' },
+    parBase: { en: 'Marked against:', ja: '基準：' },
+    sources: { en: 'Sources and licences', ja: '出典とライセンス' },
+    srcName: { en: 'Source', ja: '出典' }, srcUsed: { en: 'Used for', ja: '用途' }, srcLicence: { en: 'Licence', ja: 'ライセンス' },
+    srcCredit: { en: 'Credit', ja: 'クレジット' }, srcChanges: { en: 'Changes', ja: '変更点' },
+    pickWord: { en: 'Click a Greek word to study it.', ja: 'ギリシア語の語をクリックしてください。' },
+    inNT: { en: 'in the New Testament', ja: '新約全体' },
+    naCount: { en: 'NA28 as tagged by TAGNT', ja: 'TAGNT による NA28 の数' },
+    thisForm: { en: 'This form', ja: 'この語形' }, forms: { en: 'Forms', ja: '語形' },
+    byBook: { en: 'By book', ja: '書ごとの出現数' },
+    occ: { en: 'Where it occurs in', ja: '出現箇所：' },
+    rend: { en: 'How the Kougo-yaku renders it', ja: '口語訳での訳語' },
+    rendOff: {
+      en: 'Hidden. The Japanese renderings come from a machine alignment that no person has checked. Switch on "Unverified alignment" to see the draft.',
+      ja: '非表示です。訳語は人が確認していない機械アラインメントによるものです。「未検証アラインメント」をオンにすると下書きを表示します。'
+    },
+    draftTag: { en: 'DRAFT, unverified', ja: '下書き・未検証' },
+    linkedN: { en: 'links shown', ja: '表示リンク' }, heldN: { en: 'shown unlinked', ja: '未リンク表示' },
+    noRend: { en: 'No rendering is shown for this word.', ja: 'この語の訳語は表示しません。' },
+    export: { en: 'Export notes', ja: 'ノートを書き出す' },
+    notesHint: { en: 'Saved in this browser only. No account.', ja: 'このブラウザにのみ保存されます。アカウント不要。' }
+  });
+
+  function verseNumbers() { var out = []; for (var v = 1; v <= WS.lastVerse(); v++) out.push(v); return out; }
+  function heading(extra) { return '<h2>' + esc((extra ? extra + ' · ' : '') + WS.bookName() + ' ' + state.ch) + '</h2>'; }
+
+  /* ---------- Bible panel: any one text ---------- */
+  function bible(el, params) {
+    var id = params.text;
+    return {
+      texts: function () { return [id]; },
+      render: function () {
+        var info = WS.textInfo(id);
+        el.innerHTML = heading(WS.textName(id)) + verseNumbers().map(function (v) {
+          var html = WS.verseHTML(id, v);
+          if (!html) return '';
+          return '<p class="vs ' + WS.textClass(id) + '" lang="' + info.lang + '" data-text="' + id + '" data-verse="' + v + '"><span class="vn">' + v + '</span>' + html + '</p>';
+        }).join('');
+      }
+    };
+  }
+
+  /* ---------- Greek interlinear ---------- */
+  function greek(el) {
+    return {
+      texts: function () { return ['grc']; },
+      render: function () {
+        el.innerHTML = heading('SBLGNT') + verseNumbers().map(function (v) {
+          var gv = WS.verse('grc', v);
+          if (!gv) {
+            var p = WS.pointer('grc', v);
+            return p ? '<div class="il" data-verse="' + v + '"><span class="vn">' + v + '</span><span class="vp">' + esc(t('seeVerse') + ' ' + p) + '</span></div>' : '';
+          }
+          return '<div class="il" data-verse="' + v + '"><span class="vn">' + v + '</span>' + WS.notSbl(gv) + gv.w.map(function (w) {
+            if (!w.i) return '<span class="iw"><span class="s" lang="grc">' + esc(w.t) + '</span></span>';
+            var l = state.align && !w.x ? WS.linkFor(v, w.i) : null;
+            return '<button class="iw" data-v="' + v + '" data-i="' + w.i + '" data-s="' + esc(w.s) + '" data-g="' + v + ':' + w.i + '">' +
+              '<span class="s" lang="grc">' + esc(w.t) + '</span><span class="g">' + esc(w.g) + '</span>' +
+              '<span class="m">' + esc(w.s) + ' ' + esc(w.m) + '</span>' +
+              (!state.align ? '' : !l ? '<span class="j">&nbsp;</span>' :
+                l.u ? '<span class="j un" title="' + esc(WS.stateText(l)) + '">' + (state.lang === 'en' ? 'unlinked' : '未リンク') + '</span>' :
+                  '<span class="j st-' + l.st + '" lang="ja" title="' + esc(WS.stateText(l)) + '">' + esc(l.ja) + (l.where ? ' <small>→' + esc(l.where) + '</small>' : '') + '</span>') + '</button>';
+          }).join('') + '</div>';
+        }).join('');
+      }
+    };
+  }
+
+  /* ---------- parallel: versions side by side, one row a verse, differences marked ----------
+   * Differences are marked inside one language only, against the first version of that language in view:
+   * English word by word (case and punctuation ignored), Japanese character by character (punctuation ignored;
+   * an old character form counts as a different character). Greek is never marked. */
+  var ORDER = ['kougo', 'bungo', 'grc', 'bsb', 'web', 'kjv'];
+  var PUNCT = /[\s、。，．・「」『』（）()\[\]―…！？!?,.;:'"“”‘’\-]/;
+  /* which items of b are not part of the longest common subsequence with a */
+  function differs(a, b) {
+    var n = a.length, m = b.length, w = m + 1, dp = new Uint16Array((n + 1) * w), i, j;
+    for (i = n - 1; i >= 0; i--) for (j = m - 1; j >= 0; j--) dp[i * w + j] = a[i] === b[j] ? dp[(i + 1) * w + j + 1] + 1 : Math.max(dp[(i + 1) * w + j], dp[i * w + j + 1]);
+    var out = [];
+    for (j = 0; j < m; j++) out.push(true);
+    i = 0; j = 0;
+    while (i < n && j < m) {
+      if (a[i] === b[j]) { out[j] = false; i++; j++; }
+      else if (dp[(i + 1) * w + j] >= dp[i * w + j + 1]) i++;
+      else j++;
+    }
+    return out;
+  }
+  function enWords(str) { return str.split(/\s+/).filter(Boolean); }
+  function enKey(w) { return w.toLowerCase().replace(/[^a-z0-9]/g, ''); }
+  function enMarked(base, str) {
+    var words = enWords(str), keys = words.map(enKey), real = [], at = [];
+    keys.forEach(function (k, n) { if (k) { real.push(k); at.push(n); } });
+    var d = differs(enWords(base).map(enKey).filter(Boolean), real), mark = {};
+    d.forEach(function (x, n) { if (x) mark[at[n]] = true; });
+    var out = '', open = false;
+    words.forEach(function (wd, n) {
+      var on = !!mark[n], sp = n ? ' ' : '';
+      if (on && !open) out += sp + '<mark class="df">' + esc(wd);
+      else if (!on && open) out += '</mark>' + sp + esc(wd);
+      else out += sp + esc(wd);
+      open = on;
+    });
+    return out + (open ? '</mark>' : '');
+  }
+  function jaChars(segs) { return segs.map(function (x) { return x[0]; }).join('').split('').filter(function (c) { return !PUNCT.test(c); }); }
+  function jaMarked(baseSegs, segs) {
+    var d = differs(jaChars(baseSegs), jaChars(segs)), k = 0;
+    /* one flag a character; punctuation takes a mark only when the characters on both sides of it are marked */
+    var flags = segs.map(function (seg) { return seg[0].split('').map(function (c) { return PUNCT.test(c) ? null : d[k++]; }); });
+    var flat = [].concat.apply([], flags), real = function (n, step) { while (n >= 0 && n < flat.length && flat[n] === null) n += step; return !!flat[n]; };
+    var n = 0;
+    return segs.map(function (seg, si) {
+      var mine = flags[si].map(function (f) { var on = f === null ? real(n, -1) && real(n, 1) : f; n++; return on; });
+      if (seg[1]) {
+        var r = '<ruby>' + esc(seg[0]) + '<rt>' + esc(seg[1]) + '</rt></ruby>';
+        return mine.some(function (f) { return f; }) ? '<mark class="df">' + r + '</mark>' : r;
+      }
+      var out = '', open = false;
+      seg[0].split('').forEach(function (c, i) {
+        if (mine[i] && !open) out += '<mark class="df">';
+        if (!mine[i] && open) out += '</mark>';
+        open = mine[i];
+        out += esc(c);
+      });
+      return out + (open ? '</mark>' : '');
+    }).join('');
+  }
+  function parallel(el) {
+    function cols() {
+      var saved = WS.store.get('ws.par.cols', null);
+      var c = saved || (state.lang === 'en' ? ['grc', 'bsb', 'web', 'kjv'] : state.lang === 'ja' ? [WS.ja(), 'kougo', 'bungo', 'grc'] : [WS.ja(), 'kougo', 'bungo', 'bsb', 'web', 'kjv']);
+      c = ORDER.filter(function (id) { return c.indexOf(id) >= 0 && WS.textInfo(id); });
+      return c.length ? c : [WS.ja()];
+    }
+    function diffOn() { return WS.store.get('ws.par.diff', true); }
+    el.addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-col]');
+      if (!b) return;
+      var c = cols(), id = b.dataset.col, n = c.indexOf(id);
+      if (n >= 0) { if (c.length > 1) c.splice(n, 1); } else c.push(id);
+      WS.store.set('ws.par.cols', c);
+      WS.emit('lang', null);   /* redraw every parallel panel with the new columns, loading what is new */
+    });
+    el.addEventListener('change', function (ev) {
+      if (ev.target.name === 'pardiff') { WS.store.set('ws.par.diff', ev.target.checked); WS.emit('lang', null); }
+    });
+    return {
+      texts: cols,
+      render: function () {
+        var c = cols(), mark = diffOn(), base = {};
+        c.forEach(function (id) { var lang = WS.textInfo(id).lang; if (lang !== 'grc' && !base[lang]) base[lang] = id; });
+        var marked = c.filter(function (id) { var lang = WS.textInfo(id).lang; return mark && base[lang] && base[lang] !== id; });
+        var html = '<div class="parbar"><span class="chips" role="group" aria-label="' + esc(t('parCols')) + '">' + ORDER.filter(WS.textInfo).map(function (id) {
+          return '<button data-col="' + id + '" aria-pressed="' + (c.indexOf(id) >= 0) + '" title="' + esc(WS.textName(id)) + '">' + esc(WS.textInfo(id).short) + '</button>';
+        }).join('') + '</span><label class="pardiff"><input type="checkbox" name="pardiff"' + (mark ? ' checked' : '') + '> ' + esc(t('parDiff')) + '</label>' +
+          (marked.length ? '<span class="small">' + esc(t('parBase')) + ' ' + Object.keys(base).filter(function (l) { return marked.some(function (id) { return WS.textInfo(id).lang === l; }); })
+            .map(function (l) { return esc(WS.textInfo(base[l]).short); }).join(', ') + '</span>' : '') + '</div>';
+        html += '<div class="par" style="--cols:' + c.length + '">' + c.map(function (id) { return '<div class="hd">' + esc(WS.textName(id)) + '</div>'; }).join('');
+        for (var v = 1; v <= WS.lastVerse(); v++) {
+          for (var k = 0; k < c.length; k++) {
+            var id = c[k], info = WS.textInfo(id), x = WS.verse(id, v), body;
+            var b = marked.indexOf(id) >= 0 ? WS.verse(base[info.lang], v) : null;
+            if (x != null && b != null) body = (WS.label(id, v) ? '<span class="vl">' + esc(WS.label(id, v)) + '</span> ' : '') + (info.kind === 'ruby' ? jaMarked(b, x) : enMarked(b, x));
+            else body = WS.verseHTML(id, v) || '<span class="vp">' + esc(t('noVerse')) + '</span>';
+            html += '<div class="' + WS.textClass(id) + (k ? '' : ' first') + '" data-text="' + id + '" lang="' + info.lang + '" data-verse="' + v + '"><span class="vn">' + v + '</span><span class="tl">' + esc(info.short || info.en) + '</span>' + body + '</div>';
+          }
+        }
+        el.innerHTML = heading() + html + '</div>';
+      }
+    };
+  }
+
+  /* ---------- Notes: plain text in this browser, one note a chapter, exportable ---------- */
+  function notes(el) {
+    el.classList.add('notes');
+    var key = function () { return 'ws.notes.' + state.book + '.' + state.ch; };
+    el.addEventListener('input', function (ev) { if (ev.target.tagName === 'TEXTAREA') WS.store.set(key(), ev.target.value); });
+    el.addEventListener('click', function (ev) {
+      if (!ev.target.closest('[data-export]')) return;
+      var out = [];
+      WS.manifest.order.forEach(function (code) {
+        var b = WS.manifest.books[code];
+        for (var c = 1; c <= b.chapters; c++) {
+          var n = WS.store.get('ws.notes.' + code + '.' + c, '');
+          if (n) out.push('# ' + b.en + ' ' + c + '\n\n' + n);
+        }
+      });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([out.join('\n\n')], { type: 'text/plain' }));
+      a.download = 'study-notes.txt'; a.click();
+    });
+    return {
+      render: function () {
+        el.innerHTML = heading(t('notes')) + '<textarea aria-label="' + esc(t('notes')) + '"></textarea>' +
+          '<p class="small">' + esc(t('notesHint')) + '</p>' + (window.WS_PACK ? '' : '<button class="btn" data-export="1">' + esc(t('export')) + '</button>');
+        el.querySelector('textarea').value = WS.store.get(key(), '');
+      }
+    };
+  }
+
+  /* ---------- Sources and licences, straight from the manifest ---------- */
+  function sources(el) {
+    return {
+      render: function () {
+        el.innerHTML = '<h2>' + esc(t('sources')) + '</h2><table class="src"><thead><tr><th>' + esc(t('srcName')) + '</th><th>' + esc(t('srcUsed')) + '</th><th>' + esc(t('srcLicence')) + '</th><th>' + esc(t('srcCredit')) + '</th></tr></thead><tbody>' +
+          WS.manifest.sources.map(function (s) {
+            return '<tr class="' + (s.unverified ? 'unv' : '') + '"><td>' + (s.url ? '<a href="' + esc(s.url) + '" rel="noopener" target="_blank">' + esc(s.name) + '</a>' : esc(s.name)) +
+              '</td><td>' + esc(s.used) + '</td><td>' + (s.license_url ? '<a href="' + esc(s.license_url) + '" rel="noopener" target="_blank">' + esc(s.license) + '</a>' : esc(s.license)) +
+              '</td><td>' + esc(s.credit) + (s.changes ? '<br>' + esc(t('srcChanges')) + ': ' + esc(s.changes) : '') + '</td></tr>';
+          }).join('') + '</tbody></table>';
+      }
+    };
+  }
+
+  WS.panel({ id: 'kougo', component: 'bible', params: { text: 'kougo' }, text: 'kougo', group: 'texts', build: bible });
+  WS.panel({ id: 'bungo', component: 'bible', params: { text: 'bungo' }, text: 'bungo', group: 'texts' });
+  WS.panel({ id: 'bsb', component: 'bible', params: { text: 'bsb' }, text: 'bsb', group: 'texts' });
+  WS.panel({ id: 'web', component: 'bible', params: { text: 'web' }, text: 'web', group: 'texts' });
+  WS.panel({ id: 'kjv', component: 'bible', params: { text: 'kjv' }, text: 'kjv', group: 'texts' });
+  WS.panel({ id: 'sblgnt', component: 'bible', params: { text: 'grc' }, text: 'grc', group: 'original' });
+  WS.panel({ id: 'greek', component: 'greek', title: 'greek', group: 'original', build: greek });
+  WS.panel({ id: 'parallel', component: 'parallel', title: 'parallel', group: 'study', build: parallel });
+  WS.panel({ id: 'notes', component: 'notes', title: 'notes', build: notes });
+  WS.panel({ id: 'sources', component: 'sources', title: 'sources', group: 'about', build: sources });
+})();
