@@ -46,7 +46,7 @@ window.WS = (function () {
     guidesSoon: { en: 'Not built yet.', ja: '未実装です。' },
     siteTools: { en: 'Single tools', ja: '単体ツール' }, siteHome: { en: 'Home', ja: 'ホーム' },
     L_passage: { en: 'Passage study', ja: '聖書箇所の研究' }, L_word: { en: 'Word study', ja: '語の研究' },
-    L_nichiei: { en: 'Japanese and English', ja: '日英対照' }, reset: { en: 'Reset this layout', ja: 'このレイアウトを初期化' },
+    L_nichiei: { en: 'Japanese and English', ja: '日英対照' }, L_guided: { en: 'Guided study', ja: '学びの手引き' }, reset: { en: 'Reset this layout', ja: 'このレイアウトを初期化' },
     notFound: { en: 'Nothing found for', ja: '見つかりません：' },
     notBuilt: { en: 'This build does not hold', ja: 'このビルドに含まれていない書です：' },
     found: { en: 'matches; showing', ja: '件。表示中：' },
@@ -447,6 +447,13 @@ window.WS = (function () {
       add('notes', { referencePanel: 'word', direction: 'below' });
       dock.getPanel('bsb').api.setActive();
     },
+    /* Guided study: the guide beside the text, the Greek, cross references and notes */
+    guided: function () {
+      add('guide'); add(J(), { referencePanel: 'guide', direction: 'right' });
+      add('greek', { referencePanel: J(), direction: 'within' });
+      add('xrefs', { referencePanel: J(), direction: 'below' }); add('notes', { referencePanel: 'xrefs', direction: 'within' });
+      dock.getPanel(J()).api.setActive(); dock.getPanel('xrefs').api.setActive();
+    },
     /* Word study: Bible, Word Study, lexicon */
     word: function () {
       add('greek'); add('word', { referencePanel: 'greek', direction: 'right' });
@@ -460,7 +467,8 @@ window.WS = (function () {
   var PHONE_ = {
     nichiei: [['@ja', 'greek', 'bsb'], ['word', 'notes']],
     passage: [['bsb', '@ja', 'parallel'], ['commentary', 'word', 'notes']],
-    word: [['greek', '@ja'], ['word', 'lexicon', 'notes']]
+    word: [['greek', '@ja'], ['word', 'lexicon', 'notes']],
+    guided: [['guide', '@ja', 'greek'], ['xrefs', 'notes', 'word']]
   };
   var PHONE = {};
   function phoneRows(name) { return PHONE_[name].map(function (ids) { return ids.map(function (id) { return id === '@ja' ? J() : id; }); }); }
@@ -508,7 +516,7 @@ window.WS = (function () {
     $('draftBanner').hidden = !state.align; $('draftBanner').textContent = t(window.WS_SITE ? 'bannerSite' : 'banner');
     document.querySelectorAll('#langSeg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === state.lang)); });
     var pick = $('layoutPick');
-    pick.innerHTML = ['nichiei', 'passage', 'word'].map(function (n) { return '<option value="' + n + '">' + esc(t('L_' + n)) + '</option>'; }).join('');
+    pick.innerHTML = ['nichiei', 'passage', 'word', 'guided'].map(function (n) { return '<option value="' + n + '">' + esc(t('L_' + n)) + '</option>'; }).join('');
     pick.value = currentLayout;
     var b = manifest.books[state.book], grid = '';
     for (var c = 1; c <= b.chapters; c++) grid += '<button data-ch="' + c + '"' + (c === state.ch ? ' aria-current="true"' : '') + ' aria-label="' + esc(b.en + ' ' + c) + '">' + c + '</button>';
@@ -532,7 +540,7 @@ window.WS = (function () {
         esc(t('ruby') + '：' + t(store.get('ws.ruby', true) ? 'rubyOn' : 'rubyOff')) + '</button>' +
       '<h2>' + esc(t('guides')) + '</h2><div class="small">' + esc(t('guidesSoon')) + '</div>' +
       '<h2>' + esc(t('notes')) + '</h2><button class="item" data-open="notes">' + esc(t('notes')) + '</button>' +
-      '<h2>' + esc(t('layouts')) + '</h2>' + ['nichiei', 'passage', 'word'].map(function (n) { return '<button class="item" data-layout="' + n + '">' + esc(t('L_' + n)) + '</button>'; }).join('') +
+      '<h2>' + esc(t('layouts')) + '</h2>' + ['nichiei', 'passage', 'word', 'guided'].map(function (n) { return '<button class="item" data-layout="' + n + '">' + esc(t('L_' + n)) + '</button>'; }).join('') +
       '<button class="item" data-reset="1">' + esc(t('reset')) + '</button>' + tools;
   }
   /* The review states of the chapter in view, counted, so the reader sees how much of it a person has checked. */

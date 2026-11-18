@@ -98,6 +98,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Updates</h1>
   <p>What has been added or changed on this site, newest first.</p>
   <ul class="log">
+    <li><time datetime="2026-11-18">2026-11-18</time><p>Added a fourth layout to the Study Workspace, Guided study: the guide beside the Bible text and the Greek, with cross references and notes below. Pick it from the Layout menu at the top.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Added Greek search to the Study Workspace: find verses by a Greek word in dictionary form or a Strong's number, with an optional grammar filter (for example aorist or imperative), and a second word joined by AND, OR, NOT or NEAR, in one book or the whole New Testament. The list can be saved as a file.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Added Cross references to the Study Workspace: for the verse you click, the other passages readers linked to it (OpenBible.info, most votes first), with the English text. New Testament passages open in the workspace. The Guided study's step 6 now opens it.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Added Word by word to the Study Workspace: every Greek word of the chapter in a table with its lemma, Strong's number, parsing in Japanese, gloss and how often it occurs in the New Testament, with the chapter's repeated and rare words listed above.</p></li>
@@ -399,7 +400,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#17", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-18#18", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
