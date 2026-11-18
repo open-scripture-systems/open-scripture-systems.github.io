@@ -682,7 +682,7 @@ window.WS = (function () {
     links: links, plainJa: plainJa, jaFor: jaFor, linkFor: linkFor, stateText: stateText, refs: refs, lexAlign: function () { return lexAlign; },
     bookName: bookName, textName: textName, textInfo: textInfo, textClass: textClass, verseHTML: verseHTML, notSbl: notSbl,
     go: go, goWord: goWord, selectVerse: selectVerse, selectWord: selectWord, setAlign: setAlign, command: command, parseRef: parseRef,
-    panel: panel, ensurePanel: ensurePanel, say: say, start: start, gram: gram
+    panel: panel, ensurePanel: ensurePanel, itemName: itemName, say: say, start: start, gram: gram
   };
   window.workspace = api;  /* for tests and the console */
   return api;
