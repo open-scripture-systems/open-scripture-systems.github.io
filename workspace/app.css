@@ -303,3 +303,9 @@ html.noruby .t-ja { line-height: 1.9; }
 .hv dt { color: var(--mute); }
 .hv dd { margin: 0; min-width: 0; }
 .hv .hv-lx { font-size: .92em; line-height: 1.5; }
+
+/* link set letter in a tab: a small button that moves the panel to the next set */
+.tabset { font-size: .78em; font-weight: 600; min-width: 1.5em; text-align: center; padding: 0 .35em; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; color: var(--mute); }
+.tabset:hover { color: var(--accent); border-color: var(--accent); }
+.pane[data-set="B"] { box-shadow: inset 3px 0 0 var(--accent); }
+.pane[data-set="C"] { box-shadow: inset 3px 0 0 var(--ok); }

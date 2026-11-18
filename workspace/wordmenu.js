@@ -19,7 +19,8 @@
     return WS.gram(['pos', 'tense', 'voice', 'mood', 'person', 'case', 'number', 'gender'].map(function (k) { return f[k]; }).filter(Boolean));
   }
   function close() { if (card) { card.remove(); card = null; } }
-  function open(el) {
+  function open(el) { var s = (el.closest('.pane[data-set]') || { dataset: {} }).dataset.set || 'A'; WS.use(s, function () { openIn(el, s); }); }
+  function openIn(el, set) {
     close();
     var v = +el.dataset.v, i = +el.dataset.i, w = find(v, i);
     if (!w || !w.s) return;
@@ -32,7 +33,7 @@
       '<dt>' + esc(L('parse')) + '</dt><dd>' + esc(parse(w.m) || w.m) + ' <span class="small">(' + esc(w.m) + ')</span></dd>' +
       '<dt>' + esc(L('gloss')) + '</dt><dd lang="en">' + esc(w.g || lx.g || '') + '</dd></dl>' +
       '<div class="wm-a"><button class="btn" data-m="study">' + esc(L('study')) + '</button><button class="btn" data-m="lex">' + esc(L('lex')) + '</button>' +
-      '<button class="btn" data-m="use">' + esc(L('use')) + '</button>' + '<button class="btn" data-m="note">' + esc(L('note')) + '</button><button class="btn" data-m="copy">' + esc(L('copy')) + '</button></div>' +
+      '<button class="btn" data-m="use">' + esc(L('use')) + '</button>' + (set === 'A' ? '<button class="btn" data-m="note">' + esc(L('note')) + '</button>' : '') + '<button class="btn" data-m="copy">' + esc(L('copy')) + '</button></div>' +
       '<p class="small wm-msg" role="status"></p>';
     document.body.appendChild(card);
     var r = el.getBoundingClientRect(), cw = Math.min(320, window.innerWidth - 16);
@@ -45,6 +46,9 @@
       var b = ev.target.closest('[data-m]'); if (!b) return;
       var k = b.dataset.m;
       if (k === 'x') return close();
+      WS.use(set, function () { act(k); });
+    });
+    function act(k) {
       if (k === 'study') { WS.selectWord(v, i, w.s); var p = WS.ensurePanel('word'); if (p) p.api.setActive(); return close(); }
       if (k === 'lex') { WS.selectWord(v, i, w.s); var q = WS.ensurePanel('lexicon'); if (q) q.api.setActive(); return close(); }
       if (k === 'use') { WS.selectWord(v, i, w.s); var u = WS.ensurePanel('usage'); if (u) u.api.setActive(); return close(); }
@@ -54,7 +58,7 @@
         var done = function () { card.querySelector('.wm-msg').textContent = L('copied'); };
         try { navigator.clipboard.writeText(txt).then(done, function () { prompt('', txt); }); } catch (e) { done(); }
       }
-    });
+    }
   }
   function word(t) { return t && t.closest && t.closest('.iw[data-s], .gw[data-s]'); }
   // after the workspace's own click handler has selected the word

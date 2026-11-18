@@ -63,6 +63,9 @@ window.WS = (function () {
     u_p: { en: 'unlinked: a particle alone is not guessed at', ja: '未リンク：助詞だけの対応は推測しません' },
     u_w: { en: 'unlinked: a reviewer marked the draft link wrong', ja: '未リンク：確認者が下書きを誤りと判定' },
     unlinked: { en: 'unlinked', ja: '未リンク' },
+    setHint: { en: 'Link set: panels with the same letter move together. Click for the next set (A, B, C).', ja: 'リンクセット：同じ文字のパネルは一緒に動きます。押すと次のセット（A、B、C）に替わります。' },
+    setNow: { en: '{p} now follows link set {s}.', ja: '{p}はリンクセット{s}に従います。' },
+    setNone: { en: 'Pick a Bible text or the Greek panel first, then type: set B', ja: 'まず聖書本文かギリシア語のパネルを選んでから、「set B」と入力してください。' },
     inVerse: { en: 'the Japanese is in verse', ja: '訳語のある節：' },
     legend: { en: 'This chapter', ja: 'この章' },
     lg_m: { en: 'machine draft', ja: '機械の下書き' }, lg_q: { en: 'to check', ja: '要確認' },
@@ -97,7 +100,24 @@ window.WS = (function () {
   var state = { book: 'Jhn', ch: 1, v: 1, strong: null, word: null, lang: window.WS_LANG_FORCE || store.get('ws.lang', window.WS_LANG || 'ja'), align: false };
   var subs = [];
   function on(fn) { subs.push(fn); return function () { subs.splice(subs.indexOf(fn), 1); }; }
-  function emit(kind, origin) { subs.slice().forEach(function (fn) { fn(kind, origin); }); }
+  /* Link sets: a Bible text or the Greek panel can follow set B or C instead of A, so two passages stay open side by
+   * side. `state` always holds the set being worked on; use(id, fn) swaps that set's place in for the length of fn.
+   * The word picked for study (strong) is shared, since it is a word, not a place. Every panel starts in A. */
+  var SETS = { A: null, B: null, C: null }, KEYS = ['book', 'ch', 'v', 'word'], view = 'A', active = 'A', routeSet = 'A';
+  function snap() { var o = {}; KEYS.forEach(function (k) { o[k] = state[k]; }); return o; }
+  function put(o) { KEYS.forEach(function (k) { state[k] = o[k]; }); }
+  function use(id, fn) {
+    id = SETS.hasOwnProperty(id) ? id : 'A';
+    if (id === view) return fn();
+    var prev = view;
+    SETS[prev] = snap(); put(SETS[id] || SETS[prev]); view = id;
+    try { return fn(); } finally { SETS[id] = snap(); put(SETS[prev]); view = prev; }
+  }
+  /* A move made from inside a pane (or from the top bar) goes to that pane's set; anything else moves A. */
+  function route(fn, args) { var s = view !== 'A' ? view : routeSet; return use(s, function () { return fn.apply(null, args); }); }
+  function setOf(id) { var d = ITEM[id]; return d && d.sets && store.get('ws.psets', {})[id] || 'A'; }
+  function setAt() { if (view !== 'A') store.set('ws.set.' + view, snap()); }
+  function emit(kind, origin) { var from = view; subs.slice().forEach(function (fn) { fn(kind, origin, from); }); }
   function here() { return state.book + '/' + state.ch; }
 
   /* ---------- data layer ---------- */
@@ -194,33 +214,38 @@ window.WS = (function () {
   function say(msg) { $('status').textContent = msg || ''; }
   function fail(e) { say(t('loadFail') + ' ' + (e && e.message || e)); }
 
-  function go(book, ch, v, origin) {
+  function go() { return route(goIn, arguments); }
+  function goIn(book, ch, v, origin) {
     if (!manifest.books[book]) return say(t('notBuilt') + ' ' + book);
     var changed = book !== state.book || ch !== state.ch;
     state.book = book; state.ch = ch; state.v = v || 1;
     if (changed) { state.word = null; en = null; }
-    store.set('ws.at', [state.book, state.ch, state.v]);
+    if (view === 'A') store.set('ws.at', [state.book, state.ch, state.v]); else setAt();
     emit(changed ? 'chapter' : 'verse', origin);
     syncChrome();
   }
-  function step(d) {
+  function step() { return route(stepIn, arguments); }
+  function stepIn(d) {
     var order = manifest.order, n = order.indexOf(state.book), ch = state.ch + d;
     if (ch < 1) { if (n === 0) return; n--; ch = manifest.books[order[n]].chapters; }
     else if (ch > manifest.books[state.book].chapters) { if (n === order.length - 1) return; n++; ch = 1; }
     go(order[n], ch, 1);
   }
   /* Go to one occurrence of a word, in any book, and select it there. */
-  function goWord(book, ch, v, i, strong, origin) {
+  function goWord() { return route(goWordIn, arguments); }
+  function goWordIn(book, ch, v, i, strong, origin) {
     if (!manifest.books[book]) return say(t('notBuilt') + ' ' + book);
     var changed = book !== state.book || ch !== state.ch;
     state.book = book; state.ch = ch; state.v = v; state.word = v + ':' + i; state.strong = strong;
-    store.set('ws.at', [book, ch, v]);
+    if (view === 'A') store.set('ws.at', [book, ch, v]); else setAt();
     emit(changed ? 'chapter' : 'word', origin);
     syncChrome();
     findEnglish();
   }
-  function selectVerse(v, origin) { if (state.v !== v) { state.v = v; store.set('ws.at', [state.book, state.ch, v]); emit('verse', origin); } }
-  function selectWord(v, i, strong, origin) {
+  function selectVerse() { return route(selectVerseIn, arguments); }
+  function selectVerseIn(v, origin) { if (state.v !== v) { state.v = v; if (view === 'A') store.set('ws.at', [state.book, state.ch, v]); else setAt(); emit('verse', origin); } }
+  function selectWord() { return route(selectWordIn, arguments); }
+  function selectWordIn(v, i, strong, origin) {
     state.v = v; state.word = i ? v + ':' + i : null; state.strong = strong;
     ensurePanel('word');
     emit('word', origin);
@@ -353,29 +378,42 @@ window.WS = (function () {
       var el = document.createElement('div');
       el.className = 'pane';
       el.tabIndex = 0;  /* a scrolling region must be reachable by keyboard */
-      var self = {}, off = null, api = null;
+      var self = {}, off = null, api = null, pid = null;
+      function mine() { return setOf(pid); }
       function refresh(origin, quiet) {
-        var want = here() + '|' + state.align;
-        var jobs = [load(api.texts ? api.texts() : [])];
-        if (api.ready) jobs.push(api.ready());
-        Promise.all(jobs).then(function () {
-          if (want !== here() + '|' + state.align) return;
-          api.render();
-          paint(el);
-          if (api.paint) api.paint();
-          if (!quiet && origin !== self) reveal(el);
-        }).catch(fail);
+        var s = mine();
+        use(s, function () {
+          el.dataset.set = s;
+          var want = here() + '|' + state.align;
+          var jobs = [load(api.texts ? api.texts() : [])];
+          if (api.ready) jobs.push(api.ready());
+          Promise.all(jobs).then(function () {
+            use(s, function () {
+              if (want !== here() + '|' + state.align || s !== mine()) return;
+              api.render();
+              paint(el);
+              if (api.paint) api.paint();
+              if (!quiet && origin !== self) reveal(el);
+            });
+          }).catch(fail);
+        });
       }
       return {
         element: el,
         init: function (p) {
+          pid = p.api.id;
           api = build(el, p.params || {}, self);
           wireClicks(el, self);
           refresh(null, true);
-          off = on(function (kind, origin) {
-            if (kind === 'chapter' || kind === 'align' || (api.onWord && kind === 'word')) refresh(origin);
-            else if (kind === 'lang') refresh(origin, true);
-            else { paint(el); if (api.paint) api.paint(); if (origin !== self) reveal(el); }
+          off = on(function (kind, origin, from) {
+            var s = mine();
+            if (kind === 'set') { if (origin === pid) refresh(null, true); return; }
+            if ((kind === 'chapter' || kind === 'verse') && (from || 'A') !== s) return;  /* another link set moved */
+            use(s, function () {
+              if (kind === 'chapter' || kind === 'align' || (api.onWord && kind === 'word')) refresh(origin);
+              else if (kind === 'lang') refresh(origin, true);
+              else { paint(el); if (api.paint) api.paint(); if (origin !== self) reveal(el); }
+            });
           });
         },
         dispose: function () { if (off) off(); if (api && api.dispose) api.dispose(); }
@@ -385,6 +423,7 @@ window.WS = (function () {
   /* Register a library item. def: { id, component, params, title (a T key or {en, ja}), build, group } */
   function panel(def) {
     if (def.build) COMPONENTS[def.component] = makePanel(def.build);
+    if (def.component === 'bible' || def.component === 'greek') def.sets = true;  /* these can follow link set B or C */
     ITEMS.push(def); ITEM[def.id] = def;
   }
   function itemName(id) {
@@ -396,7 +435,7 @@ window.WS = (function () {
   function title(id) {
     var d = ITEM[id], one = narrow() && state.lang === 'both';  /* a phone tab has room for one language */
     var name = !one ? itemName(id) : d.text ? textInfo(d.text).ja : typeof d.title === 'string' ? T[d.title].ja : d.title.ja;
-    return name + ' · A';  /* A: every panel follows link set A in this increment */
+    return d.sets ? name : name + ' · A';  /* a panel that can change set shows its letter on a button in the tab */
   }
 
   /* The tab: a title and a mouse-only x. Dockview's own tab nests a focusable button inside role=tab, which
@@ -413,12 +452,34 @@ window.WS = (function () {
         x.className = 'tabx'; x.textContent = '×'; x.setAttribute('aria-hidden', 'true');
         x.addEventListener('pointerdown', function (ev) { ev.stopPropagation(); });
         x.addEventListener('click', function (ev) { ev.stopPropagation(); p.api.close(); });
-        el.appendChild(name); el.appendChild(x);
+        el.appendChild(name);
+        var id = p.api.id;
+        if (ITEM[id] && ITEM[id].sets) {
+          /* the link set letter: a click moves the panel to the next set (A, B, C). Not focusable, like the x; the
+           * command box does the same by keyboard ("set B"). */
+          var b = document.createElement('span');
+          b.className = 'tabset'; b.textContent = setOf(id);
+          b.title = t('setHint');
+          b.addEventListener('pointerdown', function (ev) { ev.stopPropagation(); });
+          b.addEventListener('click', function (ev) { ev.stopPropagation(); cycleSet(id); b.textContent = setOf(id); });
+          el.appendChild(b);
+        }
+        el.appendChild(x);
         off = p.api.onDidTitleChange(function (e) { name.textContent = e.title; });
       },
       dispose: function () { if (off) off.dispose(); }
     };
   }
+
+  function setPanelSet(id, s) {
+    if (!ITEM[id] || !ITEM[id].sets || !SETS.hasOwnProperty(s)) return;
+    if (s !== 'A' && !SETS[s]) SETS[s] = view === 'A' ? snap() : SETS.A;  /* a new set starts where A is */
+    var m = store.get('ws.psets', {}); if (s === 'A') delete m[id]; else m[id] = s; store.set('ws.psets', m);
+    active = s; emit('set', id); syncChrome();
+    document.querySelectorAll('.tab[data-panel="' + id + '"] .tabset').forEach(function (b) { b.textContent = s; });
+    say(t('setNow').replace('{p}', itemName(id)).replace('{s}', s));
+  }
+  function cycleSet(id) { var s = setOf(id); setPanelSet(id, s === 'A' ? 'B' : s === 'B' ? 'C' : 'A'); }
 
   /* ---------- layouts ---------- */
   var LAYOUT_VERSION = 3;  /* raise when panel ids or components change, so an old saved layout is not loaded */
@@ -499,7 +560,8 @@ window.WS = (function () {
   /* ---------- chrome ---------- */
   var GROUPS = [['texts', { en: 'Bibles', ja: '聖書' }], ['original', { en: 'Original language', ja: '原語' }],
     ['study', { en: 'Study', ja: '研究' }], ['about', { en: 'About', ja: 'このページ' }]];
-  function syncChrome() {
+  function syncChrome() { return use(active, syncChromeIn); }
+  function syncChromeIn() {
     var bn = document.getElementById('brandName'); if (bn) bn.textContent = state.lang === 'en' ? 'Word of God Workshop' : 'みことば工房';
     var bs = document.getElementById('brandSub'); if (bs) bs.textContent = state.lang === 'en' ? 'Study Workspace (prototype)' : 'ワークスペース（試作）';
     document.documentElement.lang = state.lang === 'en' ? 'en' : 'ja';
@@ -507,7 +569,7 @@ window.WS = (function () {
     [['railToggle', 'a_rail'], ['cmdBox', 'a_cmd'], ['prevCh', 'a_prev'], ['nextCh', 'a_next'], ['langSeg', 'a_lang'], ['layoutPick', 'layout'],
       ['notices', 'a_notices'], ['rail', 'a_nav']].forEach(function (x) { $(x[0]).setAttribute('aria-label', t(x[1])); });
     document.documentElement.classList.toggle('noruby', !store.get('ws.ruby', true));
-    $('chLabel').textContent = bookName(null, narrow()) + ' ' + state.ch + ':' + state.v;
+    $('chLabel').textContent = bookName(null, narrow()) + ' ' + state.ch + ':' + state.v + (active !== 'A' ? ' · ' + active : '');
     $('layLabel').textContent = t('layout');
     $('flagLabel').textContent = t('flag');
     var big = document.documentElement.classList.contains('owsbig');
@@ -578,6 +640,12 @@ window.WS = (function () {
     var q = raw.trim();
     if (!q) return;
     say('');
+    var ls = q.normalize('NFKC').match(/^(?:set|セット)\s*([ABCabc])$/);
+    if (ls) {
+      var ap = dock && dock.activePanel;
+      if (!ap || !ITEM[ap.id] || !ITEM[ap.id].sets) return say(t('setNone'));
+      return setPanelSet(ap.id, ls[1].toUpperCase());
+    }
     var m = q.normalize('NFKC').match(/^[Gg]\s?(\d{1,4})([A-Za-z]?)$/);
     if (m) {
       var base = 'G' + ('0000' + m[1]).slice(-4), key = lex[base + m[2].toUpperCase()] ? base + m[2].toUpperCase() : Object.keys(lex).filter(function (k) { return k.indexOf(base) === 0; })[0];
@@ -611,6 +679,25 @@ window.WS = (function () {
     }
     var at = store.get('ws.at', null);
     if (at && manifest.books[at[0]] && at[1] <= manifest.books[at[0]].chapters) { state.book = at[0]; state.ch = at[1]; state.v = at[2] || 1; }
+    ['B', 'C'].forEach(function (k) {
+      var o = store.get('ws.set.' + k, null);
+      if (o && manifest.books[o.book] && o.ch <= manifest.books[o.book].chapters) SETS[k] = { book: o.book, ch: o.ch, v: o.v || 1, word: null };
+    });
+    /* Which set an action belongs to: the pane it happens in, or for the top bar the set of the pane used last. */
+    var setFrom = function (tg) {
+      var pane = tg && tg.closest && tg.closest('.pane[data-set]');
+      if (pane) return pane.dataset.set;
+      return tg && tg.closest && tg.closest('#cmd, #prevCh, #nextCh, #rail') ? active : 'A';
+    };
+    ['click', 'keydown', 'change', 'submit', 'input'].forEach(function (type) {
+      document.addEventListener(type, function (ev) { routeSet = setFrom(ev.target); setTimeout(function () { routeSet = 'A'; }, 0); }, true);
+    });
+    ['pointerdown', 'focusin'].forEach(function (type) {
+      document.addEventListener(type, function (ev) {
+        var pane = ev.target.closest && ev.target.closest('.pane[data-set]');
+        if (pane && pane.dataset.set !== active) { active = pane.dataset.set; syncChrome(); }
+      }, true);
+    });
     $('flagWrap').hidden = !manifest.alignment.present;   /* a build without the draft has no switch for it */
     /* A build may ask for the draft to be showing from the start (a private preview for its reviewers). The banner,
      * the legend and the review state of every link still show; the choice is never saved. */
@@ -669,8 +756,8 @@ window.WS = (function () {
       else if (b.dataset.ruby) { store.set('ws.ruby', !store.get('ws.ruby', true)); syncChrome(); return; }
       if (narrow() && !b.dataset.ch) { $('rail').hidden = true; $('railToggle').setAttribute('aria-expanded', 'false'); }
     });
-    on(function (kind) { if (kind === 'chapter' || kind === 'lang') load([]).then(legend).catch(fail); });
-    on(function (kind) { if (kind === 'verse' || kind === 'word') $('chLabel').textContent = bookName(null, narrow()) + ' ' + state.ch + ':' + state.v; });
+    on(function (kind, o, from) { if ((kind === 'chapter' && (from || 'A') === 'A') || kind === 'lang') use('A', function () { load([]).then(legend).catch(fail); }); });
+    on(function (kind, o, from) { if ((kind === 'verse' || kind === 'word') && (from || 'A') === active) syncChrome(); });
     if (state.align) load([]).then(legend).catch(fail);
   }
   function start() {
@@ -687,7 +774,7 @@ window.WS = (function () {
   var api = {
     ja: J, state: state, store: store, T: T, t: t, on: on, emit: emit, esc: esc, $: $, narrow: narrow,
     getJSON: getJSON, load: load, text: text, verse: verse, label: label, pointer: pointer, lastVerse: lastVerse,
-    links: links, plainJa: plainJa, jaFor: jaFor, linkFor: linkFor, stateText: stateText, refs: refs, lexAlign: function () { return lexAlign; },
+    use: use, setOf: setOf, setPanelSet: setPanelSet, links: links, plainJa: plainJa, jaFor: jaFor, linkFor: linkFor, stateText: stateText, refs: refs, lexAlign: function () { return lexAlign; },
     bookName: bookName, textName: textName, textInfo: textInfo, textClass: textClass, verseHTML: verseHTML, notSbl: notSbl,
     go: go, goWord: goWord, selectVerse: selectVerse, selectWord: selectWord, setAlign: setAlign, command: command, parseRef: parseRef,
     panel: panel, ensurePanel: ensurePanel, itemName: itemName, say: say, start: start, gram: gram

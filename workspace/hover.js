@@ -35,7 +35,8 @@
     var t = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
     return t.length > 260 ? t.slice(0, 260) + '…' : t;
   }
-  function body() {
+  function body() { return cur ? WS.use(cur.s, bodyIn) : bodyIn(); }
+  function bodyIn() {
     if (!cur) return '<p>' + esc(L(H.pick)) + '</p>';
     var gv = WS.verse('grc', cur.v), w = gv && gv.w ? gv.w.filter(function (x) { return x.i === cur.i; })[0] : null;
     if (!w) return '<p>' + esc(L(H.pick)) + '</p>';
@@ -60,9 +61,9 @@
   function set(el) {
     if (!el || !views.length) return;
     var v = +el.dataset.v, i = +el.dataset.i;
-    if (!v || cur && cur.v === v && cur.i === i) return;
+    if (!v || cur && cur.v === v && cur.i === i && cur.s === ((el.closest('.pane[data-set]') || { dataset: {} }).dataset.set || 'A')) return;
     if (views.every(function (x) { return x.kept; })) return;
-    cur = { v: v, i: i }; draw();
+    cur = { v: v, i: i, s: (el.closest('.pane[data-set]') || { dataset: {} }).dataset.set || 'A' }; draw();
   }
   function word(t) { return t && t.closest && t.closest('.iw[data-s], .gw[data-s]'); }
   var timer = null;

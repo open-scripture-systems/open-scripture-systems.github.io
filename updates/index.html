@@ -98,6 +98,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Updates</h1>
   <p>What has been added or changed on this site, newest first.</p>
   <ul class="log">
+    <li><time datetime="2026-11-18">2026-11-18</time><p>Link sets in the Study Workspace: a Bible text or the Greek panel can now follow set B or C instead of A, so two or three passages stay open side by side. Click the letter on a panel's tab to change its set, or type "set B" in the command box. The top bar moves the set of the panel used last. Word Study, notes and the other study panels stay with set A.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>New panel in the Study Workspace: Word details. Rest the mouse on a Greek word (or move the keyboard focus to it) and the panel shows its lemma, parsing, gloss, New Testament count, the books that use it most, its part in the sentence and the start of the lexicon entry, without a click. A button keeps one word in view.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>In the Study Workspace's Greek interlinear, a new switch shows the parts of each sentence under the words: subject, verb, object, indirect object and predicate, from MACULA Greek (CC BY 4.0).</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Added Word use to the Study Workspace: for a Greek verb, the words most often its subject and its object across the New Testament, counted from MACULA Greek (CC BY 4.0). Open it from the word card or the left menu.</p></li>
@@ -403,7 +404,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#21", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-18#22", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
