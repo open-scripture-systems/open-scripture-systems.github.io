@@ -6,7 +6,6 @@
  },
  "note": "比べている翻訳（BSB、ULT、UST など）、語釈、翻訳ノート、小見出し、人名・地名の説明は英語です。日本語訳との比較は準備中です。",
  "blocks": {
-  "Free tools for studying the words of the Bible in Greek and Hebrew. No account and no cost, built only from open data.": "<1>聖書のことばをギリシャ語とヘブライ語で学ぶための無料ツールです。</1> アカウントも費用もいりません。オープンデータだけで作っています。",
   "Try one: read John 1:14 with the Greek under each word, see σκηνόω, \"to dwell\", in its 5 New Testament places, or δικαιοσύνη, \"righteousness\", in Matthew.": "試してみる：<1>ヨハネ 1:14 を、単語ごとにギリシャ語を添えて読む</1>、<2>σκηνόω「宿る、幕屋を張る」が新約聖書で使われている5か所を見る</2>、<3>マタイの δικαιοσύνη「義」を見る</3>。",
   "From a verse. Open the Reader at John 3:16 and tap any word. From there you can see its cross references, compare translations, or color the grammar of the chapter.": "<1>聖書箇所から。</1> <2>リーダーでヨハネ 3:16</2> を開き、どれかの単語をタップしてください。そこから相互参照を見たり、翻訳を比べたり、その章の文法に色を付けたりできます。",
   "From a word. In Word Study, type an English word like \"love\" or a spelling like \"agape\", and see everywhere it appears and how it is translated. For Old Testament words such as \"hesed\", use Hebrew Word Study.": "<1>単語から。</1> <2>語句研究</2>で、love のような英単語や agape のようなつづりを入力すると、その語が出てくるすべての箇所と訳語が分かります。hesed のような旧約聖書の語には<3>ヘブライ語の語句研究</3>を使ってください。",
@@ -14,11 +13,12 @@
   "“The Word became flesh and made His dwelling among us.” John 1:14, BSB": "「そして言は肉体となり、わたしたちのうちに宿った。」 <1>ヨハネ 1:14（口語訳）</1>",
   "A side project and a work in progress, made to help people slow down with the words of Scripture. It is not a replacement for a full Bible software library. Spotted a mistake or have an idea? Tell us on GitHub.": "聖書のことばをゆっくり味わう助けになればと思って作っている個人プロジェクトで、まだ作りかけです。本格的な聖書ソフトの代わりにはなりません。間違いに気づいたときや、アイデアがあるときは、<1>GitHub で知らせてください</1>。",
   "Data: STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0, Tyndale House Cambridge), Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0). Not affiliated with any Bible software company. Full sources and licences.": "データ：STEPBible TAGNT、TAHOT、TIPNR（CC BY 4.0、Tyndale House Cambridge）、Berean Standard Bible（パブリックドメイン）、unfoldingWord Literal Text、Simplified Text、Translation Notes（CC BY-SA 4.0）、OpenBible.info の相互参照（CC BY 4.0）。どの聖書ソフト会社とも関係ありません。<1>出典とライセンスの一覧</1>。",
-  "Built from open data; see sources and licences.": "オープンデータから作っています。<1>出典とライセンス</1>をご覧ください。",
   "These four words are worked examples with every occurrence listed. For any other word, Greek Word Study and Hebrew Word Study draw the same rings.": "この4語は、すべての出現箇所を載せた例です。ほかの語は、<1>ギリシャ語の語句研究</1>と<2>ヘブライ語の語句研究</2>で同じ輪を見られます。",
   "The data was reshaped to build these tools. Renderings are grouped by their main English word, translation notes were lightly cleaned of formatting, and counts were computed from the tagged words. The parts of this site derived from the unfoldingWord texts and notes are shared under CC BY-SA 4.0.": "これらのツールを作るために、データの形を整えました。訳語は中心になる英単語ごとにまとめ、翻訳ノートは書式を軽く整理し、回数はタグ付きの語から数えています。unfoldingWord の本文とノートに基づく部分は、<1>CC BY-SA 4.0</1> のもとで共有しています。",
   "Public domain in Japan; open question in the United States (see below). Source. The Japan Bible Society on its copyright.": "日本ではパブリックドメイン。米国での扱いは未確定です（下記）。<1>出典</1>。<2>著作権についての日本聖書協会の説明</2>。",
-  "Public domain, by its makers' statement. Source.": "作った人たちの表明によりパブリックドメイン。<1>出典</1>。"
+  "Public domain, by its makers' statement. Source.": "作った人たちの表明によりパブリックドメイン。<1>出典</1>。",
+  "Free tools for studying the words of the Bible in Greek and Hebrew. No account and no cost. Every source and its licence is listed on the sources page.": "<1>聖書のことばをギリシャ語とヘブライ語で学ぶための無料ツールです。</1> アカウントも費用もいりません。使っている資料とライセンスは、すべて<2>出典ページ</2>に載せています。",
+  "Every source and its licence: see sources and licences.": "使っている資料とライセンスは、<1>出典とライセンス</1>のページにすべて載せています。"
  },
  "text": {
   "Free Bible study tools from open data": "オープンデータで作った無料の聖書研究ツール",

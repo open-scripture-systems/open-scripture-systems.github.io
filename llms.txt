@@ -2,9 +2,9 @@
 
 Formerly Open Word Study. The name comes from 2 Timothy 2:15, a workman who handles the word of truth rightly.
 
-> Free Bible study tools for the Greek New Testament and the Hebrew Old Testament, in English and Japanese, built only from open data. No account, no cost, no ads, and no data collected. Made for serious study by seminary students, teachers and pastors, including readers in Japan.
+> Free Bible study tools for the Greek New Testament and the Hebrew Old Testament, in English and Japanese. Every source and its licence is listed on the sources page. No account, no cost, no ads, and no data collected. Made for serious study by seminary students, teachers and pastors, including readers in Japan.
 
-みことば工房（Word of God Workshop、旧名 Open Word Study）は、ギリシア語の新約聖書とヘブライ語の旧約聖書を学ぶための無料ツール集です。日本語と英語で使えます。公開データだけで作っており、アカウントも費用も広告もなく、利用者のデータを集めません。神学生、教師、牧師など、聖書を原語から丁寧に学びたい人のためのものです。
+みことば工房（Word of God Workshop、旧名 Open Word Study）は、ギリシア語の新約聖書とヘブライ語の旧約聖書を学ぶための無料ツール集です。日本語と英語で使えます。使っている資料とライセンスはすべて出典ページに載せています。アカウントも費用も広告もなく、利用者のデータを集めません。神学生、教師、牧師など、聖書を原語から丁寧に学びたい人のためのものです。
 
 Every page opens in Japanese with ?lang=ja added to its address. Greek, Hebrew and Strong's numbers are data and stay as they are.
 
