@@ -275,3 +275,7 @@ html.noruby .t-ja { line-height: 1.9; }
 .wtab th { font-size: 12px; color: var(--mute); position: sticky; top: 0; background: var(--panel); }
 .wtab tbody tr { cursor: pointer; } .wtab tbody tr:hover, .wtab tbody tr.same { background: var(--accent-soft); }
 .wtab td[lang="grc"] { font-size: 16px; white-space: nowrap; }
+
+/* Cross references */
+.xr .xlist { padding-left: 1.4em; display: grid; gap: 8px; }
+.xr .xlist p { margin: 2px 0 4px; font-size: 14px; }

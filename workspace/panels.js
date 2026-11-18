@@ -285,8 +285,11 @@
         '<div class="grow"><button class="btn" data-md="1">' + esc(NL('md')) + '</button><button class="btn" data-backup="1">' + esc(NL('backup')) + '</button>' +
         '<label class="btn">' + esc(NL('load')) + '<input id="vload" type="file" accept="application/json,.json" hidden></label></div><p class="small vmsg" role="status"></p>';
       list();
+      shownFor = here();
     }
-    return { render: draw };
+    var shownFor = null;
+    // a verse picked in the same chapter does not reload the panel, so the note box follows it here
+    return { render: draw, paint: function () { if (shownFor !== here() && document.activeElement !== el.querySelector('#vnote')) draw(); } };
   }
 
   /* ---------- Sources and licences, straight from the manifest ---------- */

@@ -48,7 +48,7 @@
         { h: { en: 'Other passages', ja: '聖書のほかの箇所' },
           why: { en: 'Scripture sheds light on Scripture. Read each cross reference in its own setting.', ja: '聖書は聖書によって照らされます。関連箇所は、それぞれの文脈で読みます。' },
           q: { en: 'Which other passages help, and why?', ja: 'どの箇所が助けになりますか。なぜですか。' },
-          tool: 'companion' },
+          open: function () { return 'xrefs'; } },
         { h: { en: 'Say it in your own words', ja: '自分のことばでまとめる' },
           why: { en: 'If you can say the main point plainly, you have understood it so far.', ja: '要点を短く言えれば、ここまで理解できています。' },
           q: { en: 'What is the main point, in one or two sentences?', ja: '要点を一、二文で書いてください。' } },

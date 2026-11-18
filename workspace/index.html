@@ -71,6 +71,7 @@
 <script src="guide.js"></script>
 <script src="wordmenu.js"></script>
 <script src="wordtable.js"></script>
+<script src="xrefs.js"></script>
 <script>WS.start();</script>
 <!-- ows-feedback -->
 <style>
@@ -163,7 +164,7 @@
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#15", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-18#16", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
