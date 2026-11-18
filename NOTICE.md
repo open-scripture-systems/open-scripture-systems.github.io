@@ -1,3 +1,5 @@
+Word of God Workshop (みことば工房), formerly Open Word Study: https://vadneyk.github.io/open-word-study-site/
+
 # Data sources and licences
 
 | Source | Used for | Licence |
