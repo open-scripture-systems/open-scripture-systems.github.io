@@ -44,7 +44,7 @@ window.WS = (function () {
     notes: { en: 'Notes', ja: 'ノート' }, layouts: { en: 'Layouts', ja: 'レイアウト' },
     book: { en: 'Book', ja: '書' }, chapters: { en: 'Chapter', ja: '章' },
     guidesSoon: { en: 'Not built yet.', ja: '未実装です。' },
-    siteTools: { en: 'All tools', ja: 'ツール一覧' }, siteHome: { en: 'Home', ja: 'ホーム' },
+    siteTools: { en: 'Single tools', ja: '単体ツール' }, siteHome: { en: 'Home', ja: 'ホーム' },
     L_passage: { en: 'Passage study', ja: '聖書箇所の研究' }, L_word: { en: 'Word study', ja: '語の研究' },
     L_nichiei: { en: 'Japanese and English', ja: '日英対照' }, reset: { en: 'Reset this layout', ja: 'このレイアウトを初期化' },
     notFound: { en: 'Nothing found for', ja: '見つかりません：' },
@@ -519,11 +519,12 @@ window.WS = (function () {
         items.map(function (i) { return '<button class="item" data-open="' + i.id + '">' + esc(itemName(i.id)) + '</button>'; }).join('');
     }).join('');
     /* On the website the rail also lists the single tools, so the workspace and the tools share one navigation. */
-    var site = window.WS_SITE, q = state.lang === 'en' ? '?lang=en' : '?lang=ja', tools = !site ? '' : '<h2>' + esc(t('siteTools')) + '</h2>' +
-      '<a class="item" href="' + site.home + q + '">' + esc(t('siteHome')) + '</a>' + site.tools.map(function (x) {
+    var site = window.WS_SITE, q = state.lang === 'en' ? '?lang=en' : '?lang=ja';
+    var homeBtn = !site ? '' : '<a class="item homebtn" href="' + site.home + q + '">' + (site.house || '') + '<span>' + esc(t('siteHome')) + '</span></a>';
+    var tools = !site ? '' : '<h2>' + esc(t('siteTools')) + '</h2>' + site.tools.map(function (x) {
         return '<a class="item" href="' + site.home + x[0] + '/' + q + '">' + esc(state.lang === 'en' ? x[1] : state.lang === 'ja' ? x[2] : x[2] + ' · ' + x[1]) + '</a>';
       }).join('');
-    $('rail').innerHTML = '<h2>' + esc(t('library')) + '</h2>' + lib +
+    $('rail').innerHTML = homeBtn + '<h2>' + esc(t('library')) + '</h2>' + lib +
       '<h2>' + esc(t('book')) + '</h2><select id="bookPick" aria-label="' + esc(t('book')) + '">' + manifest.order.map(function (code) {
         return '<option value="' + code + '"' + (code === state.book ? ' selected' : '') + '>' + esc(bookName(code)) + '</option>';
       }).join('') + '</select><div class="chgrid" role="group" aria-label="' + esc(t('chapters')) + '">' + grid + '</div>' +

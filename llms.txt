@@ -32,4 +32,5 @@ Every page opens in Japanese with ?lang=ja added to its address. Greek, Hebrew a
 ## More
 
 - [Sources and licences](https://vadneyk.github.io/open-word-study-site/sources/)
+- [Updates, newest first](https://vadneyk.github.io/open-word-study-site/updates/)
 - [Sitemap](https://vadneyk.github.io/open-word-study-site/sitemap.xml)

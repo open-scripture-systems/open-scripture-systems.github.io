@@ -64,6 +64,22 @@ h2 + ul { margin-top: 12px; }
 .verse { margin-top: 32px !important; }
 .about { margin: 10px 0 0; max-width: 62ch; }
 .formerly { margin: 4px 0 0; font-size: 14px; color: var(--ink-2); }
+.sub { margin: 4px 0 0; color: var(--ink-2); max-width: 62ch; }
+/* The all-in-one workspace is shown as an app on purpose, so it reads as a different kind of thing from the single tools. */
+.allin { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 18px; align-items: center; margin: 26px 0 0;
+  padding: 20px; border-radius: 16px; background: #13263d; color: #eef4fb; }
+.allin .kicker { margin: 0; font: 600 13px var(--body); letter-spacing: .06em; color: #a9c7e8; }
+.allin h2 { margin: 2px 0 6px; font-size: 24px; color: #fff; }
+.allin p { margin: 0; color: #d6e2ef; max-width: 56ch; }
+.allin p.allin-lead { color: #fff; font-weight: 600; margin-bottom: 6px; }
+.allin-go { display: inline-block; margin-top: 14px; padding: 12px 20px; border-radius: 999px; background: #ffd166; color: #13263d;
+  font-weight: 700; text-decoration: none; }
+.allin-go:hover { background: #ffe08f; }
+.allin-go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.allin-pic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; height: 110px; }
+.allin-pic i { border-radius: 6px; background: #2a4a6e; border: 1px solid #4a7099; }
+.allin-pic i:first-child { grid-row: span 2; background: #34597f; }
+@media (max-width: 560px) { .allin { grid-template-columns: minmax(0, 1fr); } .allin-pic { display: none; } }
 .note { margin-top: 24px; font-size: 13px; color: var(--ink-2); }
 </style>
 
@@ -123,6 +139,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Word of God Workshop</h1>
   <p class="formerly">Formerly Open Word Study.</p>
   <p class="lede"><strong>Free tools for studying the words of the Bible in Greek and Hebrew.</strong> No account and no cost, built only from open data.</p>
+  <section class="allin" aria-labelledby="allin-h"><div><p class="kicker">All-in-one study</p><h2 id="allin-h">Study Workspace</h2><p class="allin-lead">Everything in one screen. To use one thing at a time, the single tools are below.</p><p>The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku with furigana, and the Denmo Bible, a modern Japanese draft of 13 books), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.</p><a class="allin-go" href="./workspace/">Open the Study Workspace</a></div><div class="allin-pic" aria-hidden="true"><i></i><i></i><i></i></div></section>
   <p class="try">Try one: <a href="./reader/#Jhn.1.14">read John 1:14 with the Greek under each word</a>, see <a href="./wheel/#G4637/NT">σκηνόω, "to dwell", in its 5 New Testament places</a>, or <a href="./wheel/#G1343/Mat">δικαιοσύνη, "righteousness", in Matthew</a>.</p>
   <h2>Three ways to start</h2>
   <ol class="how">
@@ -130,9 +147,9 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
     <li><b>From a word.</b> In <a href="./word-study/">Word Study</a>, type an English word like "love" or a spelling like "agape", and see everywhere it appears and how it is translated. For Old Testament words such as "hesed", use <a href="./hebrew/">Hebrew Word Study</a>.</li>
     <li><b>From a person or place.</b> In the <a href="./factbook/">Factbook</a>, find Peter or Jerusalem and open any verse that names them.</li>
   </ol>
-  <h2>All the tools</h2>
+  <h2>Single tools</h2>
+  <p class="sub">Simple pages for one thing at a time: one word, one chapter, one comparison.</p>
   <ul>
-    <li><a class="tool" href="./workspace/"><b>Study Workspace</b><span>The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku, and the Denmo Bible, a modern Japanese draft of 13 books, with furigana), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.</span></a></li>
     <li><a class="tool" href="./reader/"><b>Interlinear Reader</b><span>Read the English with the Greek or Hebrew word under each word. Start here if you do not read the original languages.</span></a></li>
     <li><a class="tool" href="./compare/"><b>Compare Translations</b><span>Three open English translations of a New Testament verse, with differences traced back to the Greek.</span></a></li>
     <li><a class="tool" href="./word-study/"><b>Word Study</b><span>Any Greek word: where it appears, its forms, how open translations render it, and words translated the same way.</span></a></li>
@@ -148,7 +165,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <p class="about">A side project and a work in progress, made to help people slow down with the words of Scripture. It is not a replacement for a full Bible software library. Spotted a mistake or have an idea? <a href="https://github.com/VadneyK/open-word-study-site/issues">Tell us on GitHub</a>.</p>
   <p class="note">Data: STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0, Tyndale House Cambridge), Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0). Not affiliated with any Bible software company. <a href="./sources/">Full sources and licences</a>.</p>
 </div>
-<footer><p class="a2foot">Built from open data; see <a href="./sources/">sources and licences</a>.</p><p class="a2foot ows-nodata">This site collects no data about you: no accounts, no cookies, no analytics.</p></footer>
+<footer><p class="a2foot">Built from open data; see <a href="./sources/">sources and licences</a>.</p><p class="a2foot ows-nodata">This site collects no data about you: no accounts, no cookies, no analytics.</p><p class="a2foot"><a href="./updates/">Updates</a></p></footer>
 <script>
 (function () {
   var root = document.documentElement, KEY = 'ows-text', MIN = 14;
@@ -415,6 +432,39 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
       }, function () { out.textContent = s('fail'); });
     });
   });
+})();
+</script>
+<!-- ows-updates -->
+<style>
+.owsup { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 0; box-sizing: border-box;
+  padding: 6px max(12px, env(safe-area-inset-right, 0px)) 6px max(12px, env(safe-area-inset-left, 0px));
+  font: 500 14px/1.4 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; background: #e8f1f8; color: #12324a; border-bottom: 1px solid #b9d3e6; }
+.owsup a { color: inherit; font-weight: 700; }
+.owsup button { font: inherit; line-height: 1; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px;
+  min-width: 32px; min-height: 32px; padding: 0 8px; cursor: pointer; }
+.owsup a:focus-visible, .owsup button:focus-visible { outline: 3px solid #0069a8; outline-offset: 2px; }
+@media (prefers-color-scheme: dark) { .owsup { background: #12324a; color: #e3f0fa; border-bottom-color: #2b5677; } }
+</style>
+<script data-home="./">
+(function () {
+  var LATEST = "2026-11-18#11", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var seen = null;
+  try { seen = localStorage.getItem(KEY); } catch (e) {}
+  if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
+  if (seen && seen >= LATEST) return;
+  function ja() { return window.WS && WS.state ? WS.state.lang !== 'en' : root.classList.contains('owsja'); }
+  function put() {
+    var bar = document.createElement('div'), j = ja();
+    bar.className = 'owsup'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', j ? '更新情報' : 'Updates');
+    bar.setAttribute('data-ja', '1'); bar.lang = j ? 'ja' : 'en';
+    var a = document.createElement('a'); a.href = HOME + 'updates/' + (j ? '?lang=ja' : ''); a.textContent = j ? '更新情報があります' : 'New updates';
+    var x = document.createElement('button'); x.type = 'button'; x.textContent = '\u00d7'; x.setAttribute('aria-label', j ? '閉じる' : 'Close');
+    x.addEventListener('click', function () { try { localStorage.setItem(KEY, LATEST); } catch (e) {} bar.remove(); });
+    bar.appendChild(a); bar.appendChild(x);
+    var spot = document.getElementById('notices');
+    if (spot) spot.insertBefore(bar, spot.firstChild); else document.body.insertBefore(bar, document.body.firstChild);
+  }
+  if (document.body) put(); else document.addEventListener('DOMContentLoaded', put);
 })();
 </script>
 
