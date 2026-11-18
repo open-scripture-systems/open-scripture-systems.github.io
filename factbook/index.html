@@ -5,8 +5,19 @@
 <script>try{if(/[?&]text=large\b/.test(location.search)||localStorage.getItem('ows-text')==='large')document.documentElement.classList.add('owsbig')}catch(e){}</script>
 <script>try{var m=/[?&]lang=(ja|en)\b/.exec(location.search),l=m?m[1]:localStorage.getItem('ows-lang');if(m)localStorage.setItem('ows-lang',l);if(l==='ja'){document.documentElement.classList.add('owsja');document.documentElement.lang='ja';setTimeout(function(){document.documentElement.classList.add('owsja-ready')},2500)}}catch(e){}</script>
 <style>html.owsja:not(.owsja-ready) body{visibility:hidden}.owsja-note{max-width:1180px;margin:6px auto 0;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:14px/1.6 var(--a2-ui,system-ui,sans-serif);color:var(--ink-2,#473c39)}html.owsja body{font-family:var(--body,system-ui),"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-break:strict}</style>
+<!-- ows-seo -->
+<link rel="canonical" href="https://vadneyk.github.io/open-word-study-site/factbook/">
+<link rel="alternate" hreflang="en" href="https://vadneyk.github.io/open-word-study-site/factbook/">
+<link rel="alternate" hreflang="ja" href="https://vadneyk.github.io/open-word-study-site/factbook/?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://vadneyk.github.io/open-word-study-site/factbook/">
+<meta property="og:site_name" content="Open Word Study">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "New Testament Factbook", "alternateName": "人名・地名事典", "url": "https://vadneyk.github.io/open-word-study-site/factbook/", "description": "The people, places and things the New Testament names, with every mention.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "audience": {"@type": "EducationalAudience", "educationalRole": "student, teacher, pastor"}, "isPartOf": {"@type": "WebSite", "name": "Open Word Study", "url": "https://vadneyk.github.io/open-word-study-site/"}, "disambiguatingDescription": "新約聖書に出てくる人物・場所・事物と、その名前が出てくるすべての箇所。"}</script>
+<script>(function(){if(!document.documentElement.classList.contains("owsja"))return;var J={"t": "人名・地名事典 | Open Word Study", "d": "新約聖書に出てくる人物・場所・事物と、その名前が出てくるすべての箇所。", "u": "https://vadneyk.github.io/open-word-study-site/factbook/?lang=ja"};function A(){document.title=J.t;var q=function(s){return document.querySelector(s)},c=q('link[rel="canonical"]');if(c)c.href=J.u;["meta[name=\"description\"]","meta[property=\"og:description\"]"].forEach(function(s){var m=q(s);if(m)m.content=J.d});var o=q('meta[property="og:title"]');if(o)o.content=J.t;o=q('meta[property="og:url"]');if(o)o.content=J.u;}A();addEventListener("DOMContentLoaded",A)})();</script>
+<!-- /ows-seo -->
 <meta name="description" content="The people, places and things the New Testament names, with every mention.">
-<meta property="og:title" content="New Testament Factbook">
+<meta property="og:title" content="New Testament Factbook | Open Word Study">
 <meta property="og:description" content="The people, places and things the New Testament names, with every mention.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vadneyk.github.io/open-word-study-site/factbook/">
@@ -16,7 +27,7 @@
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;650;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>New Testament Factbook</title>
+<title>New Testament Factbook | Open Word Study</title>
 <style>
 /* Layout: an index card file. Directory on the left (filter and list), the open card on the right: who or what, family, where in the NT, and a small place plot. */
 :root {
@@ -143,7 +154,7 @@ addEventListener('error', function (e) {
 </script>
 <nav class="a2bar" aria-label="Site"><a href="../">Open Word Study</a><span>Free Bible study tools from open data</span><span class="owsctl"><button type="button" class="owslang-btn" lang="ja">日本語</button><button type="button" class="owsbig-btn" aria-pressed="false">Larger text</button></span></nav>
 <p class="owsload" id="ows-load" role="status">Loading the data for this tool.</p>
-<noscript><p class="owsload">This tool needs JavaScript turned on.</p></noscript>
+<noscript><p class="owsload">This tool needs JavaScript turned on. このツールには JavaScript が必要です。</p></noscript>
 <div class="wrap" role="main">
   <h1>New Testament Factbook</h1>
   <p class="lede">The people, places and things the New Testament names, each with a short description, family links, and every verse where the Greek text names them.</p>
@@ -173,6 +184,9 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&am
 const ref = n => `${NAMES[B[Math.floor(n / 1e6)]]} ${Math.floor(n / 1e3) % 1e3}:${n % 1e3}`;
 const refLink = n => `<a href="../reader/#${B[Math.floor(n / 1e6)]}.${Math.floor(n / 1e3) % 1e3}.${n % 1e3}">${ref(n)}</a>`;
 const IDS = Object.keys(E).sort((a, b) => E[b][8].length - E[a][8].length);
+// Entries whose one-line summary in the data passes a verdict on a whole group: the fuller sentence, which gives the
+// passages, is shown alone. The data itself is not rewritten.
+const NO_BRIEF = { G5330: 1 };  // Pharisee
 let kind = 'all', cur = 'G2424G';
 if (location.hash && E[location.hash.slice(1)]) cur = location.hash.slice(1);
 
@@ -198,7 +212,7 @@ function show(i) {
   const by = new Array(B.length).fill(0); refs.forEach(r => by[Math.floor(r / 1e6)]++);
   const rels = [['Parents', rel[0]], ['Siblings', rel[1]], ['Married to', rel[2]], ['Children', rel[3]]].filter(r => r[1].length);
   $('card').innerHTML = `<div class="box"><div class="title"><span class="big">${esc(name)}</span><span class="kind" style="--k:var(--${k})">${esc(KIND[k])}</span><span class="num">${refs.length} mentions in the NT</span></div>
-    ${brief ? `<p class="brief">${esc(brief)}</p>` : ''}<p class="short">${esc(short || desc)}</p>
+    ${brief && !NO_BRIEF[i] ? `<p class="brief">${esc(brief)}</p>` : ''}<p class="short">${esc(short || desc)}</p>
     ${gk.length ? `<p class="gnames"><span class="label">Greek name${gk.length > 1 ? 's' : ''}</span> ${gk.map(g => `<a href="${STUDY_URL}#${g}" target="_blank" rel="noopener"><span class="gk">${esc(DATA.lex[g])}</span> <span class="num">${g}</span></a>`).join(' · ')}</p>` : ''}
     ${rels.length ? `<dl class="rel">${rels.map(r => `<dt>${r[0]}</dt><dd>${r[1].map(link).join(', ')}</dd>`).join('')}</dl>` : ''}</div>
     <div class="two"><div class="box"><h2>Where the NT names ${esc(name)}</h2><svg id="bars" class="bars" role="img"></svg></div>
@@ -230,7 +244,7 @@ $('q').oninput = renderList;
 addEventListener('hashchange', () => { const i = location.hash.slice(1); if (E[i] && i !== cur) show(i); });
 renderKinds(); renderList(); show(cur);
 </script>
-<footer><p class="a2foot">Built from open data; see <a href="../sources/">sources and licences</a>.</p></footer>
+<footer><p class="a2foot">Built from open data; see <a href="../sources/">sources and licences</a>.</p><p class="a2foot ows-nodata">This site collects no data about you: no accounts, no cookies, no analytics.</p></footer>
 <script>if(!window.owsFailed){var l=document.getElementById('ows-load');if(l)l.hidden=true}</script>
 <script>
 (function () {
@@ -305,16 +319,25 @@ renderKinds(); renderList(); show(cur);
     var esc = function (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); };
     var refRe = new RegExp('^(' + Object.keys(D.books).sort(function (a, b) { return b.length - a.length; }).map(esc).join('|') + ') (\\d+)(?::(\\d+(?:[-,]\\d+)*))?$');
     var abbrRe = new RegExp('^(' + Object.keys(D.bookAbbr).join('|') + ') (\\d+):(\\d+)$');
+    var OT = Object.keys(D.bookAbbr).slice(0, 39), page = (location.pathname.replace(/\/(index\.html)?$/, '').split('/').pop() || '');
+    /* Hebrew or Greek? The Hebrew word study, a Hebrew word (#H...) or an Old Testament chapter (#Gen.1) is Hebrew. */
+    function hebrew() { var h = location.hash.slice(1); return page === 'hebrew' || /^H\d/.test(h) || OT.indexOf(h.split(/[.\/]/)[0]) >= 0; }
+    var phrases = (D.grammarPhrases || []).map(function (p) { return [new RegExp(p[0], 'gi'), p[1]]; });
+    var tidy = (D.grammarTidy || []).map(function (p) { return [new RegExp(p[0], 'g'), p[1]]; });
     function gram(s) {
-      var parts = s.split(/(\s+|[·|,\/-]+)/), hit = false, out = [];
+      phrases.forEach(function (p) { s = s.replace(p[0], p[1]); });
+      var parts = s.split(/(\s+|[·|,\/-]+)/), hit = false, out = [], heb = hebrew();
       for (var i = 0; i < parts.length; i++) {
         var w = parts[i];
         if (!/[A-Za-z0-9]/.test(w)) { out.push(w); continue; }
-        var g = D.grammar[w.toLowerCase()];
+        var g = (!heb && D.grammarGreek && D.grammarGreek[w.toLowerCase()]) || D.grammar[w.toLowerCase()];
         if (g === undefined) return null;
         hit = true; out.push(g);
       }
-      return hit ? out.join('').replace(/ +/g, ' ').trim() : null;
+      if (!hit) return null;
+      var r = out.join('').replace(/ +/g, ' ').trim();
+      tidy.forEach(function (p) { r = r.replace(p[0], p[1]); });
+      return r;
     }
     function tr(s) {
       if (D.text[s] !== undefined) return D.text[s];
@@ -325,6 +348,10 @@ renderKinds(); renderList(); show(cur);
       for (var i = 0; i < pats.length; i++) {
         m = pats[i][0].exec(s);
         if (m) return pats[i][1].replace(/\{g:\$(\d)\}/g, function (_, n) { return gram(m[n]) || m[n]; })
+          .replace(/\{l:\$(\d)\}/g, function (_, n) {  // a list of names with notes in brackets, set in Japanese punctuation
+            var x = m[n].replace(/ \(([^)]*)\)/g, '（$1）').replace(/, /g, '、');
+            (D.listTerms || []).forEach(function (t) { x = x.split(t[0]).join(t[1]); });
+            return x; })
           .replace(/\{\$(\d)\}/g, function (_, n) { return tr(m[n]) || D.books[m[n]] || m[n]; })
           .replace(/\$(\d)/g, function (_, n) { return m[n]; });
       }
@@ -339,6 +366,7 @@ renderKinds(); renderList(); show(cur);
       var r = null;
       if (k.indexOf(' ') < 0 && D.text[k] !== undefined && !p.matches(oneWordIn)) r = null;
       else r = tr(k);
+      if (p.tagName === 'OPTION' && D.grammarMenu && D.grammarMenu[k.toLowerCase()]) r = D.grammarMenu[k.toLowerCase()];
       if (r === null && p.matches(gramIn)) r = gram(k);
       if (r === null && p.closest(abbrIn) && D.bookAbbr[k]) r = D.bookAbbr[k];
       if (r === null && p.tagName === 'OPTION' && D.books[k]) r = D.books[k];
@@ -360,10 +388,20 @@ renderKinds(); renderList(); show(cur);
       el.textContent = ''; el.appendChild(frag); el.setAttribute('data-ja', '1');
     }
     var ATTRS = ['placeholder', 'aria-label', 'title', 'alt'];
+    /* A label that is a list of books with a number ("John 1, Revelation 4"), as the charts give screen readers. */
+    function list(v) {
+      var parts = v.split(/, */), out = [];
+      for (var i = 0; i < parts.length; i++) {
+        var m = /^(.+?) (\d+)$/.exec(parts[i]);
+        if (!m || !D.books[m[1]]) return null;
+        out.push(D.books[m[1]] + ' ' + m[2]);
+      }
+      return out.length > 1 ? out.join('、') : null;
+    }
     function attrs(el) {
       for (var i = 0; i < ATTRS.length; i++) {
         var v = el.getAttribute(ATTRS[i]);
-        if (v && /[A-Za-z]/.test(v)) { var r = tr(norm(v)); if (r !== null && r !== v) el.setAttribute(ATTRS[i], r); }
+        if (v && /[A-Za-z]/.test(v)) { var r = tr(norm(v)); if (r === null) r = list(norm(v)); if (r !== null && r !== v) el.setAttribute(ATTRS[i], r); }
       }
     }
     function sweep(top) {
@@ -380,7 +418,11 @@ renderKinds(); renderList(); show(cur);
     }
     var t0 = tr(norm(document.title)); if (t0) document.title = t0;
     var bar = document.querySelector('.a2bar');
-    if (bar && D.note) { var note = document.createElement('p'); note.className = 'owsja-note'; note.textContent = D.note; bar.parentNode.insertBefore(note, bar.nextSibling); }
+    if (bar && D.note) {
+      var note = document.createElement('p'); note.className = 'owsja-note';
+      note.textContent = D.note + (D.pageNote && D.pageNote[page] ? ' ' + D.pageNote[page] : '');
+      bar.parentNode.insertBefore(note, bar.nextSibling);
+    }
     sweep(document.body);
     [].forEach.call(document.querySelectorAll('.owslang-btn'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
     new MutationObserver(function (ms) {

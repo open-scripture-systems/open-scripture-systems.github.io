@@ -13,3 +13,9 @@
 
 Anything derived from the ULT or UST is shared under CC BY-SA 4.0. Copyrighted translations (ESV, NIV
 and others) are not used. No data, text or interface from Logos Bible Software is used.
+
+## Code licence
+
+The code in this repository is under the MIT licence (see LICENSE). The data above keeps its own terms;
+the MIT licence does not cover it. The tools are free to use: no charge, no ads, no login.
+The study workspace has its own fuller list in SOURCES.md.

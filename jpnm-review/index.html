@@ -585,16 +585,25 @@ if(window.claude&&window.claude.use){
     var esc = function (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); };
     var refRe = new RegExp('^(' + Object.keys(D.books).sort(function (a, b) { return b.length - a.length; }).map(esc).join('|') + ') (\\d+)(?::(\\d+(?:[-,]\\d+)*))?$');
     var abbrRe = new RegExp('^(' + Object.keys(D.bookAbbr).join('|') + ') (\\d+):(\\d+)$');
+    var OT = Object.keys(D.bookAbbr).slice(0, 39), page = (location.pathname.replace(/\/(index\.html)?$/, '').split('/').pop() || '');
+    /* Hebrew or Greek? The Hebrew word study, a Hebrew word (#H...) or an Old Testament chapter (#Gen.1) is Hebrew. */
+    function hebrew() { var h = location.hash.slice(1); return page === 'hebrew' || /^H\d/.test(h) || OT.indexOf(h.split(/[.\/]/)[0]) >= 0; }
+    var phrases = (D.grammarPhrases || []).map(function (p) { return [new RegExp(p[0], 'gi'), p[1]]; });
+    var tidy = (D.grammarTidy || []).map(function (p) { return [new RegExp(p[0], 'g'), p[1]]; });
     function gram(s) {
-      var parts = s.split(/(\s+|[·|,\/-]+)/), hit = false, out = [];
+      phrases.forEach(function (p) { s = s.replace(p[0], p[1]); });
+      var parts = s.split(/(\s+|[·|,\/-]+)/), hit = false, out = [], heb = hebrew();
       for (var i = 0; i < parts.length; i++) {
         var w = parts[i];
         if (!/[A-Za-z0-9]/.test(w)) { out.push(w); continue; }
-        var g = D.grammar[w.toLowerCase()];
+        var g = (!heb && D.grammarGreek && D.grammarGreek[w.toLowerCase()]) || D.grammar[w.toLowerCase()];
         if (g === undefined) return null;
         hit = true; out.push(g);
       }
-      return hit ? out.join('').replace(/ +/g, ' ').trim() : null;
+      if (!hit) return null;
+      var r = out.join('').replace(/ +/g, ' ').trim();
+      tidy.forEach(function (p) { r = r.replace(p[0], p[1]); });
+      return r;
     }
     function tr(s) {
       if (D.text[s] !== undefined) return D.text[s];
@@ -605,6 +614,10 @@ if(window.claude&&window.claude.use){
       for (var i = 0; i < pats.length; i++) {
         m = pats[i][0].exec(s);
         if (m) return pats[i][1].replace(/\{g:\$(\d)\}/g, function (_, n) { return gram(m[n]) || m[n]; })
+          .replace(/\{l:\$(\d)\}/g, function (_, n) {  // a list of names with notes in brackets, set in Japanese punctuation
+            var x = m[n].replace(/ \(([^)]*)\)/g, '（$1）').replace(/, /g, '、');
+            (D.listTerms || []).forEach(function (t) { x = x.split(t[0]).join(t[1]); });
+            return x; })
           .replace(/\{\$(\d)\}/g, function (_, n) { return tr(m[n]) || D.books[m[n]] || m[n]; })
           .replace(/\$(\d)/g, function (_, n) { return m[n]; });
       }
@@ -619,6 +632,7 @@ if(window.claude&&window.claude.use){
       var r = null;
       if (k.indexOf(' ') < 0 && D.text[k] !== undefined && !p.matches(oneWordIn)) r = null;
       else r = tr(k);
+      if (p.tagName === 'OPTION' && D.grammarMenu && D.grammarMenu[k.toLowerCase()]) r = D.grammarMenu[k.toLowerCase()];
       if (r === null && p.matches(gramIn)) r = gram(k);
       if (r === null && p.closest(abbrIn) && D.bookAbbr[k]) r = D.bookAbbr[k];
       if (r === null && p.tagName === 'OPTION' && D.books[k]) r = D.books[k];
@@ -640,10 +654,20 @@ if(window.claude&&window.claude.use){
       el.textContent = ''; el.appendChild(frag); el.setAttribute('data-ja', '1');
     }
     var ATTRS = ['placeholder', 'aria-label', 'title', 'alt'];
+    /* A label that is a list of books with a number ("John 1, Revelation 4"), as the charts give screen readers. */
+    function list(v) {
+      var parts = v.split(/, */), out = [];
+      for (var i = 0; i < parts.length; i++) {
+        var m = /^(.+?) (\d+)$/.exec(parts[i]);
+        if (!m || !D.books[m[1]]) return null;
+        out.push(D.books[m[1]] + ' ' + m[2]);
+      }
+      return out.length > 1 ? out.join('、') : null;
+    }
     function attrs(el) {
       for (var i = 0; i < ATTRS.length; i++) {
         var v = el.getAttribute(ATTRS[i]);
-        if (v && /[A-Za-z]/.test(v)) { var r = tr(norm(v)); if (r !== null && r !== v) el.setAttribute(ATTRS[i], r); }
+        if (v && /[A-Za-z]/.test(v)) { var r = tr(norm(v)); if (r === null) r = list(norm(v)); if (r !== null && r !== v) el.setAttribute(ATTRS[i], r); }
       }
     }
     function sweep(top) {
@@ -660,7 +684,11 @@ if(window.claude&&window.claude.use){
     }
     var t0 = tr(norm(document.title)); if (t0) document.title = t0;
     var bar = document.querySelector('.a2bar');
-    if (bar && D.note) { var note = document.createElement('p'); note.className = 'owsja-note'; note.textContent = D.note; bar.parentNode.insertBefore(note, bar.nextSibling); }
+    if (bar && D.note) {
+      var note = document.createElement('p'); note.className = 'owsja-note';
+      note.textContent = D.note + (D.pageNote && D.pageNote[page] ? ' ' + D.pageNote[page] : '');
+      bar.parentNode.insertBefore(note, bar.nextSibling);
+    }
     sweep(document.body);
     [].forEach.call(document.querySelectorAll('.owslang-btn'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
     new MutationObserver(function (ms) {

@@ -1,0 +1,31 @@
+# Open Word Study
+
+> Free Bible study tools for the Greek New Testament and the Hebrew Old Testament, in English and Japanese, built only from open data. No account, no cost, no ads, and no data collected. Made for serious study by seminary students, teachers and pastors, including readers in Japan.
+
+Open Word Study（オープン・ワード・スタディ）は、ギリシア語の新約聖書とヘブライ語の旧約聖書を学ぶための無料ツール集です。日本語と英語で使えます。公開データだけで作っており、アカウントも費用も広告もなく、利用者のデータを集めません。神学生、教師、牧師など、聖書を原語から丁寧に学びたい人のためのものです。
+
+Every page opens in Japanese with ?lang=ja added to its address. Greek, Hebrew and Strong's numbers are data and stay as they are.
+
+## Tools
+
+- [Interlinear Reader](https://vadneyk.github.io/open-word-study-site/reader/): Read the Bible in English with the Greek or Hebrew word under each English word. No Greek or Hebrew needed. 日本語（行間対訳リーダー）：英語の本文を、単語ごとにギリシア語・ヘブライ語を添えて読めます。原語を読めなくても使えます。
+- [Compare Translations](https://vadneyk.github.io/open-word-study-site/compare/): See how three open English translations say the same New Testament verse, and trace differences back to the Greek. 日本語（翻訳の比較）：公開されている三つの英訳が同じ節をどう訳しているかを比べ、違いをギリシア語までたどります。
+- [Word Study](https://vadneyk.github.io/open-word-study-site/word-study/): Any Greek New Testament word: where it appears, its forms, and how open English translations render it. 日本語（語句研究）：新約聖書のギリシア語の語を一つ選び、出てくる箇所、語形、公開されている英訳での訳され方を調べます。
+- [Hebrew Word Study](https://vadneyk.github.io/open-word-study-site/hebrew/): Any Hebrew Old Testament word: where it appears, its forms, and how open English renderings carry it. 日本語（ヘブライ語の語句研究）：旧約聖書のヘブライ語の語を一つ選び、出てくる箇所、語形、英語での訳され方を調べます。
+- [Word Wheel](https://vadneyk.github.io/open-word-study-site/wheel/): One Greek or Hebrew word, every occurrence, one ring per open English translation. 日本語（ワードホイール（訳語の輪））：ギリシア語またはヘブライ語の語一つについて、すべての用例を、翻訳ごとの輪にして見比べます。
+- [Passage Workbench](https://vadneyk.github.io/open-word-study-site/workbench/): Any New Testament chapter word by word: rare words, repeated words, and where Greek editions differ. 日本語（本文ワークベンチ）：新約聖書の章を単語ごとに見ます。まれな語、くり返される語、ギリシア語本文の版による違いが分かります。
+- [Passage Companion](https://vadneyk.github.io/open-word-study-site/companion/): Read any chapter of the Bible with cross references and, in the New Testament, notes on hard phrases, people and places. 日本語（聖書箇所コンパニオン）：聖書のどの章でも、相互参照と、新約では難しい表現・人名・地名の注を横に置いて読めます。
+- [Grammar Lens](https://vadneyk.github.io/open-word-study-site/lens/): Color the commands, the participles, or one word through any chapter of the Bible to see its shape, in Greek or Hebrew. 日本語（文法レンズ）：命令形、分詞、または一つの語に色を付けて、章の形をギリシア語・ヘブライ語で見ます。
+- [Verse Finder](https://vadneyk.github.io/open-word-study-site/finder/): Find New Testament verses that meet several conditions: words, people, places and grammar. 日本語（節の検索）：語、人物、場所、文法など、いくつかの条件を同時に満たす新約聖書の節を探します。
+- [Factbook](https://vadneyk.github.io/open-word-study-site/factbook/): The people, places and things the New Testament names, with every mention. 日本語（人名・地名事典）：新約聖書に出てくる人物・場所・事物と、その名前が出てくるすべての箇所。
+
+## What to know before citing it
+
+- Texts and data: SBLGNT and STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0), Berean Standard Bible, World English Bible, King James Version and 文語訳 (1917) (public domain), unfoldingWord ULT, UST and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0), Abbott-Smith lexicon (1922).
+- No copyrighted translation is used (no ESV, NIV, 新改訳, 新共同訳 or 聖書協会共同訳).
+- It is a study aid and a work in progress, not a replacement for a full Bible software library, and it is not affiliated with any Bible software company.
+
+## More
+
+- [Sources and licences](https://vadneyk.github.io/open-word-study-site/sources/)
+- [Sitemap](https://vadneyk.github.io/open-word-study-site/sitemap.xml)

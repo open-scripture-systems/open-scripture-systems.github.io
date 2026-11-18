@@ -1,25 +1,25 @@
 {
- "_readme": "Japanese interface strings for the public site. Edit the Japanese on the right-hand side only; the English keys must match the pages exactly (tests/test_site.py checks them). blocks: a paragraph with links, where <1>...</1> is the first link or bold part of the English paragraph. text: one piece of text or a label. patterns: text with numbers or names in it ($1 is the first captured part; {$1} also translates it). books, bookAbbr, grammar: word lists.",
+ "_readme": "Japanese interface strings for the public site. Edit the Japanese on the right-hand side only; the English keys must match the pages exactly (tests/test_site.py checks them). blocks: a paragraph with links, where <1>...</1> is the first link or bold part of the English paragraph. text: one piece of text or a label. patterns: text with numbers or names in it ($1 is the first captured part; {$1} also translates it). books, bookAbbr, grammar: word lists. grammarPhrases: several English words read as one term. grammarGreek: a term said differently for Greek than for Hebrew. grammarMenu: the fuller form used in menus. pageNote: one more line of the note, on the page whose folder is the key.",
  "switch": {
   "toJa": "日本語",
   "toEn": "English"
  },
- "note": "比べている翻訳（BSB、ULT、UST など）と語釈は英語です。日本語訳との比較は準備中です。",
+ "note": "比べている翻訳（BSB、ULT、UST など）、語釈、翻訳ノート、小見出し、人名・地名の説明は英語です。日本語訳との比較は準備中です。",
  "blocks": {
-  "Free tools for studying the words of the Bible in Greek and Hebrew. No account and no cost, built only from open data.": "<1>聖書のことばをギリシャ語とヘブライ語で学ぶための無料ツールです。</1> アカウントも費用もいりません。公開データだけで作っています。",
-  "Try one: read John 1:14 with the Greek under each word, see σκηνόω, \"to dwell\", in its 5 New Testament places, or δικαιοσύνη, \"righteousness\", in Matthew.": "試してみる：<1>ヨハネ 1:14 を、単語ごとにギリシャ語を添えて読む</1>、<2>σκηνόω「住む」が新約聖書で使われている5か所を見る</2>、<3>マタイの δικαιοσύνη「義」を見る</3>。",
+  "Free tools for studying the words of the Bible in Greek and Hebrew. No account and no cost, built only from open data.": "<1>聖書のことばをギリシャ語とヘブライ語で学ぶための無料ツールです。</1> アカウントも費用もいりません。オープンデータだけで作っています。",
+  "Try one: read John 1:14 with the Greek under each word, see σκηνόω, \"to dwell\", in its 5 New Testament places, or δικαιοσύνη, \"righteousness\", in Matthew.": "試してみる：<1>ヨハネ 1:14 を、単語ごとにギリシャ語を添えて読む</1>、<2>σκηνόω「宿る、幕屋を張る」が新約聖書で使われている5か所を見る</2>、<3>マタイの δικαιοσύνη「義」を見る</3>。",
   "From a verse. Open the Reader at John 3:16 and tap any word. From there you can see its cross references, compare translations, or color the grammar of the chapter.": "<1>聖書箇所から。</1> <2>リーダーでヨハネ 3:16</2> を開き、どれかの単語をタップしてください。そこから相互参照を見たり、翻訳を比べたり、その章の文法に色を付けたりできます。",
-  "From a word. In Word Study, type an English word like \"love\" or a spelling like \"agape\", and see everywhere it appears and how it is translated. For Old Testament words such as \"hesed\", use Hebrew Word Study.": "<1>単語から。</1> <2>語句研究</2>で、love のような英単語や agape のようなつづりを入力すると、その語が出てくるすべての箇所と訳され方が分かります。hesed のような旧約聖書の語には<3>ヘブライ語の語句研究</3>を使ってください。",
-  "From a person or place. In the Factbook, find Peter or Jerusalem and open any verse that names them.": "<1>人物や場所から。</1> <2>人名・地名事典</2>でペテロやエルサレムを探し、その名前が出てくる節を開いてください。",
+  "From a word. In Word Study, type an English word like \"love\" or a spelling like \"agape\", and see everywhere it appears and how it is translated. For Old Testament words such as \"hesed\", use Hebrew Word Study.": "<1>単語から。</1> <2>語句研究</2>で、love のような英単語や agape のようなつづりを入力すると、その語が出てくるすべての箇所と訳語が分かります。hesed のような旧約聖書の語には<3>ヘブライ語の語句研究</3>を使ってください。",
+  "From a person or place. In the Factbook, find Peter or Jerusalem and open any verse that names them.": "<1>人物や場所から。</1> <2>人名・地名事典</2>で Peter や Jerusalem を英語で探し、その名前が出てくる節を開いてください。",
   "“The Word became flesh and made His dwelling among us.” John 1:14, BSB": "「そして言は肉体となり、わたしたちのうちに宿った。」 <1>ヨハネ 1:14（口語訳）</1>",
   "A side project and a work in progress, made to help people slow down with the words of Scripture. It is not a replacement for a full Bible software library. Spotted a mistake or have an idea? Tell us on GitHub.": "聖書のことばをゆっくり味わう助けになればと思って作っている個人プロジェクトで、まだ作りかけです。本格的な聖書ソフトの代わりにはなりません。間違いに気づいたときや、アイデアがあるときは、<1>GitHub で知らせてください</1>。",
   "Data: STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0, Tyndale House Cambridge), Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0). Not affiliated with any Bible software company. Full sources and licences.": "データ：STEPBible TAGNT、TAHOT、TIPNR（CC BY 4.0、Tyndale House Cambridge）、Berean Standard Bible（パブリックドメイン）、unfoldingWord Literal Text、Simplified Text、Translation Notes（CC BY-SA 4.0）、OpenBible.info の相互参照（CC BY 4.0）。どの聖書ソフト会社とも関係ありません。<1>出典とライセンスの一覧</1>。",
-  "Built from open data; see sources and licences.": "公開データから作っています。<1>出典とライセンス</1>をご覧ください。",
+  "Built from open data; see sources and licences.": "オープンデータから作っています。<1>出典とライセンス</1>をご覧ください。",
   "These four words are worked examples with every occurrence listed. For any other word, Greek Word Study and Hebrew Word Study draw the same rings.": "この4語は、すべての出現箇所を載せた例です。ほかの語は、<1>ギリシャ語の語句研究</1>と<2>ヘブライ語の語句研究</2>で同じ輪を見られます。",
   "The data was reshaped to build these tools. Renderings are grouped by their main English word, translation notes were lightly cleaned of formatting, and counts were computed from the tagged words. The parts of this site derived from the unfoldingWord texts and notes are shared under CC BY-SA 4.0.": "これらのツールを作るために、データの形を整えました。訳語は中心になる英単語ごとにまとめ、翻訳ノートは書式を軽く整理し、回数はタグ付きの語から数えています。unfoldingWord の本文とノートに基づく部分は、<1>CC BY-SA 4.0</1> のもとで共有しています。"
  },
  "text": {
-  "Free Bible study tools from open data": "公開データで作った無料の聖書研究ツール",
+  "Free Bible study tools from open data": "オープンデータで作った無料の聖書研究ツール",
   "Larger text": "文字を大きく",
   "Normal text": "標準の文字",
   "Site": "サイト",
@@ -41,12 +41,12 @@
   "Three ways to start": "始め方は3つあります",
   "All the tools": "すべてのツール",
   "Read the English with the Greek or Hebrew word under each word. Start here if you do not read the original languages.": "英語の本文を、単語ごとにギリシャ語またはヘブライ語を添えて読めます。原語を読めない方は、ここから始めてください。",
-  "Three open English translations of a New Testament verse, with differences traced back to the Greek.": "新約聖書の1節を、公開されている3つの英語訳で比べ、違いをギリシャ語までたどります。",
-  "Any Greek word: where it appears, its forms, how open translations render it, and words translated the same way.": "ギリシャ語のどの語でも、出てくる箇所、語形、公開訳での訳され方、同じ訳語になるほかの語が分かります。",
-  "The same for every word of the Old Testament. Start with חֶסֶד, \"loving devotion\".": "旧約聖書のすべての語について同じことができます。まずは חֶסֶד（loving devotion、変わらない愛）からどうぞ。",
-  "One word, every occurrence, a ring per translation. Start with σκηνόω, \"to dwell\".": "1つの語のすべての出現箇所を、翻訳ごとの輪で見ます。まずは σκηνόω「住む」からどうぞ。",
+  "Three open English translations of a New Testament verse, with differences traced back to the Greek.": "新約聖書の1節を、自由に使える3つの英語訳で比べ、違いをギリシャ語までたどります。",
+  "Any Greek word: where it appears, its forms, how open translations render it, and words translated the same way.": "ギリシャ語のどの語でも、出てくる箇所、語形、自由に使える翻訳での訳語、同じ訳語が当てられているほかの語が分かります。",
+  "The same for every word of the Old Testament. Start with חֶסֶד, \"loving devotion\".": "旧約聖書のすべての語について同じことができます。まずは חֶסֶד（ヘセド。いつくしみ、変わらない愛）からどうぞ。",
+  "One word, every occurrence, a ring per translation. Start with σκηνόω, \"to dwell\".": "1つの語のすべての出現箇所を、翻訳ごとの輪で見ます。まずは σκηνόω「宿る、幕屋を張る」からどうぞ。",
   "Any New Testament chapter word by word: rare words, repeated words, and where Greek editions differ.": "新約聖書のどの章でも1語ずつ見られます。まれな語、繰り返される語、ギリシャ語本文の版による違いが分かります。",
-  "Read any chapter of the Bible with the margin open: cross references readers found helpful and, in the New Testament, notes on hard phrases, people and places.": "聖書のどの章でも、欄外の助けと一緒に読めます。読者が役に立つと投票した相互参照と、新約聖書では難しい言い回し、人物、場所についてのノートが付きます。",
+  "Read any chapter of the Bible with the margin open: cross references readers found helpful and, in the New Testament, notes on hard phrases, people and places.": "聖書のどの章でも、欄外の注や相互参照と一緒に読めます。読者の投票で選ばれた相互参照と、新約聖書では難しい言い回し、人物、場所についてのノートが付きます。",
   "Color the commands, the participles, or one word through any chapter to see its shape: Greek in the New Testament, Hebrew in the Old.": "命令形、分詞、または1つの語に色を付けて、章の形を見ます。新約聖書はギリシャ語、旧約聖書はヘブライ語です。",
   "Verses that meet several conditions at once: words, people, places and grammar.": "語、人物、場所、文法など、いくつかの条件を同時に満たす節を探します。",
   "People, places and things the New Testament names, with every mention.": "新約聖書に名前が出てくる人物、場所、ものを、すべての言及箇所と一緒に見られます。",
@@ -91,13 +91,13 @@
   "Greek counts use the words STEPBible's TAGNT marks as NA28 readings. The Nestle-Aland edition's publisher did not provide or review this data. Mistakes in how the data is combined here are this site's own.": "ギリシャ語の回数は、STEPBible の TAGNT が NA28 の読みとして印を付けた語で数えています。Nestle-Aland 版の出版社は、このデータを提供も確認もしていません。データの組み合わせ方に誤りがあれば、それはこのサイトの責任です。",
   "Copyrighted translations such as the ESV and NIV are not used. No data, text or interface from any commercial Bible software is used. These tools are a study aid, not a replacement for a full Bible software library.": "ESV や NIV のような著作権のある翻訳は使っていません。市販の聖書ソフトのデータ、本文、画面も使っていません。これらのツールは学びの助けであり、本格的な聖書ソフトの代わりではありません。",
   "No accounts and no analytics. Your browser remembers the last word or passage you opened, your display choices, and whether you turned on Larger text, on your device only. Fonts load from Google Fonts, so Google can see that request; if they are blocked, the pages still work with your device's fonts.": "アカウントもアクセス解析もありません。最後に開いた語や聖書箇所、表示の設定、「文字を大きく」と表示言語の選択は、お使いの端末のブラウザだけに保存されます。フォントは Google Fonts から読み込むため、その通信は Google に見えます。読み込めない場合も、端末のフォントでページは表示されます。",
-  "Every word of the Greek New Testament: where it appears, the forms it takes, how open English translations carry it, and other Greek words they translate the same way.": "ギリシャ語新約聖書のすべての語について、出てくる箇所、語形、公開されている英語訳での訳され方、同じ訳語になるほかのギリシャ語が分かります。",
-  "Every word of the Hebrew Old Testament: where it appears, the forms it takes, how open English renderings carry it, and other Hebrew words they translate the same way.": "ヘブライ語旧約聖書のすべての語について、出てくる箇所、語形、公開されている英語訳での訳され方、同じ訳語になるほかのヘブライ語が分かります。",
+  "Every word of the Greek New Testament: where it appears, the forms it takes, how open English translations carry it, and other Greek words they translate the same way.": "ギリシャ語新約聖書のすべての語について、出てくる箇所、語形、自由に使える英語訳での訳語、同じ訳語が当てられているほかのギリシャ語が分かります。",
+  "Every word of the Hebrew Old Testament: where it appears, the forms it takes, how open English renderings carry it, and other Hebrew words they translate the same way.": "ヘブライ語旧約聖書のすべての語について、出てくる箇所、語形、自由に使える英語訳での訳語、同じ訳語が当てられているほかのヘブライ語が分かります。",
   "Find a word: Greek, English gloss, or Strong's number": "語を探す：ギリシャ語、英語の語釈、またはストロング番号",
   "Find a word: Hebrew, English gloss, or Strong's number": "語を探す：ヘブライ語、英語の語釈、またはストロング番号",
   "Examples": "例",
   "See every occurrence of this word side by side in the Word Wheel": "この語のすべての出現箇所を、ワードホイールで並べて見る",
-  "How it is translated": "訳され方",
+  "How it is translated": "訳語",
   "each ring is one translation; tap a slice": "輪1つが翻訳1つです。輪の一部をタップしてください",
   "Rendering rings": "訳語の輪",
   "Renderings": "訳語",
@@ -110,15 +110,15 @@
   "Times": "回数",
   "STEPBible gloss": "STEPBible の語釈",
   "Forms table, scrolls sideways": "語形の表（横にスクロールできます）",
-  "Translated the same way": "同じ訳語になる語",
+  "Translated the same way": "同じ訳語が当てられているほかの語",
   "no BSB rendering to compare": "比べられる BSB の訳語がありません",
   "none found": "見つかりませんでした",
   "not aligned": "対応する語なし",
   "(not aligned)": "（対応する語なし）",
   "other renderings": "そのほかの訳語",
   "try again": "もう一度試してください",
-  "A free study aid from open data and a work in progress. Greek words, lemmas, glosses and morphology: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge), NA28 words. Renderings: Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts (CC BY-SA 4.0), STEPBible glosses. Renderings are grouped by their main English word. \"Translated the same way\" lists other Greek words the BSB renders with the same main word; it is a starting point for comparison, not a claim that the words mean the same. Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールで、まだ作りかけです。ギリシャ語の語、見出し語、語釈、形態情報：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）、NA28 の語。訳語：Berean Standard Bible（パブリックドメイン）、unfoldingWord Literal Text と Simplified Text（CC BY-SA 4.0）、STEPBible の語釈。訳語は中心になる英単語ごとにまとめています。「同じ訳語になる語」は、BSB が同じ中心語で訳しているほかのギリシャ語の一覧です。比べるための出発点であり、意味が同じだと言っているわけではありません。どの聖書ソフト会社とも関係ありません。",
-  "A free study aid from open data and a work in progress. Hebrew words, lemmas and glosses: STEPBible TAHOT (CC BY 4.0, Tyndale House Cambridge), Leningrad Codex based. Renderings: Berean Standard Bible (public domain), STEPBible glosses. Forms are shown with their STEPBible gloss. Renderings are grouped by their main English word. \"Translated the same way\" lists other Hebrew words the BSB renders with the same main word; it is a starting point for comparison, not a claim that the words mean the same. Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールで、まだ作りかけです。ヘブライ語の語、見出し語、語釈：STEPBible TAHOT（CC BY 4.0、Tyndale House Cambridge）、レニングラード写本に基づく本文。訳語：Berean Standard Bible（パブリックドメイン）、STEPBible の語釈。語形には STEPBible の語釈を添えています。訳語は中心になる英単語ごとにまとめています。「同じ訳語になる語」は、BSB が同じ中心語で訳しているほかのヘブライ語の一覧です。比べるための出発点であり、意味が同じだと言っているわけではありません。どの聖書ソフト会社とも関係ありません。",
+  "A free study aid from open data and a work in progress. Greek words, lemmas, glosses and morphology: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge), NA28 words. Renderings: Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts (CC BY-SA 4.0), STEPBible glosses. Renderings are grouped by their main English word. \"Translated the same way\" lists other Greek words the BSB renders with the same main word; it is a starting point for comparison, not a claim that the words mean the same. Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールで、まだ作りかけです。ギリシャ語の語、見出し語、語釈、形態情報：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）、NA28 の語。訳語：Berean Standard Bible（パブリックドメイン）、unfoldingWord Literal Text と Simplified Text（CC BY-SA 4.0）、STEPBible の語釈。訳語は中心になる英単語ごとにまとめています。「同じ訳語になる語」は、BSB が同じ中心語で訳しているほかのギリシャ語の一覧です。比べるための出発点であり、意味が同じだと言っているわけではありません。どの聖書ソフト会社とも関係ありません。",
+  "A free study aid from open data and a work in progress. Hebrew words, lemmas and glosses: STEPBible TAHOT (CC BY 4.0, Tyndale House Cambridge), Leningrad Codex based. Renderings: Berean Standard Bible (public domain), STEPBible glosses. Forms are shown with their STEPBible gloss. Renderings are grouped by their main English word. \"Translated the same way\" lists other Hebrew words the BSB renders with the same main word; it is a starting point for comparison, not a claim that the words mean the same. Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールで、まだ作りかけです。ヘブライ語の語、見出し語、語釈：STEPBible TAHOT（CC BY 4.0、Tyndale House Cambridge）、レニングラード写本に基づく本文。訳語：Berean Standard Bible（パブリックドメイン）、STEPBible の語釈。語形には STEPBible の語釈を添えています。訳語は中心になる英単語ごとにまとめています。「同じ訳語になる語」は、BSB が同じ中心語で訳しているほかのヘブライ語の一覧です。比べるための出発点であり、意味が同じだと言っているわけではありません。どの聖書ソフト会社とも関係ありません。",
   "Read the Bible in English with the Greek or Hebrew word under each English word. No Greek or Hebrew needed: tap a word to see what stands behind it.": "英語の聖書本文を、単語ごとにギリシャ語またはヘブライ語を添えて読めます。原語の知識はいりません。単語をタップすると、もとの語が分かります。",
   "Book": "書",
   "Chapter": "章",
@@ -137,8 +137,8 @@
   "compare translations": "翻訳を比べる",
   "color the grammar": "文法に色を付ける",
   "every word in a table": "すべての語を表で見る",
-  "A free study aid from open data and a work in progress. English, Greek, Hebrew and word alignment: Berean Standard Bible and the Berean interlinear tables (public domain). The Greek is the tables' Nestle base text and the Hebrew is the Westminster Leningrad Codex text they use. Word order follows the English, so the Greek or Hebrew words are not in their original order, and words with no English of their own are left out. This is a reading aid, not a replacement for learning the languages or for a full Bible software library. Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールで、まだ作りかけです。英語、ギリシャ語、ヘブライ語と語の対応：Berean Standard Bible と Berean 行間対訳表（パブリックドメイン）。ギリシャ語は表の Nestle 底本、ヘブライ語は表が使っている Westminster Leningrad Codex の本文です。語順は英語に合わせているため、ギリシャ語やヘブライ語はもとの順番ではありません。対応する英語がない語は省かれています。読むための助けであり、原語の学習や本格的な聖書ソフトの代わりではありません。どの聖書ソフト会社とも関係ありません。",
-  "How a Greek or Hebrew word is carried into English. Each ring is one open translation; each slice groups the places it uses the same English word. Pick a slice to see where.": "ギリシャ語やヘブライ語の1語が、英語でどう訳されているかを見ます。輪1つが公開訳1つで、輪の一部分は、同じ英単語で訳されている箇所をまとめたものです。一部分を選ぶと、その箇所が分かります。",
+  "A free study aid from open data and a work in progress. English, Greek, Hebrew and word alignment: Berean Standard Bible and the Berean interlinear tables (public domain). The Greek is the tables' Nestle base text and the Hebrew is the Westminster Leningrad Codex text they use. Word order follows the English, so the Greek or Hebrew words are not in their original order, and words with no English of their own are left out. This is a reading aid, not a replacement for learning the languages or for a full Bible software library. Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールで、まだ作りかけです。英語、ギリシャ語、ヘブライ語と語の対応：Berean Standard Bible と Berean 行間対訳表（パブリックドメイン）。ギリシャ語は表の Nestle 底本、ヘブライ語は表が使っている Westminster Leningrad Codex の本文です。語順は英語に合わせているため、ギリシャ語やヘブライ語はもとの順番ではありません。対応する英語がない語は省かれています。読むための助けであり、原語の学習や本格的な聖書ソフトの代わりではありません。どの聖書ソフト会社とも関係ありません。",
+  "How a Greek or Hebrew word is carried into English. Each ring is one open translation; each slice groups the places it uses the same English word. Pick a slice to see where.": "ギリシャ語やヘブライ語の1語が、英語でどう訳されているかを見ます。輪1つが翻訳1つで、輪の一部分は、同じ英単語で訳されている箇所をまとめたものです。一部分を選ぶと、その箇所が分かります。",
   "Word": "語",
   "Scope": "範囲",
   "New Testament": "新約聖書",
@@ -151,20 +151,20 @@
   "Greek": "ギリシャ語",
   "Hebrew": "ヘブライ語",
   "This word does not occur in": "この語は次の範囲には出てきません：",
-  "A free study aid built only from open data, and a work in progress. Greek text and glosses:": "公開データだけで作った無料の学習用ツールで、まだ作りかけです。ギリシャ語の本文と語釈：",
+  "A free study aid built only from open data, and a work in progress. Greek text and glosses:": "オープンデータだけで作った無料の学習用ツールで、まだ作りかけです。ギリシャ語の本文と語釈：",
   "(CC BY 4.0, Tyndale House Cambridge);": "（CC BY 4.0、Tyndale House Cambridge）；",
   "(Public domain);": "（パブリックドメイン）；",
   "(CC BY-SA 4.0, unfoldingWord);": "（CC BY-SA 4.0、unfoldingWord）；",
   "(CC BY 4.0, Tyndale House Cambridge). Slices group renderings by their main English word, so “he will dwell” and “dwelling” sit together. Words a translation does not align one to one are shown as a dashed gap, not hidden. It does not use any copyrighted translation and is not affiliated with any Bible software company.": "（CC BY 4.0、Tyndale House Cambridge）。輪の一部分は、訳語を中心になる英単語ごとにまとめたものです。たとえば he will dwell と dwelling は同じ部分に入ります。翻訳が1対1で対応づけていない語は、隠さずに破線のすき間として表示しています。著作権のある翻訳は使っていません。どの聖書ソフト会社とも関係ありません。",
-  "See how three open English translations of the New Testament say the same verse, and trace any difference back to the Greek word behind it.": "新約聖書の同じ節を、公開されている3つの英語訳がどう言っているかを見て、違いをその背後のギリシャ語までたどります。",
+  "See how three open English translations of the New Testament say the same verse, and trace any difference back to the Greek word behind it.": "新約聖書の同じ節を、自由に使える3つの英語訳がどう言っているかを見て、違いをその背後のギリシャ語までたどります。",
   "Compare against": "比べる基準",
   "Most different verses first": "違いの大きい節から表示",
   "Greek list: only words translated differently": "ギリシャ語の一覧：訳が違う語だけ",
   "translated differently": "訳が違う",
   "Not in this translation's text.": "この翻訳の本文にはありません。",
   "That reference was not found, so this is Matthew 5.": "その箇所は見つからなかったので、マタイ 5章を表示しています。",
-  "A free study aid from open data and a work in progress. New Testament only for now, because that is where these translations are aligned to the Greek here. BSB: Berean Standard Bible (public domain). ULT and UST: unfoldingWord Literal and Simplified Texts (CC BY-SA 4.0); their curly braces mark words the translators supplied. Greek: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge). Differences are found with the open-source jsdiff library (BSD 3-Clause). For more translations side by side, STEPBible's compare view at stepbible.org covers many more versions. Underlined words are ones not found, in order, in the translation you compare against. The percentage is a rough measure of wording, not of meaning: a simplified translation will score high on purpose, and a high score does not mean a translation is wrong. Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールで、まだ作りかけです。いまは新約聖書だけです。ここでは、これらの翻訳がギリシャ語に対応づけられているのが新約聖書だからです。BSB：Berean Standard Bible（パブリックドメイン）。ULT と UST：unfoldingWord Literal Text と Simplified Text（CC BY-SA 4.0）。波かっこは翻訳者が補った語です。ギリシャ語：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）。違いはオープンソースの jsdiff ライブラリ（BSD 3-Clause）で見つけています。もっと多くの翻訳を並べたいときは、stepbible.org の比較表示が多くの訳に対応しています。下線の語は、比べる基準の翻訳に同じ順番では出てこない語です。パーセントは言い回しのおおまかな目安で、意味の違いを測るものではありません。平易な訳はわざと高い数字になりますし、数字が高いからといって翻訳が間違っているわけではありません。どの聖書ソフト会社とも関係ありません。",
-  "Start a passage with what is worth slowing down for: rare words, words the author repeats, and places where Greek editions read differently. Then every word, in order, with its parse and three open translations.": "まず、ゆっくり読む価値のあるところから始めます。まれな語、著者が繰り返す語、ギリシャ語本文の版によって読みが違う箇所です。そのあと、すべての語を順番に、解析と3つの公開訳と一緒に見ます。",
+  "A free study aid from open data and a work in progress. New Testament only for now, because that is where these translations are aligned to the Greek here. BSB: Berean Standard Bible (public domain). ULT and UST: unfoldingWord Literal and Simplified Texts (CC BY-SA 4.0); their curly braces mark words the translators supplied. Greek: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge). Differences are found with the open-source jsdiff library (BSD 3-Clause). For more translations side by side, STEPBible's compare view at stepbible.org covers many more versions. Underlined words are ones not found, in order, in the translation you compare against. The percentage is a rough measure of wording, not of meaning: a simplified translation will score high on purpose, and a high score does not mean a translation is wrong. Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールで、まだ作りかけです。いまは新約聖書だけです。ここでは、これらの翻訳がギリシャ語に対応づけられているのが新約聖書だからです。BSB：Berean Standard Bible（パブリックドメイン）。ULT と UST：unfoldingWord Literal Text と Simplified Text（CC BY-SA 4.0）。波かっこは翻訳者が補った語です。ギリシャ語：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）。違いはオープンソースの jsdiff ライブラリ（BSD 3-Clause）で見つけています。もっと多くの翻訳を並べたいときは、stepbible.org の比較表示が多くの訳に対応しています。下線の語は、比べる基準の翻訳に同じ順番では出てこない語です。パーセントは言い回しのおおまかな目安で、意味の違いを測るものではありません。平易な訳はわざと高い数字になりますし、数字が高いからといって翻訳が間違っているわけではありません。どの聖書ソフト会社とも関係ありません。",
+  "Start a passage with what is worth slowing down for: rare words, words the author repeats, and places where Greek editions read differently. Then every word, in order, with its parse and three open translations.": "まず、立ち止まって読みたいところから始めます。まれな語、著者が繰り返す語、ギリシャ語本文の版によって読みが違う箇所です。そのあと、すべての語を順番に、解析と3つの翻訳と一緒に見ます。",
   "Passage": "聖書箇所",
   "Or any chapter": "または好きな章",
   "The Lord’s Prayer, Matthew 6:9 to 13": "主の祈り（マタイ 6:9〜13）",
@@ -182,9 +182,9 @@
   "No content word appears 3 times.": "3回以上出てくる内容語はありません。",
   "All eight editions agree here.": "ここでは8つの版がすべて一致しています。",
   "Every word, scrollable": "すべての語（スクロールできます）",
-  "A free study aid from open data and a work in progress. Greek text, lemmas, morphology and edition data: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge). English: Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts (CC BY-SA 4.0). Counts are NA28 words as tagged by STEPBible. Edition abbreviations: NA28 and NA27 Nestle-Aland, Tyn Tyndale House GNT, SBL SBL GNT, WH Westcott and Hort, Treg Tregelles, TR Textus Receptus, Byz Byzantine. It does not include commentary, and it is not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールで、まだ作りかけです。ギリシャ語の本文、見出し語、形態情報、版のデータ：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）。英語：Berean Standard Bible（パブリックドメイン）、unfoldingWord Literal Text と Simplified Text（CC BY-SA 4.0）。回数は、STEPBible がタグを付けた NA28 の語で数えています。版の略号：NA28 と NA27 は Nestle-Aland、Tyn は Tyndale House GNT、SBL は SBL GNT、WH は Westcott and Hort、Treg は Tregelles、TR は Textus Receptus、Byz はビザンチン型本文。注解は含みません。どの聖書ソフト会社とも関係ありません。",
-  "Read a passage with the margin open. Tap a verse to see where else Scripture speaks to it, notes on phrases that are hard to translate, and the people and places it names.": "欄外の助けと一緒に聖書箇所を読みます。節をタップすると、聖書のほかの箇所でそれに触れているところ、訳しにくい言い回しについてのノート、そこに出てくる人物と場所が見られます。",
-  "Old Testament echo": "旧約聖書の響き",
+  "A free study aid from open data and a work in progress. Greek text, lemmas, morphology and edition data: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge). English: Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts (CC BY-SA 4.0). Counts are NA28 words as tagged by STEPBible. Edition abbreviations: NA28 and NA27 Nestle-Aland, Tyn Tyndale House GNT, SBL SBL GNT, WH Westcott and Hort, Treg Tregelles, TR Textus Receptus, Byz Byzantine. It does not include commentary, and it is not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールで、まだ作りかけです。ギリシャ語の本文、見出し語、形態情報、版のデータ：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）。英語：Berean Standard Bible（パブリックドメイン）、unfoldingWord Literal Text と Simplified Text（CC BY-SA 4.0）。回数は、STEPBible がタグを付けた NA28 の語で数えています。版の略号：NA28 と NA27 は Nestle-Aland、Tyn は Tyndale House GNT、SBL は SBL GNT、WH は Westcott and Hort、Treg は Tregelles、TR は Textus Receptus、Byz はビザンチン型本文。注解は含みません。どの聖書ソフト会社とも関係ありません。",
+  "Read a passage with the margin open. Tap a verse to see where else Scripture speaks to it, notes on phrases that are hard to translate, and the people and places it names.": "欄外の注や相互参照と一緒に聖書箇所を読みます。節をタップすると、聖書のほかの箇所でそれに触れているところ、訳しにくい言い回しについてのノート、そこに出てくる人物と場所が見られます。",
+  "Old Testament echo": "旧約聖書の引用・暗示",
   "translation note": "翻訳ノート",
   "Psalm": "詩篇",
   "word by word": "1語ずつ見る",
@@ -198,14 +198,14 @@
   "No translation notes for this verse.": "この節には翻訳ノートがありません。",
   "People and places are tagged for the New Testament only.": "人物と場所のタグは新約聖書だけです。",
   "No people or places named in this verse.": "この節に名前が出てくる人物や場所はありません。",
-  "A free study aid from open material only, and a work in progress. Text: Berean Standard Bible (public domain). Cross references: OpenBible.info (CC BY 4.0), ranked by readers' votes, so they are suggestions to weigh, not a commentary. Notes: unfoldingWord Translation Notes (CC BY-SA 4.0), written to help translators, lightly cleaned of formatting. People and places: STEPBible TIPNR (CC BY 4.0). It does not include commentary, and it is not affiliated with any Bible software company.": "公開されている資料だけで作った無料の学習用ツールで、まだ作りかけです。本文：Berean Standard Bible（パブリックドメイン）。相互参照：OpenBible.info（CC BY 4.0）。読者の投票順なので、注解ではなく、考える材料としての提案です。ノート：unfoldingWord Translation Notes（CC BY-SA 4.0）。翻訳者を助けるために書かれたもので、書式を軽く整理しています（ノートは英語です）。人物と場所：STEPBible TIPNR（CC BY 4.0）。注解は含みません。どの聖書ソフト会社とも関係ありません。",
+  "A free study aid from open material only, and a work in progress. Text: Berean Standard Bible (public domain). Cross references: OpenBible.info (CC BY 4.0), ranked by readers' votes, so they are suggestions to weigh, not a commentary. Notes: unfoldingWord Translation Notes (CC BY-SA 4.0), written to help translators, lightly cleaned of formatting. People and places: STEPBible TIPNR (CC BY 4.0). It does not include commentary, and it is not affiliated with any Bible software company.": "自由に使える資料だけで作った無料の学習用ツールで、まだ作りかけです。本文：Berean Standard Bible（パブリックドメイン）。相互参照：OpenBible.info（CC BY 4.0）。読者の投票順なので、注解ではなく、考える材料としての提案です。ノート：unfoldingWord Translation Notes（CC BY-SA 4.0）。翻訳者を助けるために書かれたもので、書式を軽く整理しています（ノートは英語です）。人物と場所：STEPBible TIPNR（CC BY 4.0）。注解は含みません。どの聖書ソフト会社とも関係ありません。",
   "Turn on a lens to color every word that fits it. Commands, aorist verbs, a single word: see the shape of a passage at a glance. Tap any word for its parse. Works for Greek and, on any Old Testament chapter, Hebrew.": "レンズをオンにすると、当てはまる語すべてに色が付きます。命令形、アオリストの動詞、1つの語など、聖書箇所の形がひと目で分かります。単語をタップすると解析が見られます。ギリシャ語と、旧約聖書の章ではヘブライ語に対応しています。",
   "English under each word": "単語の下に英語を表示",
   "Commands": "命令形",
   "Aorist indicative": "アオリスト直説法",
   "Participles": "分詞",
   "Genitives": "属格",
-  "Story verbs (sequential imperfect)": "物語の動詞（継続の未完了）",
+  "Story verbs (sequential imperfect)": "物語の動詞（ワウ継続法の未完了）",
   "Construct nouns (\"of\")": "連語形の名詞（「〜の」）",
   "+ Lens": "+ レンズ",
   "New lens": "新しいレンズ",
@@ -233,7 +233,7 @@
   "Gender": "性",
   "State": "状態",
   "Prefix": "接頭辞",
-  "A free study aid from open data. Greek text, lemmas and morphology: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge). English under each word: Berean Standard Bible (public domain), shown where it aligns one to one. Hebrew and Aramaic text and parsing: STEPBible TAHOT (CC BY 4.0), with ETCBC morphology read by the OpenScriptures Hebrew morphology code table and STEPBible's own additions to it; any code neither list defines is shown as \"other\" with the raw code, not guessed. Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールです。ギリシャ語の本文、見出し語、形態情報：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）。単語の下の英語：Berean Standard Bible（パブリックドメイン）。1対1で対応する語だけ表示します。ヘブライ語とアラム語の本文と解析：STEPBible TAHOT（CC BY 4.0）。ETCBC の形態情報を、OpenScriptures のヘブライ語形態コード表と STEPBible による追加分で読んでいます。どちらにも定義のないコードは、推測せずに other と元のコードで表示します。どの聖書ソフト会社とも関係ありません。",
+  "A free study aid from open data. Greek text, lemmas and morphology: STEPBible TAGNT (CC BY 4.0, Tyndale House Cambridge). English under each word: Berean Standard Bible (public domain), shown where it aligns one to one. Hebrew and Aramaic text and parsing: STEPBible TAHOT (CC BY 4.0), with ETCBC morphology read by the OpenScriptures Hebrew morphology code table and STEPBible's own additions to it; any code neither list defines is shown as \"other\" with the raw code, not guessed. Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールです。ギリシャ語の本文、見出し語、形態情報：STEPBible TAGNT（CC BY 4.0、Tyndale House Cambridge）。単語の下の英語：Berean Standard Bible（パブリックドメイン）。1対1で対応する語だけ表示します。ヘブライ語とアラム語の本文と解析：STEPBible TAHOT（CC BY 4.0）。ETCBC の形態情報を、OpenScriptures のヘブライ語形態コード表と STEPBible による追加分で読んでいます。どちらにも定義のないコードは、推測せずに other と元のコードで表示します。どの聖書ソフト会社とも関係ありません。",
   "Ask the New Testament a question with more than one part. Each condition matches a Greek word: a word, a person or place, a grammatical form, or a mix. A verse shows up when it meets every condition.": "新約聖書に、いくつかの条件を組み合わせて質問できます。条件は1つのギリシャ語に当てはまるもので、語、人物や場所、文法の形、またはその組み合わせです。すべての条件を満たす節が表示されます。",
   "Peter and Jesus together": "ペテロとイエスが一緒に出てくる節",
   "\"Love\" as a command": "命令形の「愛する」",
@@ -253,7 +253,7 @@
   "No word, person or place found. Try Greek letters, an English word, or a name.": "語、人物、場所が見つかりません。ギリシャ文字、英単語、または名前を試してください。",
   "Add a condition or pick an example above.": "条件を追加するか、上の例を選んでください。",
   "no BSB text": "BSB の本文なし",
-  "A free study aid from open data. Greek words, lemmas and grammar: STEPBible TAGNT (CC BY 4.0), NA28 words. People and places: STEPBible TIPNR (CC BY 4.0), so a pronoun like \"he\" is not counted as the person. English text: Berean Standard Bible (public domain). Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールです。ギリシャ語の語、見出し語、文法：STEPBible TAGNT（CC BY 4.0）、NA28 の語。人物と場所：STEPBible TIPNR（CC BY 4.0）。そのため he のような代名詞は人物として数えません。英語の本文：Berean Standard Bible（パブリックドメイン）。どの聖書ソフト会社とも関係ありません。",
+  "A free study aid from open data. Greek words, lemmas and grammar: STEPBible TAGNT (CC BY 4.0), NA28 words. People and places: STEPBible TIPNR (CC BY 4.0), so a pronoun like \"he\" is not counted as the person. English text: Berean Standard Bible (public domain). Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールです。ギリシャ語の語、見出し語、文法：STEPBible TAGNT（CC BY 4.0）、NA28 の語。人物と場所：STEPBible TIPNR（CC BY 4.0）。そのため he のような代名詞は人物として数えません。英語の本文：Berean Standard Bible（パブリックドメイン）。どの聖書ソフト会社とも関係ありません。",
   "New Testament Factbook": "新約聖書 人名・地名事典",
   "The people, places and things the New Testament names, each with a short description, family links, and every verse where the Greek text names them.": "新約聖書に名前が出てくる人物、場所、ものを、短い説明、家族のつながり、ギリシャ語本文で名前が出てくるすべての節と一緒に見られます。",
   "Find": "探す",
@@ -271,7 +271,9 @@
   "Every mention, scrollable": "すべての言及箇所（スクロールできます）",
   "Directory": "一覧",
   "Show": "表示",
-  "A free study aid from open data. People, places, descriptions and relations: STEPBible TIPNR (CC BY 4.0, Tyndale House Cambridge). Mentions are words in the NA28 Greek text tagged with that individual in STEPBible TAGNT, so \"he\" and \"him\" are not counted, and a name used for more than one person is counted for the right one where STEPBible has told them apart. The place plot shows relative positions from TIPNR's coordinates; it is not a map. Not affiliated with any Bible software company.": "公開データで作った無料の学習用ツールです。人物、場所、説明、関係：STEPBible TIPNR（CC BY 4.0、Tyndale House Cambridge）。説明は英語です。言及箇所は、NA28 ギリシャ語本文の語のうち、STEPBible TAGNT でその人物や場所のタグが付いたものです。そのため he や him は数えません。同じ名前の人が複数いる場合は、STEPBible が区別しているかぎり、正しい人に数えています。場所の図は TIPNR の座標による相対的な位置で、地図ではありません。どの聖書ソフト会社とも関係ありません。"
+  "A free study aid from open data. People, places, descriptions and relations: STEPBible TIPNR (CC BY 4.0, Tyndale House Cambridge). Mentions are words in the NA28 Greek text tagged with that individual in STEPBible TAGNT, so \"he\" and \"him\" are not counted, and a name used for more than one person is counted for the right one where STEPBible has told them apart. The place plot shows relative positions from TIPNR's coordinates; it is not a map. Not affiliated with any Bible software company.": "オープンデータで作った無料の学習用ツールです。人物、場所、説明、関係：STEPBible TIPNR（CC BY 4.0、Tyndale House Cambridge）。説明は英語です。言及箇所は、NA28 ギリシャ語本文の語のうち、STEPBible TAGNT でその人物や場所のタグが付いたものです。そのため he や him は数えません。同じ名前の人が複数いる場合は、STEPBible が区別しているかぎり、正しい人に数えています。場所の図は TIPNR の座標による相対的な位置で、地図ではありません。どの聖書ソフト会社とも関係ありません。",
+  "This site collects no data about you: no accounts, no cookies, no analytics.": "このサイトは利用者のデータを集めません。アカウントも、クッキーも、アクセス解析もありません。",
+  "This tool needs JavaScript turned on. このツールには JavaScript が必要です。": "このツールには JavaScript が必要です。"
  },
  "patterns": [
   [
@@ -315,7 +317,7 @@
    "{$1} $2:$3〜$4"
   ],
   [
-   "^([GH]\\d+) · (\\d+)× NT$",
+   "^([GH]\\d+[A-Za-z]?) · (\\d+)× NT$",
    "$1 · 新約 $2回"
   ],
   [
@@ -367,6 +369,10 @@
    "節が$1つの条件をすべて満たしています（検索中）"
   ],
   [
+   "^Show more \\(-\\d+ left\\)$",
+   "もっと見る（残り 0）"
+  ],
+  [
    "^Show more \\((-?\\d+) left\\)$",
    "もっと見る（残り $1）"
   ],
@@ -395,15 +401,15 @@
    "このツールのデータを読み込んでいます。初回は約 $1 MB をダウンロードします。"
   ],
   [
-   "^([GH]\\d+) · (\\d+)× in the NT$",
+   "^([GH]\\d+[A-Za-z]?) · (\\d+)× in the NT$",
    "$1 · 新約聖書に$2回"
   ],
   [
-   "^([GH]\\d+) · (\\d+)× in the Old Testament$",
+   "^([GH]\\d+[A-Za-z]?) · (\\d+)× in the Old Testament$",
    "$1 · 旧約聖書に$2回"
   ],
   [
-   "^([GH]\\d+) · (\\d+)×$",
+   "^([GH]\\d+[A-Za-z]?) · (\\d+)×$",
    "$1 · $2回"
   ],
   [
@@ -447,10 +453,6 @@
    "{$1} を読み込めませんでした。接続を確認して、"
   ],
   [
-   "^Rings, outside to inside: (.+)\\.$",
-   "輪は外側から内側へ：$1。"
-  ],
-  [
    "^(.+): (.+), (\\d+) of (\\d+)$",
    "$1：{$2}、$4回中$3回"
   ],
@@ -459,8 +461,12 @@
    "$1節"
   ],
   [
-   "^(.+) · Strong's ([GH]\\d+)$",
+   "^(.+) · Strong's ([GH]\\d+[A-Za-z]?)$",
    "{g:$1} · ストロング番号 $2"
+  ],
+  [
+   "^Rings, outside to inside: (.+)\\.$",
+   "輪は外側から内側へ：{l:$1}。"
   ]
  ],
  "books": {
@@ -670,7 +676,7 @@
   "construct": "連語形",
   "absolute": "独立形",
   "conjunctive": "接続の",
-  "consecutive": "継続の",
+  "consecutive": "ワウ継続法",
   "waw": "ワウ",
   "qal": "カル",
   "nifal": "ニファル",
@@ -682,10 +688,13 @@
   "greek": "ギリシャ語",
   "hebrew": "ヘブライ語",
   "aramaic": "アラム語",
-  "sequential": "継続の",
+  "sequential": "ワウ継続法",
   "state": "状態",
   "determined": "限定",
-  "other": "その他"
+  "other": "その他",
+  "owsmdep": "中動態（異態）",
+  "owspdep": "受動態（異態）",
+  "owsmpdep": "中動態または受動態（異態）"
  },
  "grammarIn": [
   ".parse",
@@ -698,5 +707,46 @@
  "abbrIn": [
   "svg text"
  ],
- "oneWordIn": "b, label, .label, th, dt, button, option, h1, h2, h3, a, summary, legend, .refs, .tag, .lens, .kind, .a2bar *"
+ "oneWordIn": "b, label, .label, th, dt, button, option, h1, h2, h3, a, summary, legend, .refs, .tag, .lens, .kind, .a2bar *",
+ "grammarPhrases": [
+  [
+   "\\bmiddle or passive deponent\\b",
+   "owsmpdep"
+  ],
+  [
+   "\\bmiddle deponent\\b",
+   "owsmdep"
+  ],
+  [
+   "\\bpassive deponent\\b",
+   "owspdep"
+  ]
+ ],
+ "grammarGreek": {
+  "imperfect": "未完了過去"
+ },
+ "grammarMenu": {
+  "active": "能動態",
+  "middle": "中動態",
+  "passive": "受動態",
+  "middle or passive": "中動態または受動態"
+ },
+ "grammarTidy": [
+  [
+   "(人称) (単数|複数)",
+   "$1$2"
+  ]
+ ],
+ "pageNote": {
+  "factbook": "名前と説明は英語です（STEPBible TIPNR のデータをそのまま表示しています）。Peter、Jerusalem のように英語で探してください。",
+  "workbench": "版の略号：NA28＝ネストレ・アーラント第28版、WH＝ウェストコット・ホート、TR＝公認本文、Byz＝ビザンチン型本文、Tyn＝Tyndale House 版、SBL＝SBL ギリシア語新約聖書。",
+  "jpnm-review": "このページは eBible.org の編集者に向けた英語のページです。",
+  "sources": "書名は新改訳の呼び方に合わせています。"
+ },
+ "listTerms": [
+  [
+   "STEPBible gloss",
+   "STEPBible の語釈"
+  ]
+ ]
 }
