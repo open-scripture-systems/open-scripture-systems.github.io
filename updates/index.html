@@ -98,6 +98,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Updates</h1>
   <p>What has been added or changed on this site, newest first.</p>
   <ul class="log">
+    <li><time datetime="2026-11-18">2026-11-18</time><p>Added Word by word to the Study Workspace: every Greek word of the chapter in a table with its lemma, Strong's number, parsing in Japanese, gloss and how often it occurs in the New Testament, with the chapter's repeated and rare words listed above.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Click a Greek word in the Study Workspace to see a small card with its form, lemma, Strong's number and parsing spelled out, and buttons for Word Study, the lexicon, a note on the verse, and copy. Right-click shows the card without opening Word Study.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Notes in the Study Workspace now belong to a verse: write a note on the verse you clicked, give it one of five highlight colours, see all your notes in a list, save them as a file or a backup and load a backup again. Notes you wrote before stay, as chapter notes.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Added Guided study to the Study Workspace: nine steps through one passage, with a note box for each, saved on your device and exportable as a file. It is a draft that a pastor or teacher has not checked yet, and the panel says so.</p></li>
@@ -396,7 +397,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#14", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-18#15", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }

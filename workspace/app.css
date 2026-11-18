@@ -267,3 +267,11 @@ html.noruby .t-ja { line-height: 1.9; }
 .wmenu dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; margin: 6px 0; }
 .wmenu dt { color: var(--mute); } .wmenu dd { margin: 0; }
 .wmenu .wm-a { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Word by word table */
+.wtab .wtab-scroll { overflow-x: auto; margin-top: 6px; }
+.wtab table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.wtab th, .wtab td { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
+.wtab th { font-size: 12px; color: var(--mute); position: sticky; top: 0; background: var(--panel); }
+.wtab tbody tr { cursor: pointer; } .wtab tbody tr:hover, .wtab tbody tr.same { background: var(--accent-soft); }
+.wtab td[lang="grc"] { font-size: 16px; white-space: nowrap; }
