@@ -42,6 +42,9 @@
       texts: function () { return [id]; },
       render: function () {
         var info = WS.textInfo(id);
+        if (info.books && info.books.indexOf(state.book) < 0) {  // a partial text: say so rather than show nothing
+          el.innerHTML = heading(WS.textName(id)) + '<p class="small">' + esc(t('notInText')) + '</p>'; return;
+        }
         el.innerHTML = heading(WS.textName(id)) + verseNumbers().map(function (v) {
           var html = WS.verseHTML(id, v);
           if (!html) return '';
@@ -81,7 +84,7 @@
    * Differences are marked inside one language only, against the first version of that language in view:
    * English word by word (case and punctuation ignored), Japanese character by character (punctuation ignored;
    * an old character form counts as a different character). Greek is never marked. */
-  var ORDER = ['kougo', 'bungo', 'grc', 'bsb', 'web', 'kjv'];
+  var ORDER = ['kougo', 'denmo', 'bungo', 'grc', 'bsb', 'web', 'kjv'];
   var PUNCT = /[\s、。，．・「」『』（）()\[\]―…！？!?,.;:'"“”‘’\-]/;
   /* which items of b are not part of the longest common subsequence with a */
   function differs(a, b) {
@@ -226,6 +229,7 @@
 
   WS.panel({ id: 'kougo', component: 'bible', params: { text: 'kougo' }, text: 'kougo', group: 'texts', build: bible });
   WS.panel({ id: 'bungo', component: 'bible', params: { text: 'bungo' }, text: 'bungo', group: 'texts' });
+  WS.panel({ id: 'denmo', component: 'bible', params: { text: 'denmo' }, text: 'denmo', group: 'texts' });
   WS.panel({ id: 'bsb', component: 'bible', params: { text: 'bsb' }, text: 'bsb', group: 'texts' });
   WS.panel({ id: 'web', component: 'bible', params: { text: 'web' }, text: 'web', group: 'texts' });
   WS.panel({ id: 'kjv', component: 'bible', params: { text: 'kjv' }, text: 'kjv', group: 'texts' });

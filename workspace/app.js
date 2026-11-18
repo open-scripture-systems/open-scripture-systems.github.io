@@ -52,6 +52,7 @@ window.WS = (function () {
     found: { en: 'matches; showing', ja: '件。表示中：' },
     noVerse: { en: 'not in this text', ja: 'この本文にはありません' },
     seeVerse: { en: 'in', ja: '→' },
+    notInText: { en: 'This text does not include this book. The Denmo Bible draft has Matthew to Acts and Hebrews to Jude only.', ja: 'この本文には、この書は入っていません。電網聖書の草稿にあるのは、マタイから使徒行伝までと、ヘブル書からユダ書までです。' },
     loadFail: { en: 'Could not load', ja: '読み込めません：' },
     /* review state of one alignment link, and why a word is shown as unlinked */
     st_m: { en: 'machine draft, not checked', ja: '機械の下書き（未確認）' },

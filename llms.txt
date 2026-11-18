@@ -8,7 +8,7 @@ Every page opens in Japanese with ?lang=ja added to its address. Greek, Hebrew a
 
 ## Tools
 
-- [Study Workspace (prototype)](https://vadneyk.github.io/open-word-study-site/workspace/): A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag. 日本語（聖書スタディ・ワークスペース（試作））：新約聖書の無料の学習用ワークスペース。口語訳・文語訳（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。
+- [Study Workspace (prototype)](https://vadneyk.github.io/open-word-study-site/workspace/): A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku, the Denmo Bible draft in modern Japanese), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag. 日本語（聖書スタディ・ワークスペース（試作））：新約聖書の無料の学習用ワークスペース。口語訳・文語訳・電網聖書（現代語の草稿）（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。
 - [Interlinear Reader](https://vadneyk.github.io/open-word-study-site/reader/): Read the Bible in English with the Greek or Hebrew word under each English word. No Greek or Hebrew needed. 日本語（行間対訳リーダー）：英語の本文を、単語ごとにギリシア語・ヘブライ語を添えて読めます。原語を読めなくても使えます。
 - [Compare Translations](https://vadneyk.github.io/open-word-study-site/compare/): See how three open English translations say the same New Testament verse, and trace differences back to the Greek. 日本語（翻訳の比較）：公開されている三つの英訳が同じ節をどう訳しているかを比べ、違いをギリシア語までたどります。
 - [Word Study](https://vadneyk.github.io/open-word-study-site/word-study/): Any Greek New Testament word: where it appears, its forms, and how open English translations render it. 日本語（語句研究）：新約聖書のギリシア語の語を一つ選び、出てくる箇所、語形、公開されている英訳での訳され方を調べます。
