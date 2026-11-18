@@ -1,4 +1,6 @@
-# Open Word Study
+# Word of God Workshop (みことば工房)
+
+Formerly Open Word Study. The web address and this repository keep the old name so that every link keeps working.
 
 Free tools for reading the Greek New Testament and the Hebrew Old Testament more closely, built only from open data.
 A side project and a work in progress. It is not affiliated with any Bible software company.

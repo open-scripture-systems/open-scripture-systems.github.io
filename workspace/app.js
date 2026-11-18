@@ -492,6 +492,8 @@ window.WS = (function () {
   var GROUPS = [['texts', { en: 'Bibles', ja: '聖書' }], ['original', { en: 'Original language', ja: '原語' }],
     ['study', { en: 'Study', ja: '研究' }], ['about', { en: 'About', ja: 'このページ' }]];
   function syncChrome() {
+    var bn = document.getElementById('brandName'); if (bn) bn.textContent = state.lang === 'en' ? 'Word of God Workshop' : 'みことば工房';
+    var bs = document.getElementById('brandSub'); if (bs) bs.textContent = state.lang === 'en' ? 'Study Workspace (prototype)' : 'ワークスペース（試作）';
     document.documentElement.lang = state.lang === 'en' ? 'en' : 'ja';
     $('cmdBox').placeholder = t('cmd');
     [['railToggle', 'a_rail'], ['cmdBox', 'a_cmd'], ['prevCh', 'a_prev'], ['nextCh', 'a_next'], ['langSeg', 'a_lang'], ['layoutPick', 'layout'],
@@ -633,13 +635,13 @@ window.WS = (function () {
     $('langSeg').addEventListener('click', function (ev) {
       var b = ev.target.closest('[data-lang]'); if (!b) return;
       state.lang = b.dataset.lang; store.set('ws.lang', state.lang);
-      // the other Open Word Study pages read this key, so the language carries over between them and the workspace
+      // the other site pages read this key, so the language carries over between them and the workspace
       try { if (state.lang !== 'both') localStorage.setItem('ows-lang', state.lang); } catch (e) {}
       syncChrome(); retitle(); emit('lang');
     });
     $('layoutPick').addEventListener('change', function (ev) { applyLayout(ev.target.value); });
     $('alignFlag').addEventListener('change', function (ev) { setAlign(ev.target.checked); });
-    // the same key and class as the Larger text button on the other Open Word Study pages, so the choice carries over
+    // the same key and class as the Larger text button on the other site pages, so the choice carries over
     $('bigText').addEventListener('click', function () {
       var on = document.documentElement.classList.toggle('owsbig');
       try { localStorage.setItem('ows-text', on ? 'large' : 'normal'); } catch (e) { /* private window */ }
