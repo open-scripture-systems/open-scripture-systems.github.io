@@ -59,7 +59,7 @@
   };
 
   /* Panels a step can open. 'ja' is the Japanese text the reader uses (口語訳 unless they chose another). */
-  var OPENABLE = ['ja', 'parallel', 'greek', 'word', 'lexicon', 'wordtable', 'xrefs', 'gsearch', 'usage', 'commentary', 'notes', 'bsb'];
+  var OPENABLE = ['ja', 'parallel', 'greek', 'word', 'lexicon', 'wordtable', 'xrefs', 'gsearch', 'usage', 'grammar', 'commentary', 'notes', 'bsb'];
 
   /* Studies that come with the workspace. Our own wording; drafts until a pastor or teacher checks them. */
   var STUDIES = {

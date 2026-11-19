@@ -337,3 +337,27 @@ html.noruby .t-ja { line-height: 1.9; }
 .st .st-k { display: inline-block; font-size: .68em; margin-right: .5em; padding: 0 .4em; border-radius: 4px; border: 1px solid var(--line); color: var(--mute); vertical-align: middle; }
 .st .st-adv { border-color: var(--accent); color: var(--accent); }
 .st .st-mod { border-color: var(--ok); color: var(--ok); }
+/* grammar terms */
+.gram h3 { font-size: 15px; margin: 12px 0 4px; }
+.gram dl { margin: 0; }
+.gram .gterm { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.gram dd { margin: 2px 0 0; }
+.gram .gex { border: 1px solid var(--line); background: var(--bg); border-radius: 6px; padding: 1px 6px; margin: 2px 2px 0 0; cursor: pointer; font: inherit; }
+.gram .gex:hover { background: var(--accent-soft); }
+.gram .gdraft { background: #fff4e0; color: #6a4300; border: 1px solid #e8c88f; border-radius: 6px; padding: 6px 8px; font-size: 13px; }
+@media (prefers-color-scheme: dark) { .gram .gdraft { background: #3a2a10; color: #f3d9a6; border-color: #6b5228; } }
+.gram [lang="grc"] { font-family: var(--greek); font-size: 1.08em; }
+/* reading plan (shares the guide's picker, teacher tools and field styles) */
+.rplan .gpick { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0 6px; }
+.rplan .gpick select { max-width: 100%; font: inherit; }
+.rplan .gteach { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 6px; }
+.rplan .gteach summary { cursor: pointer; font-size: 13px; }
+.rplan .glink { width: 100%; min-height: 60px; font: 12px ui-monospace, Menlo, monospace; }
+.rplan .grow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.rplan .gfield { display: block; font-size: 13px; margin: 6px 0; }
+.rplan .gfield input, .rplan .gfield textarea { display: block; width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; padding: 4px 6px; }
+.rplan progress { width: 100%; }
+.rplan .rlist { padding-left: 1.6em; }
+.rplan .rlist li { margin: 3px 0; }
+.rplan .rlist li.rdone .rgo { color: var(--mute); text-decoration: line-through; }
+.rplan .rgo { border: 0; background: transparent; color: var(--accent); cursor: pointer; font: inherit; padding: 2px 4px; }
