@@ -58,7 +58,7 @@
       var A = resolve(S.w1), B = S.w2.trim() ? resolve(S.w2) : null, mine = ++token, m = WS.manifest;
       S.bad = !A || !A.length ? S.w1 : B && !B.length ? S.w2 : '';
       if (S.bad || !A) { S.hits = null; draw(); return; }
-      var books = S.scope === 'book' ? [state.book] : m.order.slice();
+      var books = (S.scope === 'book' ? [state.book] : m.order.slice()).filter(function (b) { return WS.covers('grc', b); });  // Greek: New Testament books only
       S.hits = []; S.total = 0; S.busy = true; draw();
       var next = function () {
         if (mine !== token) return;

@@ -42,8 +42,12 @@
       texts: function () { return [id]; },
       render: function () {
         var info = WS.textInfo(id);
-        if (info.books && info.books.indexOf(state.book) < 0) {  // a partial text: say so rather than show nothing
-          el.innerHTML = heading(WS.textName(id)) + '<p class="small">' + esc(t('notInText')) + '</p>'; return;
+        if (!WS.covers(id)) {  // a text without this book: say so rather than show nothing, and offer one that has it
+          var ot = WS.manifest.books[state.book].ot, msg = id === 'denmo' ? 'notInText' : id === 'kougo' && ot ? 'kougoOT' : id === 'grc' ? 'ntOnly' : 'notInBook';
+          var alt = ot ? (id === 'grc' ? 'hebrew' : 'bungo') : '';
+          el.innerHTML = heading(WS.textName(id)) + '<p class="small">' + esc(t(msg)) + '</p>' +
+            (alt && WS.covers(alt === 'hebrew' ? 'hbo' : 'bungo') ? '<p><button class="btn" data-open-alt="' + alt + '">' + esc(t(alt === 'hebrew' ? 'openHebrew' : 'openBungo')) + '</button></p>' : '');
+          return;
         }
         el.innerHTML = heading(WS.textName(id)) + verseNumbers().map(function (v) {
           var html = WS.verseHTML(id, v);
@@ -71,10 +75,15 @@
       texts: function () { return ['grc']; },
       ready: function () {
         parts = null;
-        if (!WS.store.get('ws.parts', false)) return Promise.resolve();
+        if (!WS.store.get('ws.parts', false) || !WS.covers('grc')) return Promise.resolve();
         return WS.getJSON('role/' + state.book + '/' + state.ch + '.json').then(function (d) { parts = d; }, function () { parts = {}; });
       },
       render: function () {
+        if (!WS.covers('grc')) {
+          el.innerHTML = heading('SBLGNT') + '<p class="small">' + esc(t('ntOnly')) + '</p>' +
+            (WS.covers('hbo') ? '<p><button class="btn" data-open-alt="hebrew">' + esc(t('openHebrew')) + '</button></p>' : '');
+          return;
+        }
         var on = WS.store.get('ws.parts', false);
         el.innerHTML = heading('SBLGNT') + '<p class="small"><button class="btn" data-parts="1" aria-pressed="' + on + '">' + esc(PL(on ? PT.off : PT.on)) + '</button>' +
           (on ? ' ' + esc(PL(PT.note)) : '') + '</p>' + verseNumbers().map(function (v) {
@@ -336,3 +345,10 @@
   WS.panel({ id: 'notes', component: 'notes', title: 'notes', build: notes });
   WS.panel({ id: 'sources', component: 'sources', title: 'sources', group: 'about', build: sources });
 })();
+
+/* A button that opens the panel with the text the reader needs (the Hebrew or the Bungo-yaku for an Old Testament book). */
+document.addEventListener('click', function (ev) {
+  var b = ev.target.closest && ev.target.closest('[data-open-alt]');
+  if (!b) return;
+  var p = WS.ensurePanel(b.dataset.openAlt); if (p) p.api.setActive();
+});

@@ -25,12 +25,14 @@
     el.classList.add('st');
     var lines = null, show = store.get('ws.struct.labels', true);
     function moves() { return store.get(key(), {}); }
+    /* a saved move is keyed by the line's first word (verse:word), so a rebuilt outline keeps each move on its own line */
+    function lk(n) { var l = lines[n], f = l && l.w.filter(function (x) { return typeof x !== 'string'; })[0]; return f ? f[0] + ':' + f[1] : 'n' + n; }
     el.addEventListener('click', function (ev) {
       var m = ev.target.closest('[data-mv]');
       if (m) {
-        var n = +m.dataset.n, o = moves();
-        o[n] = Math.max(-6, Math.min(8, (o[n] || 0) + (+m.dataset.mv)));
-        if (!o[n]) delete o[n];
+        var k = lk(+m.dataset.n), o = moves();
+        o[k] = Math.max(-6, Math.min(8, (o[k] || 0) + (+m.dataset.mv)));
+        if (!o[k]) delete o[k];
         store.set(key(), o); draw(); return;
       }
       if (ev.target.closest('[data-reset]')) { store.set(key(), {}); draw(); return; }
@@ -44,8 +46,9 @@
       var gv = WS.verse('grc', x[0]), w = gv && gv.w ? gv.w.filter(function (y) { return y.i === x[1]; })[0] : null;
       return w ? { t: w.t, v: x[0], i: x[1], s: w.s } : { t: '' };
     }
-    function depth(n, l) { return Math.max(0, l.d + (moves()[n] || 0)); }
+    function depth(n, l) { return Math.max(0, l.d + (moves()[lk(n)] || 0)); }
     function draw() {
+      if (!WS.covers('grc')) { el.innerHTML = '<h2>' + esc(L(S.title)) + '</h2><p class="small">' + esc(WS.t('ntOnly')) + '</p>' + (WS.covers('hbo') ? '<p><button class="btn" data-open-alt="hebrew">' + esc(WS.t('openHebrew')) + '</button></p>' : ''); return; }
       var head = '<h2>' + esc(L(S.title) + ' · ' + WS.bookName() + ' ' + state.ch) + '</h2>';
       if (!lines) { el.innerHTML = head + '<p>' + esc(L(S.off)) + '</p>'; return; }
       var last = 0;
@@ -78,6 +81,7 @@
     return {
       texts: function () { return ['grc']; },
       ready: function () {
+        if (!WS.covers('grc')) { lines = null; return Promise.resolve(); }  // New Testament only
         return WS.getJSON('struct/' + state.book + '/' + state.ch + '.json').then(function (d) { lines = d; }, function () { lines = null; });
       },
       render: draw,

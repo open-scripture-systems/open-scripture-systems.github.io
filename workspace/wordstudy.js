@@ -88,7 +88,7 @@
       return names;
     }
     function inScope() {
-      var out = [], order = WS.manifest.order;
+      var out = [], order = WS.manifest.texts.grc.books || WS.manifest.order;  // Word Study files number books in New Testament order
       data.e.o.forEach(function (o, i) { if (scope === 'NT' || order[o[0]] === scope) out.push(i); });
       return out;
     }
@@ -147,7 +147,7 @@
         (kind === 'ja' ? '<span class="tag">' + JA + ' · ' + esc(t('draftTag')) + '</span>' : '') + rows + extra + '</div>';
     }
     function ledgerHTML(ix, names, cm) {
-      var vs = names.slice().reverse(), order = WS.manifest.order;
+      var vs = names.slice().reverse(), order = WS.manifest.texts.grc.books || WS.manifest.order;
       var rows = !sel ? ix : ix.filter(function (i) {
         return vs.some(function (v) { return ((v === JA) === (sel.kind === 'ja')) && labelOf(v, i) === sel.label; });
       });
@@ -171,7 +171,7 @@
 
     el.addEventListener('click', function (ev) {
       var b = ev.target.closest('[data-occ]');
-      if (b) { var o = data.e.o[+b.dataset.occ]; WS.goWord(WS.manifest.order[o[0]], o[1], o[2], o[3], data.s); return; }
+      if (b) { var o = data.e.o[+b.dataset.occ]; WS.goWord((WS.manifest.texts.grc.books || WS.manifest.order)[o[0]], o[1], o[2], o[3], data.s); return; }
       b = ev.target.closest('[data-label]');
       if (b) { sel = isSel(b.dataset.kind, b.dataset.label) ? null : { kind: b.dataset.kind, label: b.dataset.label }; limit = 60; draw(); return; }
       b = ev.target.closest('[data-scope]');

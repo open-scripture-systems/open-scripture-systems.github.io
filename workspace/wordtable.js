@@ -28,6 +28,7 @@
       WS.selectWord(+r.dataset.wv, +r.dataset.wi, r.dataset.ws);
     });
     function draw() {
+      if (!WS.covers('grc')) { el.innerHTML = '<h2>' + esc(L('title')) + '</h2><p class="small">' + esc(WS.t('ntOnly')) + '</p>' + (WS.covers('hbo') ? '<p><button class="btn" data-open-alt="hebrew">' + esc(WS.t('openHebrew')) + '</button></p>' : ''); return; }
       var last = WS.lastVerse(), rows = [], count = {}, lex = WS.lex || {};
       for (var v = 1; v <= last; v++) {
         var gv = WS.verse('grc', v);

@@ -11,7 +11,7 @@
   Object.assign(T, {
     search: { en: 'Search the text', ja: '本文検索' }, s_go: { en: 'Search', ja: '検索' },
     s_word: { en: 'Word or phrase', ja: '語句' }, s_text: { en: 'Bible', ja: '聖書' }, s_scope: { en: 'Where', ja: '範囲' },
-    s_book: { en: 'This book', ja: 'この書' }, s_nt: { en: 'New Testament', ja: '新約全体' },
+    s_book: { en: 'This book', ja: 'この書' }, s_nt: { en: 'All books this text has', ja: 'この本文のすべての書' },
     s_hint: { en: 'Type a word. Japanese can be typed as it is read: めぐみ finds 恵み.', ja: '語を入力してください。読みでも探せます（「めぐみ」で「恵み」）。' },
     s_busy: { en: 'Searching', ja: '検索中' }, s_verses: { en: 'verses', ja: '節' }, s_none: { en: 'No verse has it.', ja: '見つかりませんでした。' },
     s_more: { en: 'Only the first 300 are listed.', ja: '最初の300節だけを表示しています。' }
@@ -77,7 +77,7 @@
     run = function () {
       var q = fold(S.q.trim()), mine = ++token;
       if (!q) { S.hits = null; draw(); return; }
-      var qh = /[぀-ヿ]/.test(q) ? hira(q) : '', m = WS.manifest, books = S.scope === 'book' ? [state.book] : m.order.slice();
+      var qh = /[぀-ヿ]/.test(q) ? hira(q) : '', m = WS.manifest, books = (S.scope === 'book' ? [state.book] : m.order.slice()).filter(function (b) { return WS.covers(S.text, b); });
       S.hits = []; S.total = 0; S.busy = true;
       S.where = S.scope === 'book' ? WS.bookName(state.book, true) : t('s_nt');
       draw();

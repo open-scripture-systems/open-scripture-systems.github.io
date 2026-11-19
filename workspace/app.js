@@ -53,6 +53,10 @@ window.WS = (function () {
     noVerse: { en: 'not in this text', ja: 'この本文にはありません' },
     seeVerse: { en: 'in', ja: '→' },
     notInText: { en: 'This text does not include this book. The Denmo Bible draft has Matthew to Acts and Hebrews to Jude only.', ja: 'この本文には、この書は入っていません。電網聖書の草稿にあるのは、マタイから使徒行伝までと、ヘブル書からユダ書までです。' },
+    notInBook: { en: 'This text does not include this book.', ja: 'この本文には、この書は入っていません。' },
+    kougoOT: { en: 'The Kougo-yaku Old Testament is not on this site yet. You can read the Bungo-yaku (Meiji translation) instead.', ja: '口語訳の旧約は、まだこのサイトに載せていません。文語訳（明治元訳）で読めます。' },
+    ntOnly: { en: 'The Greek is the New Testament only. For the Old Testament, open the Hebrew.', ja: 'ギリシア語本文は新約だけです。旧約は、ヘブライ語のパネルで読めます。' },
+    openBungo: { en: 'Open the Bungo-yaku', ja: '文語訳を開く' }, openHebrew: { en: 'Open the Hebrew', ja: 'ヘブライ語を開く' },
     loadFail: { en: 'Could not load', ja: '読み込めません：' },
     /* review state of one alignment link, and why a word is shown as unlinked */
     st_m: { en: 'machine draft, not checked', ja: '機械の下書き（未確認）' },
@@ -149,9 +153,14 @@ window.WS = (function () {
   function J() { return (manifest && manifest.ja) || 'kougo'; }
   function textPath(id, key) { return 't/' + id + '/' + (key || here()) + '.json'; }
   /* Load the named texts for the chapter in view, and the draft alignment only while the flag is on. */
+  /* Does this text have the book? A text that lists its books has only those (Greek: the NT; Hebrew: the OT). */
+  function covers(id, book) {
+    var x = manifest && manifest.texts[id], b = x && x.books;
+    return !!x && (!b || b.indexOf(book || state.book) >= 0);
+  }
   function load(ids) {
-    var jobs = (ids || []).map(function (id) { return getJSON(textPath(id)); });
-    if (state.align) {
+    var jobs = (ids || []).filter(function (id) { return covers(id); }).map(function (id) { return getJSON(textPath(id)); });
+    if (state.align && covers('grc')) {  /* the draft alignment is New Testament only */
       jobs.push(getJSON('align/' + here() + '.json'));
       jobs.push(getJSON(textPath(J())));
       if (!lexAlign) jobs.push(getJSON('lex.align.json').then(function (d) { lexAlign = d.strongs; }));
@@ -317,7 +326,7 @@ window.WS = (function () {
     var want = here() + '|' + w;
     getJSON('ws/' + e.w + '.json').then(function (d) {
       if (want !== here() + '|' + state.word || !d[s]) return;
-      var p = w.split(':'), b = manifest.order.indexOf(state.book), o = d[s].o, r = d[s].r.BSB;
+      var p = w.split(':'), b = (manifest.texts.grc.books || manifest.order).indexOf(state.book), o = d[s].o, r = d[s].r.BSB;  /* Word Study files count books in New Testament order */
       for (var k = 0; k < o.length; k++) {
         if (o[k][0] === b && o[k][1] === state.ch && o[k][2] === +p[0] && o[k][3] === +p[1]) {
           if (r.x[k] >= 0) { en = { v: +p[0], text: r.t[r.x[k]].replace(/[\[\]{}]/g, '').replace(/^[\s.,;:!?]+|[\s.,;:!?]+$/g, '') }; emit('en'); }
@@ -423,7 +432,7 @@ window.WS = (function () {
   /* Register a library item. def: { id, component, params, title (a T key or {en, ja}), build, group } */
   function panel(def) {
     if (def.build) COMPONENTS[def.component] = makePanel(def.build);
-    if (def.component === 'bible' || def.component === 'greek') def.sets = true;  /* these can follow link set B or C */
+    if (def.component === 'bible' || def.component === 'greek' || def.component === 'hebrew') def.sets = true;  /* these can follow link set B or C */
     ITEMS.push(def); ITEM[def.id] = def;
   }
   function itemName(id) {
@@ -775,7 +784,7 @@ window.WS = (function () {
   var api = {
     ja: J, state: state, store: store, T: T, t: t, on: on, emit: emit, esc: esc, $: $, narrow: narrow,
     getJSON: getJSON, load: load, text: text, verse: verse, label: label, pointer: pointer, lastVerse: lastVerse,
-    use: use, setOf: setOf, setPanelSet: setPanelSet, links: links, plainJa: plainJa, jaFor: jaFor, linkFor: linkFor, stateText: stateText, refs: refs, lexAlign: function () { return lexAlign; },
+    covers: covers, use: use, setOf: setOf, setPanelSet: setPanelSet, links: links, plainJa: plainJa, jaFor: jaFor, linkFor: linkFor, stateText: stateText, refs: refs, lexAlign: function () { return lexAlign; },
     bookName: bookName, textName: textName, textInfo: textInfo, textClass: textClass, verseHTML: verseHTML, notSbl: notSbl,
     go: go, goWord: goWord, selectVerse: selectVerse, selectWord: selectWord, setAlign: setAlign, command: command, parseRef: parseRef,
     panel: panel, ensurePanel: ensurePanel, itemName: itemName, say: say, start: start, gram: gram

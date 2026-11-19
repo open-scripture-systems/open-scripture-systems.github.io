@@ -367,3 +367,13 @@ html.noruby .t-ja { line-height: 1.9; }
 .ws .wfall h3 { font-size: 14px; margin: 4px 0; }
 .ws .wfall ul { margin: 0 0 4px; padding-left: 1.2em; }
 .wmenu [lang="grc"] { font-family: var(--greek); }
+
+/* Hebrew interlinear (right to left) */
+.hb .hb-v { display: flex; gap: 8px; align-items: flex-start; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.hb .hb-v .vn { flex: 0 0 auto; }
+.hb .hb-ws { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px 12px; }
+.hb .hw { display: inline-flex; flex-direction: column; align-items: center; text-align: center; max-width: 9em; }
+.hb .hw .h { font: 1.55em/1.5 "SBL Hebrew", "Ezra SIL", "Noto Serif Hebrew", "Times New Roman", serif; }
+.hb .hw .x { font-size: .78em; color: var(--mute); font-style: italic; }
+.hb .hw .g { font-size: .82em; }
+.hb .hw .m { font-size: .7em; color: var(--mute); }

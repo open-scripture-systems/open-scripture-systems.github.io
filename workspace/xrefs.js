@@ -19,7 +19,12 @@
   var NT = { Matt: 'Mat', Mark: 'Mrk', Luke: 'Luk', John: 'Jhn', Acts: 'Act', Rom: 'Rom', '1Cor': '1Co', '2Cor': '2Co', Gal: 'Gal', Eph: 'Eph',
     Phil: 'Php', Col: 'Col', '1Thess': '1Th', '2Thess': '2Th', '1Tim': '1Ti', '2Tim': '2Ti', Titus: 'Tit', Phlm: 'Phm', Heb: 'Heb', Jas: 'Jas',
     '1Pet': '1Pe', '2Pet': '2Pe', '1John': '1Jn', '2John': '2Jn', '3John': '3Jn', Jude: 'Jud', Rev: 'Rev' };
-  var cache = {};
+  var cache = {}, byOsis = null;
+  /* an Old Testament reference opens in the workspace too, now that it has the Old Testament */
+  function osisCode(o) {
+    if (!byOsis) { byOsis = {}; var b = (WS.manifest || {}).books || {}; Object.keys(b).forEach(function (c) { if (b[c].osis) byOsis[b[c].osis] = c; }); }
+    return byOsis[o];
+  }
   function load() {
     var k = state.book + '.' + state.ch;
     if (!cache[k]) cache[k] = fetch('../companion/data/' + k + '.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
@@ -47,7 +52,7 @@
         var list = v && v.xrefs || [];
         var q = state.lang === 'en' ? '?lang=en' : '?lang=ja';
         el.innerHTML = head + '<p class="small">' + esc(L('lead')) + '</p>' + (list.length ? '<ol class="xlist">' + list.map(function (x) {
-          var m = /^([1-3]?[A-Za-z]+)\.(\d+)\.(\d+)/.exec(x.osis || ''), code = m && NT[m[1]];
+          var m = /^([1-3]?[A-Za-z]+)\.(\d+)\.(\d+)/.exec(x.osis || ''), code = m && (NT[m[1]] || osisCode(m[1]));
           var go = code ? '<button class="btn" data-x="' + code + '.' + m[2] + '.' + m[3] + '">' + esc(L('open')) + '</button>'
             : '<a class="btn" href="' + WS_SITE.home + 'reader/' + q + '#' + esc((x.osis || '').split('-')[0]) + '" target="_blank" rel="noopener">' + esc(L('reader')) + '</a>';
           return '<li><div><b>' + esc(x.ref) + '</b> <span class="small">' + (x.votes || 0) + ' ' + esc(L('votes')) + '</span></div>' +
