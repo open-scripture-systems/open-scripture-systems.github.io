@@ -45,7 +45,7 @@ window.WS = (function () {
     book: { en: 'Book', ja: '書' }, chapters: { en: 'Chapter', ja: '章' },
     guidesSoon: { en: 'Not built yet.', ja: '未実装です。' },
     siteTools: { en: 'Single tools', ja: '単体ツール' }, siteHome: { en: 'Home', ja: 'ホーム' },
-    L_passage: { en: 'Passage study', ja: '聖書箇所の研究' }, L_word: { en: 'Word study', ja: '語の研究' },
+    L_passage: { en: 'Passage study', ja: '聖書箇所の研究' }, L_word: { en: 'Word study', ja: '語句研究' },
     L_nichiei: { en: 'Japanese and English', ja: '日英対照' }, L_guided: { en: 'Guided study', ja: '学びの手引き' }, reset: { en: 'Reset this layout', ja: 'このレイアウトを初期化' },
     notFound: { en: 'Nothing found for', ja: '見つかりません：' },
     notBuilt: { en: 'This build does not hold', ja: 'このビルドに含まれていない書です：' },

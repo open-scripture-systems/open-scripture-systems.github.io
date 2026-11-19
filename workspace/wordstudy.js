@@ -12,7 +12,7 @@
   var NS = 'http://www.w3.org/2000/svg', JA = '口語訳';
 
   Object.assign(T, {
-    word: { en: 'Word Study', ja: '語の研究' },
+    word: { en: 'Word Study', ja: '語句研究' },
     pickWord: { en: 'Click a Greek word to study it.', ja: 'ギリシア語の語をクリックしてください。' },
     inNT: { en: 'in the New Testament', ja: '新約全体' },
     naCount: { en: 'NA28 as tagged by TAGNT', ja: 'TAGNT による NA28 の数' },
@@ -36,7 +36,7 @@
     linkedN: { en: 'links shown', ja: '表示リンク' }, heldN: { en: 'shown unlinked', ja: '未リンク表示' },
     noRend: { en: 'No rendering is shown for this word.', ja: 'この語の訳語は表示しません。' },
     clear: { en: 'Clear', ja: '選択を解除' },
-    fallacyH: { en: 'Three mistakes to avoid with any word study', ja: '語の研究で避けたい三つの誤り' },
+    fallacyH: { en: 'Three mistakes to avoid with any word study', ja: '語句研究で避けたい三つの誤り' },
     fallacy1: { en: 'Meaning from the parts: what a word is built from does not decide what it means in a sentence. Its use does.',
       ja: '成り立ちから意味を決めること：語が何からできているかは、文の中での意味を決めません。決めるのは使われ方です。' },
     fallacy2: { en: 'All meanings at once: the rings and the dictionary list many senses. One verse normally uses one of them; choose by the context.',

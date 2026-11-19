@@ -6,7 +6,7 @@
   var state = WS.state, esc = WS.esc, card = null;
   var M = {
     lemma: { en: 'Lemma', ja: '見出し語' }, parse: { en: 'Parsing', ja: '解析' }, gloss: { en: 'Gloss', ja: '語釈' },
-    study: { en: 'Word Study', ja: '語の研究' }, lex: { en: 'Lexicon', ja: '辞書' }, note: { en: 'Note on this verse', ja: 'この節にメモ' }, use: { en: 'Word use', ja: '使われ方' },
+    study: { en: 'Word Study', ja: '語句研究' }, lex: { en: 'Lexicon', ja: '辞書' }, note: { en: 'Note on this verse', ja: 'この節にメモ' }, use: { en: 'Word use', ja: '使われ方' },
     say: { en: 'Read aloud', ja: '読み' }, sayNote: { en: 'Erasmian, a guide only', ja: 'エラスムス式の目安' },
     copy: { en: 'Copy', ja: 'コピー' }, copied: { en: 'Copied.', ja: 'コピーしました。' }, close: { en: 'Close', ja: '閉じる' }
   };

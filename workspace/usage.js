@@ -5,7 +5,7 @@
   var state = WS.state, esc = WS.esc;
   var U = {
     title: { en: 'Word use', ja: '語の使われ方' },
-    pick: { en: 'Pick a Greek verb (click a word, or use Word Study).', ja: 'ギリシア語の動詞を選んでください（語を押すか、語の研究から）。' },
+    pick: { en: 'Pick a Greek verb (click a word, or use Word Study).', ja: 'ギリシア語の動詞を選んでください（語を押すか、語句研究から）。' },
     notVerb: { en: 'This word is not used as a verb with a subject or object in the data, or it has none listed.', ja: 'この語は、主語や目的語をもつ動詞としてのデータがありません。' },
     subj: { en: 'Most often its subject', ja: '主語になることが多い語' }, obj: { en: 'Most often its object', ja: '目的語になることが多い語' },
     uses: { en: 'uses as a verb with its parts marked', ja: '回（文の成分が付いた動詞としての用例）' },

@@ -33,7 +33,7 @@
   "Hebrew Word Study": "ヘブライ語の語句研究",
   "Word Study": "語句研究",
   "Word Wheel": "ワードホイール（訳語の輪）",
-  "Interlinear Reader": "行間対訳リーダー",
+  "Interlinear Reader": "逐語対訳リーダー",
   "Compare Translations": "翻訳の比較",
   "Passage Workbench": "本文ワークベンチ",
   "Passage Companion": "聖書箇所コンパニオン",
@@ -81,7 +81,7 @@
   "Cross references ranked by reader votes. Used in Passage Companion.": "読者の投票で順位を付けた相互参照。聖書箇所コンパニオンで使っています。",
   "English renderings aligned to the Greek. Used in Word Study, Word Wheel, Passage Workbench and Compare Translations.": "ギリシャ語に対応づけた英語の訳語。語句研究、ワードホイール、本文ワークベンチ、翻訳の比較で使っています。",
   "Notes on hard phrases, written to help translators. Used in Passage Companion.": "翻訳者を助けるために書かれた、難しい言い回しについてのノート。聖書箇所コンパニオンで使っています。",
-  "English text and renderings aligned to the Greek and Hebrew. Used in every tool that shows English Scripture. The Interlinear Reader is built from these tables alone, with their Nestle base Greek and Westminster Leningrad Codex Hebrew.": "ギリシャ語とヘブライ語に対応づけた英語の本文と訳語。英語の聖書本文を表示するすべてのツールで使っています。行間対訳リーダーは、この表だけで作られています。ギリシャ語は表の Nestle 底本、ヘブライ語は Westminster Leningrad Codex です。",
+  "English text and renderings aligned to the Greek and Hebrew. Used in every tool that shows English Scripture. The Interlinear Reader is built from these tables alone, with their Nestle base Greek and Westminster Leningrad Codex Hebrew.": "ギリシャ語とヘブライ語に対応づけた英語の本文と訳語。英語の聖書本文を表示するすべてのツールで使っています。逐語対訳リーダーは、この表だけで作られています。ギリシャ語は表の Nestle 底本、ヘブライ語は Westminster Leningrad Codex です。",
   "The Japanese text under review. Used in Freedom Bible Review.": "見直しの対象になっている日本語本文。Freedom Bible Review で使っています。",
   "The Greek text the Freedom Bible follows, with Strong's numbers and parsing. Used in Freedom Bible Review.": "フリーダム・バイブルが底本にしているギリシャ語本文（ストロング番号と解析つき）。Freedom Bible Review で使っています。",
   "An English comparison text. Used in Freedom Bible Review.": "比較用の英語本文。Freedom Bible Review で使っています。",
@@ -293,7 +293,7 @@
   "New updates": "更新情報があります",
   "Your browser also remembers, on your device only, whether you closed the updates notice.": "更新情報のお知らせを閉じたかどうかも、お使いの端末のブラウザだけに保存されます。",
   "In the Study Workspace, your notes, your answers in a guided study, studies and reading plans you wrote or opened from a link or file, what you ticked as read, and the name you typed for a hand-in file are kept by your browser on your device only. A study or plan link carries it in the part after #, which is not sent to this site. A hand-in file is saved on your device and goes only where you send it.": "スタディ・ワークスペースのノート、学びの手引きの答え、自分で作った、またはリンク・ファイルから開いた学びと通読計画、読了の印、提出用ファイルに入れた名前は、お使いの端末のブラウザだけに保存されます。学びや計画のリンクは、内容を # より後ろの部分に入れて運ぶので、このサイトには送られません。提出用ファイルは端末に保存され、自分で送った相手にだけ届きます。",
-  "All-in-one study": "総合スタディ（全部まとめて）",
+  "All-in-one study": "スタディ・ワークスペース（全部まとめて）",
   "Open the Study Workspace": "ワークスペースを開く",
   "Single tools": "単体ツール（1つずつ）",
   "Simple pages for one thing at a time: one word, one chapter, one comparison.": "1つのことだけを見たいときの、シンプルなページです。1つの語、1つの章、1つの比較。",
@@ -321,7 +321,7 @@
   "Reading aid and a caution in the Study Workspace: the word card and Word Study show each Greek word in katakana and Latin letters (the Erasmian way many Japanese seminaries teach, marked as a guide only), and Word Study lists three mistakes to avoid: meaning from a word's parts, all meanings at once, and later meanings read back. The word card's Greek also uses the Greek font now.": "スタディ・ワークスペースに読みの助けと注意を加えました。単語カードと語の研究に、ギリシア語の語をカタカナとローマ字で表示します（日本の神学校でよく教えられるエラスムス式で、目安として表示）。語の研究には、避けたい三つの誤り（成り立ちから意味を決めること、全部の意味を一度に読み込むこと、後の意味を読み込むこと）を載せました。単語カードのギリシア語も、ギリシア語の書体で表示するようにしました。",
   "The Old Testament is in the Study Workspace: all 39 books in the Hebrew (STEPBible TAHOT, CC BY 4.0, right to left with transliteration and glosses), the Bungo-yaku (Meiji translation, 1887), BSB, WEB and KJV. Pick a book from the menu or type a reference such as Psalm 23. The Kougo-yaku Old Testament is not on the site yet. Word Study and the other Greek tools stay New Testament only for now.": "スタディ・ワークスペースで旧約が読めるようになりました。39書すべてを、ヘブライ語（STEPBible TAHOT、CC BY 4.0、右から左へ、読みと語釈付き）、文語訳（明治元訳 1887）、BSB、WEB、KJV で表示します。書の一覧から選ぶか、「詩篇 23」のように入力してください。口語訳の旧約は、まだこのサイトに載せていません。語の研究などギリシア語の道具は、今は新約だけです。",
   "Hebrew Word Study in the Study Workspace: click a word in the Hebrew panel to see its lemma, transliteration, gloss, the STEPBible brief lexicon entry (from the abridged BDB), how often it is used, the books that use it most, and every place it occurs in the Old Testament, with the same word marked in the passage.": "スタディ・ワークスペースに「ヘブライ語の語の研究」を加えました。ヘブライ語のパネルで語を押すと、見出し語、読み、語釈、STEPBible の簡易辞書（簡約 BDB にもとづく）、使われる回数、多く使われている書、旧約で出てくる箇所すべてが出ます。本文の中の同じ語にも印が付きます。",
-  "Hebrew words, lemmas, glosses, morphology. Used in Hebrew Word Study, Word Wheel, Grammar Lens, and the Hebrew panel and Hebrew Word Study of the Study Workspace (with STEPBible's brief Hebrew lexicon, TBESH, CC BY 4.0). Its parsing codes are read with the OpenScriptures Hebrew morphology code table and STEPBible's own additions to it (TEHMC, CC BY 4.0).": "ヘブライ語の語、見出し語、語釈、形態情報。ヘブライ語の語句研究、ワードホイール、文法レンズ、スタディ・ワークスペースのヘブライ語パネルと語の研究（STEPBible の簡易ヘブライ語辞書 TBESH、CC BY 4.0 とともに）で使っています。解析コードは、OpenScriptures のヘブライ語形態コード表と、STEPBible による追加分（TEHMC、CC BY 4.0）で読んでいます。",
+  "Hebrew words, lemmas, glosses, morphology. Used in Hebrew Word Study, Word Wheel, Grammar Lens, and the Hebrew panel and Hebrew Word Study of the Study Workspace (with STEPBible's brief Hebrew lexicon, TBESH, CC BY 4.0). Its parsing codes are read with the OpenScriptures Hebrew morphology code table and STEPBible's own additions to it (TEHMC, CC BY 4.0).": "ヘブライ語の語、見出し語、語釈、形態情報。ヘブライ語の語句研究、ワードホイール、文法レンズ、スタディ・ワークスペースのヘブライ語パネルと語句研究（STEPBible の簡易ヘブライ語辞書 TBESH、CC BY 4.0 とともに）で使っています。解析コードは、OpenScriptures のヘブライ語形態コード表と、STEPBible による追加分（TEHMC、CC BY 4.0）で読んでいます。",
   "Hebrew search in the Study Workspace: find an Old Testament word by its Hebrew (vowel points not needed), its transliteration, an English meaning or its Strong's number, see how often it is used, and open it in Hebrew Word Study.": "スタディ・ワークスペースに「ヘブライ語検索」を加えました。旧約の語を、ヘブライ語（母音記号は不要）、読み（ローマ字）、英語の意味、ストロング番号で探せます。使われる回数が出て、押すとヘブライ語の語の研究で開きます。",
   "The Kougo-yaku Old Testament (1955) is now in the Study Workspace too, with the same note as its New Testament: public domain in Japan, possibly still protected in the United States, and removed if the rights holder asks.": "スタディ・ワークスペースに口語訳の旧約（1955年）も入れました。新約と同じ注意書きを付けています。日本では保護期間が終わっていますが、米国ではまだ保護されている可能性があり、権利者から求めがあれば取り下げます。",
   "People and Places": "人名・地名事典",
@@ -331,6 +331,7 @@
   "Plain names: the tool called Factbook is now People and Places in English (人名・地名事典 in Japanese, as before). Its address stays the same.": "名前をわかりやすくしました。英語で Factbook と呼んでいた道具は、People and Places になりました（日本語は今までどおり人名・地名事典）。アドレスは変わりません。",
   "In the Study Workspace's Greek interlinear, each word now shows its reading in katakana with the Latin letters in brackets, for example ロゴス (logos), on Japanese screens (a seminary professor asked for this). It follows the Erasmian reading many Japanese seminaries teach beginners and is a reading aid, not the authority on pronunciation; a button hides it.": "スタディ・ワークスペースのギリシア語逐語で、各語の読みをカタカナで表示し、かっこ内にローマ字を添えるようにしました（例：ロゴス (logos)）。日本語の画面だけです（神学校の先生からのご提案です）。日本の神学校で初めに教えることの多いエラスムス式の読みによる、読み上げの助けで、正しい発音を決めるものではありません。ボタンで隠せます。",
   "Word of God Workshop (みことば工房), by Open Scripture Systems": "みことば工房（Word of God Workshop）・Open Scripture Systems",
+  "Clearer Japanese names, to match the demo videos: 逐語対訳リーダー (was 行間対訳リーダー), 語句研究 (was 語の研究), and the home page box スタディ・ワークスペース (was 総合スタディ). Addresses stay the same.": "日本語の名前をわかりやすくしました（紹介動画と同じ名前です）：逐語対訳リーダー（旧：行間対訳リーダー）、語句研究（旧：語の研究）、ホームの「スタディ・ワークスペース」（旧：総合スタディ）。アドレスは変わりません。",
   "Study Workspace": "スタディ・ワークスペース",
   "The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku with furigana, and the Denmo Bible, a modern Japanese draft of 13 books), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.": "本文を並べて読める作業画面です。タイルはドラッグで動かせます。口語訳と文語訳（ふりがな付き）、現代語の電網聖書（13書の草稿）、単語ごとに文法の付いたギリシア語、英訳、辞書、語句研究。新約聖書。試作です。日本語の語とギリシア語の語の対応は機械による下書きです。人が確認したのは一部の抜き取りだけで、画面にも下書きと表示しています。"
  },
@@ -369,7 +370,7 @@
   ],
   [
    "^(.+), open in the Interlinear Reader$",
-   "{$1}（行間対訳リーダーで開く）"
+   "{$1}（逐語対訳リーダーで開く）"
   ],
   [
    "^(.+) (\\d+):(\\d+) to (\\d+)$",

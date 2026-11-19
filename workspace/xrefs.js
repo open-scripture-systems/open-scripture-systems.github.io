@@ -11,7 +11,7 @@
     votes: { en: 'votes', ja: '票' }, none: { en: 'No cross references for this verse.', ja: 'この節の関連箇所はありません。' },
     off: { en: 'Cross references are on the website only.', ja: '関連箇所は、ウェブサイトでのみ表示できます。' },
     pick: { en: 'Click a verse to see its cross references.', ja: '節を押すと、その節の関連箇所が出ます。' },
-    open: { en: 'Open', ja: '開く' }, reader: { en: 'Open in the Interlinear Reader', ja: '行間対訳リーダーで開く' },
+    open: { en: 'Open', ja: '開く' }, reader: { en: 'Open in the Interlinear Reader', ja: '逐語対訳リーダーで開く' },
     src: { en: 'Cross references: OpenBible.info (CC BY 4.0). Text: Berean Standard Bible (public domain), in English.',
       ja: '関連箇所：OpenBible.info（CC BY 4.0）。本文：Berean Standard Bible（パブリックドメイン、英語）。' }
   };

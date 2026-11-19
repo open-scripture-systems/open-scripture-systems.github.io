@@ -4,7 +4,7 @@
 (function () {
   var state = WS.state, esc = WS.esc;
   var W = {
-    title: { en: 'Hebrew Word Study', ja: 'ヘブライ語の語の研究' },
+    title: { en: 'Hebrew Word Study', ja: 'ヘブライ語の語句研究' },
     pick: { en: 'Click a word in the Hebrew panel.', ja: 'ヘブライ語のパネルで語を押してください。' },
     uses: { en: 'uses in the Old Testament', ja: '回（旧約全体）' }, books: { en: 'Where it is used most', ja: '多く使われている書' },
     lex: { en: 'Brief lexicon', ja: '辞書（簡易）' }, all: { en: 'Every place it occurs', ja: '出てくる箇所すべて' },
@@ -53,5 +53,5 @@
     window.addEventListener('ows-hword', on);
     return { ready: load, render: draw, dispose: function () { window.removeEventListener('ows-hword', on); } };
   }
-  WS.panel({ id: 'hword', component: 'hword', title: { en: 'Hebrew Word Study', ja: 'ヘブライ語の語の研究' }, group: 'original', build: panel });
+  WS.panel({ id: 'hword', component: 'hword', title: { en: 'Hebrew Word Study', ja: 'ヘブライ語の語句研究' }, group: 'original', build: panel });
 })();
