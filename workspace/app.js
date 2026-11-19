@@ -677,6 +677,7 @@ window.WS = (function () {
       store.keys().forEach(function (k) { if (k.indexOf('ws.layout.') === 0) store.drop(k); });
       store.set('ws.v', LAYOUT_VERSION);
     }
+    currentLayout = store.get('ws.layoutName', currentLayout);   /* a shared study link may have chosen one */
     var at = store.get('ws.at', null);
     if (at && manifest.books[at[0]] && at[1] <= manifest.books[at[0]].chapters) { state.book = at[0]; state.ch = at[1]; state.v = at[2] || 1; }
     ['B', 'C'].forEach(function (k) {

@@ -309,3 +309,16 @@ html.noruby .t-ja { line-height: 1.9; }
 .tabset:hover { color: var(--accent); border-color: var(--accent); }
 .pane[data-set="B"] { box-shadow: inset 3px 0 0 var(--accent); }
 .pane[data-set="C"] { box-shadow: inset 3px 0 0 var(--ok); }
+/* guided study: study picker, teacher tools, editor, hand-in view */
+.guide .gpick { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0 6px; }
+.guide .gpick select { max-width: 100%; font: inherit; }
+.guide .gteach { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 6px; }
+.guide .gteach summary { cursor: pointer; font-size: 13px; }
+.guide .glink { min-height: 60px; font: 12px ui-monospace, Menlo, monospace; }
+.guide .gfield { display: block; font-size: 13px; margin: 6px 0; }
+.guide .gfield input, .guide .gfield select { display: block; width: 100%; box-sizing: border-box; font: inherit; font-size: 15px; padding: 4px 6px; }
+.guide .gfield textarea { min-height: 54px; }
+.guide .gstep { border: 1px solid var(--line); border-radius: 8px; margin: 8px 0; padding: 6px 10px; }
+.guide .gstep legend { font-size: 13px; font-weight: 700; }
+.guide .ghand h4 { margin: 10px 0 2px; font-size: 15px; }
+.guide .gans { white-space: normal; border-left: 3px solid var(--accent); padding-left: 8px; margin: 4px 0; }
