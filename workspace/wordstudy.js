@@ -35,7 +35,14 @@
     draftTag: { en: 'DRAFT, unverified', ja: '下書き・未検証' },
     linkedN: { en: 'links shown', ja: '表示リンク' }, heldN: { en: 'shown unlinked', ja: '未リンク表示' },
     noRend: { en: 'No rendering is shown for this word.', ja: 'この語の訳語は表示しません。' },
-    clear: { en: 'Clear', ja: '選択を解除' }
+    clear: { en: 'Clear', ja: '選択を解除' },
+    fallacyH: { en: 'Three mistakes to avoid with any word study', ja: '語の研究で避けたい三つの誤り' },
+    fallacy1: { en: 'Meaning from the parts: what a word is built from does not decide what it means in a sentence. Its use does.',
+      ja: '成り立ちから意味を決めること：語が何からできているかは、文の中での意味を決めません。決めるのは使われ方です。' },
+    fallacy2: { en: 'All meanings at once: the rings and the dictionary list many senses. One verse normally uses one of them; choose by the context.',
+      ja: '全部の意味を一度に読み込むこと：輪や辞書には多くの意味が並びます。一つの節で使われるのは、ふつうその一つです。文脈で選びます。' },
+    fallacy3: { en: 'Later meanings read back: an English or Japanese word that came from this Greek word, or what it meant centuries later, is not what it meant to the first readers.',
+      ja: '後の意味を読み込むこと：このギリシア語から生まれた英語や日本語の語、何百年も後の意味は、最初の読者にとっての意味ではありません。' }
   });
 
   function formText(code) {
@@ -191,7 +198,7 @@
         var p = state.word.split(':'), gv = WS.verse('grc', +p[0]);
         cur = gv && gv.w.filter(function (w) { return w.i === +p[1] && w.s === s; })[0];
       }
-      var html = '<h2 lang="grc">' + esc(e.l) + '</h2><div class="meta">' + esc(s) + ' · ' + esc(e.g) + ' · ' + e.n + ' ' + esc(t('inNT')) +
+      var html = '<h2 lang="grc">' + esc(e.l) + '</h2>' + (WS.reading ? '<div class="small wsay">' + WS.reading(e.l) + '</div>' : '') + '<div class="meta">' + esc(s) + ' · ' + esc(e.g) + ' · ' + e.n + ' ' + esc(t('inNT')) +
         (e.na !== e.n ? ' (' + esc(t('naCount')) + ': ' + e.na + ')' : '') + '</div>';
       if (cur) {
         var l = state.align && !cur.x ? WS.linkFor(+state.word.split(':')[0], cur.i) : null;
@@ -205,6 +212,7 @@
         '<svg class="rings" viewBox="0 0 440 440" role="group" aria-label="' + esc(t('rings')) + '"></svg>' +
         legendHTML('en', cm.en, ix, names) + legendHTML('ja', cm.ja, ix, names) +
         (sel ? '<button class="btn" data-clear="1">' + esc(t('clear')) + '</button>' : '') + '</section>';
+      html += '<aside class="wfall" role="note"><h3>' + esc(t('fallacyH')) + '</h3><ul><li>' + esc(t('fallacy1')) + '</li><li>' + esc(t('fallacy2')) + '</li><li>' + esc(t('fallacy3')) + '</li></ul></aside>';
       html += '<section>' + ledgerHTML(ix, names, cm) + '</section>';
       if (data.e.same && data.e.same[1].length) {
         html += '<section><h3>' + esc(t('same')) + ' “' + esc(data.e.same[0]) + '”</h3><div class="chips">' + data.e.same[1].map(function (x) {

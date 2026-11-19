@@ -361,3 +361,9 @@ html.noruby .t-ja { line-height: 1.9; }
 .rplan .rlist li { margin: 3px 0; }
 .rplan .rlist li.rdone .rgo { color: var(--mute); text-decoration: line-through; }
 .rplan .rgo { border: 0; background: transparent; color: var(--accent); cursor: pointer; font: inherit; padding: 2px 4px; }
+/* reading aid and the three word-study mistakes */
+.ws .wsay { margin: 2px 0 4px; }
+.ws .wfall { border: 1px solid var(--line); border-left: 4px solid #c9962b; border-radius: 6px; padding: 4px 10px; margin: 10px 0; font-size: 13px; }
+.ws .wfall h3 { font-size: 14px; margin: 4px 0; }
+.ws .wfall ul { margin: 0 0 4px; padding-left: 1.2em; }
+.wmenu [lang="grc"] { font-family: var(--greek); }

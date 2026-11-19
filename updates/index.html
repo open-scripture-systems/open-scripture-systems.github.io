@@ -98,6 +98,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Updates</h1>
   <p>What has been added or changed on this site, newest first.</p>
   <ul class="log">
+    <li><time datetime="2026-11-18">2026-11-18</time><p>Reading aid and a caution in the Study Workspace: the word card and Word Study show each Greek word in katakana and Latin letters (the Erasmian way many Japanese seminaries teach, marked as a guide only), and Word Study lists three mistakes to avoid: meaning from a word's parts, all meanings at once, and later meanings read back. The word card's Greek also uses the Greek font now.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>New panel in the Study Workspace: Structure. The Greek of the chapter is laid out in clause lines, in text order, with a clause that does a job inside another set one step in, from MACULA Greek's syntax trees (CC BY 4.0). Move any line in or out to make your own outline, kept on your device, and save it as a file.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>New panel in the Study Workspace: Reading plan. A teacher lists chapters, with dates if wanted, and shares the plan as a file or a link; each student ticks off what they have read on their own device, and a click opens the chapter. A range like John 2-3 becomes two readings. Nothing is sent to this site, and a teacher does not see who read what.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>New panel in the Study Workspace: Grammar terms. Every Greek grammar label the workspace shows (for example imperfect, middle voice, participle) with a one-line plain explanation in Japanese and English, and the places in the chapter in view that carry it; click one to select that word. The explanations are a draft until a teacher checks them.</p></li>
@@ -409,7 +410,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#27", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-18#28", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }

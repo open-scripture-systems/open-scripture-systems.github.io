@@ -7,6 +7,7 @@
   var M = {
     lemma: { en: 'Lemma', ja: '見出し語' }, parse: { en: 'Parsing', ja: '解析' }, gloss: { en: 'Gloss', ja: '語釈' },
     study: { en: 'Word Study', ja: '語の研究' }, lex: { en: 'Lexicon', ja: '辞書' }, note: { en: 'Note on this verse', ja: 'この節にメモ' }, use: { en: 'Word use', ja: '使われ方' },
+    say: { en: 'Read aloud', ja: '読み' }, sayNote: { en: 'Erasmian, a guide only', ja: 'エラスムス式の目安' },
     copy: { en: 'Copy', ja: 'コピー' }, copied: { en: 'Copied.', ja: 'コピーしました。' }, close: { en: 'Close', ja: '閉じる' }
   };
   function L(k) { return state.lang === 'en' ? M[k].en : M[k].ja; }
@@ -18,6 +19,13 @@
     var f = (WS.morph || {})[code] || {};
     return WS.gram(['pos', 'tense', 'voice', 'mood', 'person', 'case', 'number', 'gender'].map(function (k) { return f[k]; }).filter(Boolean));
   }
+  /* katakana and Latin letters for reading aloud, with a note that it is one way of many */
+  function reading(t) {
+    if (!WS.kana) return '';
+    var k = WS.kana(t), note = ' <span class="small">(' + esc(L('sayNote')) + ')</span>';
+    return state.lang === 'en' ? '<span lang="en">' + esc(k.en) + '</span>' + note : esc(k.ja) + ' · <span lang="en">' + esc(k.en) + '</span>' + note;
+  }
+  WS.reading = reading;
   function close() { if (card) { card.remove(); card = null; } }
   function open(el) { var s = (el.closest('.pane[data-set]') || { dataset: {} }).dataset.set || 'A'; WS.use(s, function () { openIn(el, s); }); }
   function openIn(el, set) {
@@ -29,7 +37,8 @@
     card.className = 'wmenu'; card.setAttribute('role', 'dialog'); card.setAttribute('aria-label', w.t);
     card.innerHTML = '<div class="wm-h"><b lang="grc">' + esc(w.t) + '</b> <span class="small">' + esc(ref) + '</span>' +
       '<button class="wm-x" data-m="x" aria-label="' + esc(L('close')) + '">×</button></div>' +
-      '<dl><dt>' + esc(L('lemma')) + '</dt><dd><span lang="grc">' + esc(lx.l || '') + '</span> · ' + esc(w.s) + '</dd>' +
+      '<dl><dt>' + esc(L('say')) + '</dt><dd>' + reading(w.t) + '</dd>' +
+      '<dt>' + esc(L('lemma')) + '</dt><dd><span lang="grc">' + esc(lx.l || '') + '</span> · ' + esc(w.s) + '</dd>' +
       '<dt>' + esc(L('parse')) + '</dt><dd>' + esc(parse(w.m) || w.m) + ' <span class="small">(' + esc(w.m) + ')</span></dd>' +
       '<dt>' + esc(L('gloss')) + '</dt><dd lang="en">' + esc(w.g || lx.g || '') + '</dd></dl>' +
       '<div class="wm-a"><button class="btn" data-m="study">' + esc(L('study')) + '</button><button class="btn" data-m="lex">' + esc(L('lex')) + '</button>' +
