@@ -322,3 +322,18 @@ html.noruby .t-ja { line-height: 1.9; }
 .guide .gstep legend { font-size: 13px; font-weight: 700; }
 .guide .ghand h4 { margin: 10px 0 2px; font-size: 15px; }
 .guide .gans { white-space: normal; border-left: 3px solid var(--accent); padding-left: 8px; margin: 4px 0; }
+
+/* structure (clause outline) */
+.st .st-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 6px 0 10px; }
+.st .st-lines { list-style: none; margin: 0; padding: 0; }
+.st .st-lines li { display: flex; align-items: baseline; gap: 6px; padding: 3px 0; border-bottom: 1px solid var(--line); }
+.st .st-lines li.cur { background: var(--accent-soft); }
+.st .st-v { flex: 0 0 2.2em; font-size: .8em; color: var(--mute); background: none; border: 0; padding: 0; text-align: right; cursor: pointer; }
+.st .st-mv { flex: 0 0 auto; display: inline-flex; gap: 2px; }
+.st .st-mv button { font-size: .8em; min-width: 1.6em; padding: 0 .2em; border: 1px solid var(--line); border-radius: 4px; background: none; color: var(--mute); cursor: pointer; }
+.st .st-t { flex: 1 1 auto; min-width: 0; font-size: 1.12em; line-height: 1.7; }
+.st .st-t .gw { font: inherit; background: none; border: 0; padding: 0; color: inherit; cursor: pointer; }
+.st .st-t .gw:hover, .st .st-t .gw:focus-visible { color: var(--accent); text-decoration: underline; }
+.st .st-k { display: inline-block; font-size: .68em; margin-right: .5em; padding: 0 .4em; border-radius: 4px; border: 1px solid var(--line); color: var(--mute); vertical-align: middle; }
+.st .st-adv { border-color: var(--accent); color: var(--accent); }
+.st .st-mod { border-color: var(--ok); color: var(--ok); }
