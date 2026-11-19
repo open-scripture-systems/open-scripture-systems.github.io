@@ -397,3 +397,8 @@ html.noruby .t-ja { line-height: 1.9; }
 .hsr .hsr-list { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 4px; }
 .hsr .hsr-list button { width: 100%; text-align: left; background: none; border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; color: inherit; cursor: pointer; }
 .hsr .hsr-list b { font: 1.3em "SBL Hebrew", "Ezra SIL", "Noto Serif Hebrew", serif; }
+
+/* katakana reading under each Greek word (Japanese screens) */
+.iw .k { display: block; font-size: .78em; color: var(--accent); line-height: 1.3; }
+.iw .k [lang="en"] { color: var(--mute); }
+.kn-note { margin-top: 0; }

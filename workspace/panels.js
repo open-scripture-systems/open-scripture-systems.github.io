@@ -64,10 +64,17 @@
   var PART = { s: { en: 'subj', ja: '主語' }, o: { en: 'obj', ja: '目的語' }, io: { en: 'ind obj', ja: '間接目的語' }, p: { en: 'pred', ja: '補語' }, v: { en: 'verb', ja: '動詞' } };
   var PT = { on: { en: 'Show sentence parts', ja: '文の成分を表示' }, off: { en: 'Hide sentence parts', ja: '文の成分を隠す' },
     note: { en: 'Sentence parts: the head word of each part, from MACULA Greek (CC BY 4.0).', ja: '文の成分：各成分の中心となる語に、MACULA Greek（CC BY 4.0）の構文データから付けています。' } };
+  /* The reading of each Greek word in katakana, with the Latin letters in parentheses: Japanese screens only, on by
+   * default (a seminary professor asked for katakana in the interlinear, 2026-11-18). WS.kana (kana.js) follows the
+   * Erasmian reading many Japanese seminaries teach beginners; it is a reading aid, not the authority on pronunciation. */
+  var KN = { on: { en: 'Show readings', ja: '読み（カタカナ）を表示' }, off: { en: 'Hide readings', ja: '読み（カタカナ）を隠す' },
+    note: { en: '', ja: '読み：エラスムス式（日本の神学校で初めに教えることの多い読み方）による読み上げの助けです。正しい発音を決めるものではありません。η と ω は長音（ー）、υ はユ、ου はウーで示しています。先生によって読み方は違います。' } };
+  function kanaOn() { return state.lang !== 'en' && !!WS.kana && WS.store.get('ws.kana', true); }
   function PL(x) { return state.lang === 'en' ? x.en : x.ja; }
   function greek(el) {
     var parts = null;
     el.addEventListener('click', function (ev) {
+      if (ev.target.closest('[data-kana]')) { WS.store.set('ws.kana', !WS.store.get('ws.kana', true)); WS.emit('lang', null); return; }
       if (!ev.target.closest('[data-parts]')) return;
       WS.store.set('ws.parts', !WS.store.get('ws.parts', false)); WS.emit('lang', null);
     });
@@ -85,8 +92,10 @@
           return;
         }
         var on = WS.store.get('ws.parts', false);
+        var kn = kanaOn();
         el.innerHTML = heading('SBLGNT') + '<p class="small"><button class="btn" data-parts="1" aria-pressed="' + on + '">' + esc(PL(on ? PT.off : PT.on)) + '</button>' +
-          (on ? ' ' + esc(PL(PT.note)) : '') + '</p>' + verseNumbers().map(function (v) {
+          (state.lang !== 'en' && WS.kana ? ' <button class="btn" data-kana="1" aria-pressed="' + kn + '">' + esc(PL(kn ? KN.off : KN.on)) + '</button>' : '') +
+          (on ? ' ' + esc(PL(PT.note)) : '') + '</p>' + (kn ? '<details class="small kn-note"><summary>読みについて（読み上げの助け）</summary>' + esc(KN.note.ja) + '</details>' : '') + verseNumbers().map(function (v) {
           var gv = WS.verse('grc', v);
           if (!gv) {
             var p = WS.pointer('grc', v);
@@ -96,7 +105,8 @@
             if (!w.i) return '<span class="iw"><span class="s" lang="grc">' + esc(w.t) + '</span></span>';
             var l = state.align && !w.x ? WS.linkFor(v, w.i) : null;
             return '<button class="iw" data-v="' + v + '" data-i="' + w.i + '" data-s="' + esc(w.s) + '" data-g="' + v + ':' + w.i + '">' +
-              '<span class="s" lang="grc">' + esc(w.t) + '</span><span class="g">' + esc(w.g) + '</span>' +
+              '<span class="s" lang="grc">' + esc(w.t) + '</span>' + (kn ? (function (r) { return '<span class="k" lang="ja">' + esc(r.ja) + ' <span lang="en">(' + esc(r.en) + ')</span></span>'; })(WS.kana(w.t)) : '') +
+              '<span class="g">' + esc(w.g) + '</span>' +
               '<span class="m">' + esc(w.s) + ' ' + esc(w.m) + '</span>' +
               (parts && parts[v] && parts[v][w.i] ? '<span class="pt pt-' + parts[v][w.i] + '">' + esc(PL(PART[parts[v][w.i]])) + '</span>' : '') +
               (!state.align ? '' : !l ? '<span class="j">&nbsp;</span>' :

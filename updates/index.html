@@ -98,6 +98,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Updates</h1>
   <p>What has been added or changed on this site, newest first.</p>
   <ul class="log">
+    <li><time datetime="2026-11-19">2026-11-19</time><p>In the Study Workspace's Greek interlinear, each word now shows its reading in katakana with the Latin letters in brackets, for example ロゴス (logos), on Japanese screens (a seminary professor asked for this). It follows the Erasmian reading many Japanese seminaries teach beginners and is a reading aid, not the authority on pronunciation; a button hides it.</p></li>
     <li><time datetime="2026-11-19">2026-11-19</time><p>Plain names: the tool called Factbook is now People and Places in English (人名・地名事典 in Japanese, as before). Its address stays the same.</p></li>
     <li><time datetime="2026-11-19">2026-11-19</time><p>The Kougo-yaku Old Testament (1955) is now in the Study Workspace too, with the same note as its New Testament: public domain in Japan, possibly still protected in the United States, and removed if the rights holder asks.</p></li>
     <li><time datetime="2026-11-18">2026-11-18</time><p>Hebrew search in the Study Workspace: find an Old Testament word by its Hebrew (vowel points not needed), its transliteration, an English meaning or its Strong's number, see how often it is used, and open it in Hebrew Word Study.</p></li>
@@ -415,7 +416,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-19#33", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-19#34", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
