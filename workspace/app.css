@@ -390,3 +390,10 @@ html.noruby .t-ja { line-height: 1.9; }
 .hwd .hwd-lx { font-size: .92em; line-height: 1.6; }
 .hwd .hwd-occ { display: flex; flex-wrap: wrap; gap: 4px; }
 .hwd .hwd-occ button { font-size: .82em; border: 1px solid var(--line); border-radius: 4px; background: none; color: inherit; padding: 1px 6px; cursor: pointer; }
+
+/* Hebrew search */
+.hsr form { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; }
+.hsr form label { display: grid; gap: 4px; flex: 1 1 16em; min-width: 0; }
+.hsr .hsr-list { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 4px; }
+.hsr .hsr-list button { width: 100%; text-align: left; background: none; border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; color: inherit; cursor: pointer; }
+.hsr .hsr-list b { font: 1.3em "SBL Hebrew", "Ezra SIL", "Noto Serif Hebrew", serif; }
