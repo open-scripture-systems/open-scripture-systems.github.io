@@ -83,7 +83,7 @@
           q: { en: 'Who speaks to whom? Where and when?', ja: '誰が誰に語っていますか。いつ、どこでですか。' },
           tool: 'factbook' },
         { h: { en: 'Words in the original language', ja: '原語のことば' },
-          why: { en: 'Click a Greek word. A word means what its use shows, not what its roots suggest.', ja: 'ギリシア語の語を押してください。語の意味は、語源ではなく、使われ方で決まります。' },
+          why: { en: 'Click a word in the Greek (or, in the Old Testament, the Hebrew). A word means what its use shows, not what its roots suggest.', ja: 'ギリシア語（旧約ではヘブライ語）の語を押してください。語の意味は、語源ではなく、使われ方で決まります。' },
           q: { en: 'Which words matter most here? How are they used elsewhere?', ja: 'ここで大切な語はどれですか。ほかの箇所ではどう使われていますか。' },
           open: 'greek', also: 'word' },
         { h: { en: 'Other passages', ja: '聖書のほかの箇所' },
@@ -372,9 +372,13 @@
       if (d.at >= n) d.at = n - 1;
       var s = st.steps[d.at], doneN = Object.keys(d.done).filter(function (i) { return d.done[i] && +i < n; }).length;
       var site = window.WS_SITE, q = state.lang === 'en' ? '?lang=en' : '?lang=ja';
-      var openId = s.open === 'ja' ? WS.ja() : s.open;
+      /* In the Old Testament the original-language steps open the Hebrew; panels that are Greek only are left out. */
+      var ot = WS.covers && !WS.covers('grc'), GK = { greek: 'hebrew', wordtable: 'hebrew', grammar: 'hebrew', gsearch: null, usage: null };
+      var swap = function (id) { return ot && id in GK ? GK[id] : id; };
+      var openId = swap(s.open === 'ja' ? WS.ja() : s.open), alsoId = swap(s.also);
+      if (alsoId === openId) alsoId = null;
       var act = openId ? '<button class="btn" data-g="open" data-p="' + esc(openId) + '">' + esc(L(S.open) + '：' + WS.itemName(openId)) + '</button>' +
-          (s.also ? ' <button class="btn" data-g="open" data-p="' + esc(s.also) + '">' + esc(L(S.open) + '：' + WS.itemName(s.also)) + '</button>' : '')
+          (alsoId ? ' <button class="btn" data-g="open" data-p="' + esc(alsoId) + '">' + esc(L(S.open) + '：' + WS.itemName(alsoId)) + '</button>' : '')
         : s.chapterNav ? '<button class="btn" data-g="chap" data-d="-1">‹ ' + esc(L(S.prev)) + '</button> <button class="btn" data-g="chap" data-d="1">' + esc(L(S.next)) + ' ›</button>'
         : s.tool && site ? '<p class="small">' + esc(L(S.soon)) + '</p><a class="btn" href="' + site.home + s.tool + '/' + q + '" target="_blank" rel="noopener">' +
             esc(L(S.open) + '：' + (site.tools.filter(function (x) { return x[0] === s.tool; })[0] || [0, s.tool, s.tool])[state.lang === 'en' ? 1 : 2]) + '</a>' : '';

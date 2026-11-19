@@ -93,7 +93,7 @@
       return out;
     }
     function draw(keepFocus) {
-      var h = hits(), lex = WS.lex || {};
+      var nt = !WS.covers || WS.covers('grc'), h = nt ? hits() : {};
       var body = GROUPS.map(function (g) {
         var rows = g.terms.filter(function (t) {
           return !find || t[0].indexOf(find) >= 0 || JA[t[0]].indexOf(find) >= 0 || t[1].ja.indexOf(find) >= 0;
@@ -104,12 +104,13 @@
               r[0] + (state.lang === 'en' ? '' : S.v.ja) + '</span></button>';
           }).join('');
           return '<div class="gterm"><dt><b>' + esc(JA[t[0]]) + '</b> <span lang="en" class="small">' + esc(t[0]) + '</span></dt><dd>' + esc(L(t[1])) +
-            '<div class="small">' + esc(L(S.here)) + '：' + (list.length ? list.length + ' ' + ex + (list.length > 4 ? ' ' + esc(L(S.more)) : '') : esc(L(S.none))) + '</div></dd></div>';
+            (!nt ? '' : '<div class="small">' + esc(L(S.here)) + '：' + (list.length ? list.length + ' ' + ex + (list.length > 4 ? ' ' + esc(L(S.more)) : '') : esc(L(S.none))) + '</div>') + '</dd></div>';
         }).join('');
         return rows ? '<h3>' + esc(L(g.h)) + '</h3><dl>' + rows + '</dl>' : '';
       }).join('');
       el.innerHTML = '<h2>' + esc(L(S.title) + ' · ' + WS.bookName() + ' ' + state.ch) + '</h2>' +
         '<p class="gdraft" role="note">' + esc(L(S.draft)) + '</p>' +
+        (nt ? '' : '<p class="small">' + esc(WS.t('ntOnly')) + '</p>' + (WS.covers('hbo') ? '<p><button class="btn" data-open-alt="hebrew">' + esc(WS.t('openHebrew')) + '</button></p>' : '')) +
         '<label class="small">' + esc(L(S.filter)) + ' <input id="gmf" type="search" value="' + esc(find) + '"></label>' + body;
       if (keepFocus) { var i = el.querySelector('#gmf'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
     }
