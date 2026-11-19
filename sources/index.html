@@ -110,13 +110,13 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
       <p>Who does what in a Greek sentence: the parts of each sentence (subject, verb, object) marked under the Greek words, the usual subjects and objects of each verb in the Word use panel, and the clause lines of the Structure panel of the Study Workspace. Its semantic domain fields are not used.</p></li>
     <li><h3>TAGNT, Translators Amalgamated Greek New Testament</h3>
       <p class="lic">STEPBible.org, based on work at Tyndale House Cambridge. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="https://github.com/STEPBible/STEPBible-Data">Source</a>.</p>
-      <p>Greek words, lemmas, Strong's numbers, morphology, glosses. Used in Word Study, Word Wheel, Passage Workbench, Grammar Lens, Verse Finder, Factbook and Compare Translations.</p></li>
+      <p>Greek words, lemmas, Strong's numbers, morphology, glosses. Used in Word Study, Word Wheel, Passage Workbench, Grammar Lens, Verse Finder, People and Places and Compare Translations.</p></li>
     <li><h3>TAHOT, Translators Amalgamated Hebrew Old Testament</h3>
       <p class="lic">STEPBible.org, based on work at Tyndale House Cambridge. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="https://github.com/STEPBible/STEPBible-Data">Source</a>.</p>
       <p>Hebrew words, lemmas, glosses, morphology. Used in Hebrew Word Study, Word Wheel, Grammar Lens, and the Hebrew panel and Hebrew Word Study of the Study Workspace (with STEPBible's brief Hebrew lexicon, TBESH, CC BY 4.0). Its parsing codes are read with the OpenScriptures Hebrew morphology code table and STEPBible's own additions to it (TEHMC, CC BY 4.0).</p></li>
     <li><h3>TIPNR, Translators Individualised Proper Names with all References</h3>
       <p class="lic">STEPBible.org, based on work at Tyndale House Cambridge. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="https://github.com/STEPBible/STEPBible-Data">Source</a>.</p>
-      <p>People, places and things, with their names and references. Used in Factbook, Verse Finder and Passage Companion.</p></li>
+      <p>People, places and things, with their names and references. Used in People and Places, Verse Finder and Passage Companion.</p></li>
     <li><h3>Cross references</h3>
       <p class="lic">OpenBible.info. <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="https://www.openbible.info/labs/cross-references/">Source</a>.</p>
       <p>Cross references ranked by reader votes. Used in Passage Companion.</p></li>
@@ -453,7 +453,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-18#31", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-19#33", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }

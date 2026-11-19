@@ -145,7 +145,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <ol class="how">
     <li><b>From a verse.</b> Open the <a href="./reader/#Jhn.3.16">Reader at John 3:16</a> and tap any word. From there you can see its cross references, compare translations, or color the grammar of the chapter.</li>
     <li><b>From a word.</b> In <a href="./word-study/">Word Study</a>, type an English word like "love" or a spelling like "agape", and see everywhere it appears and how it is translated. For Old Testament words such as "hesed", use <a href="./hebrew/">Hebrew Word Study</a>.</li>
-    <li><b>From a person or place.</b> In the <a href="./factbook/">Factbook</a>, find Peter or Jerusalem and open any verse that names them.</li>
+    <li><b>From a person or place.</b> In the <a href="./factbook/">People and Places</a>, find Peter or Jerusalem and open any verse that names them.</li>
   </ol>
   <h2>Single tools</h2>
   <p class="sub">Simple pages for one thing at a time: one word, one chapter, one comparison.</p>
@@ -159,7 +159,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
     <li><a class="tool" href="./companion/"><b>Passage Companion</b><span>Read any chapter of the Bible with the margin open: cross references readers found helpful and, in the New Testament, notes on hard phrases, people and places.</span></a></li>
     <li><a class="tool" href="./lens/"><b>Grammar Lens</b><span>Color the commands, the participles, or one word through any chapter to see its shape: Greek in the New Testament, Hebrew in the Old.</span></a></li>
     <li><a class="tool" href="./finder/"><b>Verse Finder</b><span>Verses that meet several conditions at once: words, people, places and grammar.</span></a></li>
-    <li><a class="tool" href="./factbook/"><b>Factbook</b><span>People, places and things the New Testament names, with every mention.</span></a></li>
+    <li><a class="tool" href="./factbook/"><b>People and Places</b><span>People, places and things the New Testament names, with every mention.</span></a></li>
   </ul>
   <p class="verse">“The Word became flesh and made His dwelling among us.” <span>John 1:14, BSB</span></p>
   <p class="about">A side project and a work in progress, made to help people slow down with the words of Scripture. It is not a replacement for a full Bible software library. Spotted a mistake or have an idea? <a href="https://github.com/VadneyK/open-word-study-site/issues">Tell us on GitHub</a>.</p>
@@ -447,7 +447,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="./">
 (function () {
-  var LATEST = "2026-11-18#31", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-19#33", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
