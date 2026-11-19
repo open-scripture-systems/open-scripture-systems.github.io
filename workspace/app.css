@@ -377,3 +377,16 @@ html.noruby .t-ja { line-height: 1.9; }
 .hb .hw .x { font-size: .78em; color: var(--mute); font-style: italic; }
 .hb .hw .g { font-size: .82em; }
 .hb .hw .m { font-size: .7em; color: var(--mute); }
+
+.hb .hw { background: none; border: 0; padding: 2px 3px; border-radius: 6px; color: inherit; font: inherit; cursor: pointer; }
+.hb .hw:hover, .hb .hw:focus-visible { background: var(--accent-soft); }
+.hb .hw.same { background: var(--accent-soft); outline: 1px solid var(--accent); }
+/* Hebrew Word Study */
+.hwd .hwd-h b { font: 2em/1.4 "SBL Hebrew", "Ezra SIL", "Noto Serif Hebrew", serif; }
+.hwd .hwd-bars { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 3px; }
+.hwd .hwd-bars li { display: grid; grid-template-columns: 7em 1fr 3em; align-items: center; gap: 6px; font-size: .9em; }
+.hwd .hwd-bars .bar { height: .7em; background: var(--accent); border-radius: 3px; }
+.hwd .hwd-bars .c { text-align: right; color: var(--mute); }
+.hwd .hwd-lx { font-size: .92em; line-height: 1.6; }
+.hwd .hwd-occ { display: flex; flex-wrap: wrap; gap: 4px; }
+.hwd .hwd-occ button { font-size: .82em; border: 1px solid var(--line); border-radius: 4px; background: none; color: inherit; padding: 1px 6px; cursor: pointer; }
