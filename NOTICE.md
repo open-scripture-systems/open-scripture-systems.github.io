@@ -1,4 +1,4 @@
-Word of God Workshop (みことば工房), formerly Open Word Study: https://vadneyk.github.io/open-word-study-site/
+Word of God Workshop (みことば工房), by Open Scripture Systems, formerly Open Word Study: https://vadneyk.github.io/open-scripture-systems/ (until 2026-11-19 at https://vadneyk.github.io/open-word-study-site/, which now redirects)
 
 # Data sources and licences
 
