@@ -584,7 +584,7 @@ window.WS = (function () {
     var big = document.documentElement.classList.contains('owsbig');
     $('bigText').querySelector('.lbl').textContent = t(big ? 'bigOff' : 'big');
     $('bigText').setAttribute('aria-label', t(big ? 'bigOff' : 'big')); $('bigText').setAttribute('aria-pressed', String(big));
-    $('draftBanner').hidden = !state.align; $('draftBanner').textContent = t(window.WS_SITE ? 'bannerSite' : 'banner');
+    $('draftBanner').hidden = !state.align || !covers('grc');  /* the draft alignment is New Testament only: no banner on an Old Testament chapter */ $('draftBanner').textContent = t(window.WS_SITE ? 'bannerSite' : 'banner');
     document.querySelectorAll('#langSeg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === state.lang)); });
     var pick = $('layoutPick');
     pick.innerHTML = ['nichiei', 'passage', 'word', 'guided'].map(function (n) { return '<option value="' + n + '">' + esc(t('L_' + n)) + '</option>'; }).join('');
