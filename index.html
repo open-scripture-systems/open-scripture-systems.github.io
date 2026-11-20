@@ -81,6 +81,14 @@ h2 + ul { margin-top: 12px; }
 .allin-pic i:first-child { grid-row: span 2; background: #34597f; }
 @media (max-width: 560px) { .allin { grid-template-columns: minmax(0, 1fr); } .allin-pic { display: none; } }
 .note { margin-top: 24px; font-size: 13px; color: var(--ink-2); }
+/* The demo video: the one in the reader's language shows, the other is a link. Nothing downloads until Play (preload none). */
+.demo { margin: 26px 0 0; }
+.demo h2 { margin: 0 0 10px; }
+.demo video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; border: 1px solid var(--rule); }
+.demo figcaption { margin: 10px 0 0; font-size: 15px; color: var(--ink-2); max-width: 62ch; }
+.demo figcaption a { color: var(--accent); }
+html[lang="ja"] .demo-en { display: none; }
+html:not([lang="ja"]) .demo-ja { display: none; }
 </style>
 
 
@@ -139,6 +147,20 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
   <h1>Word of God Workshop</h1>
   <p class="formerly">Formerly Open Word Study.</p>
   <p class="lede"><strong>Free tools for studying the words of the Bible in Greek and Hebrew.</strong> No account and no cost. Every source and its licence is listed on the <a href="./sources/">sources page</a>.</p>
+  <figure class="demo demo-en" id="demo">
+    <h2>Watch the demo</h2>
+    <video controls preload="none" playsinline poster="./demo/demo-en-poster.jpg" aria-label="Demo of the Word of God Workshop, about 5 minutes, English captions" width="1920" height="1080">
+      <source src="./demo/demo-en.mp4" type="video/mp4">
+    </video>
+    <figcaption>About 5 minutes. The person who builds it walks through the Study Workspace: John 3 in Japanese with the Greek and English beside it, and tapping a word to see where it is used. English captions are in the video; nothing plays until you press play. <a href="./?lang=ja#demo">日本語版 (Japanese version)</a></figcaption>
+  </figure>
+  <figure class="demo demo-ja" id="demo-ja">
+    <h2>デモ動画を見る</h2>
+    <video controls preload="none" playsinline poster="./demo/demo-ja-poster.jpg" aria-label="みことば工房のデモ動画（約5分、日本語字幕つき）" width="1920" height="1080">
+      <source src="./demo/demo-ja.mp4" type="video/mp4">
+    </video>
+    <figcaption>約5分です。作者がスタディ・ワークスペースを案内します。ヨハネ3章を口語訳で読み、ギリシア語と英語を並べて、語をタップして用例を調べます。日本語の字幕つきで、再生ボタンを押すまで音は出ません。<a href="./?lang=en#demo">English version (英語版)</a></figcaption>
+  </figure>
   <section class="allin" aria-labelledby="allin-h"><div><p class="kicker">All-in-one study</p><h2 id="allin-h">Study Workspace</h2><p class="allin-lead">Everything in one screen. To use one thing at a time, the single tools are below.</p><p>The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku with furigana, and the Denmo Bible, a modern Japanese draft of 13 books), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.</p><a class="allin-go" href="./workspace/">Open the Study Workspace</a></div><div class="allin-pic" aria-hidden="true"><i></i><i></i><i></i></div></section>
   <p class="try">Try one: <a href="./reader/#Jhn.1.14">read John 1:14 with the Greek under each word</a>, see <a href="./wheel/#G4637/NT">σκηνόω, "to dwell", in its 5 New Testament places</a>, or <a href="./wheel/#G1343/Mat">δικαιοσύνη, "righteousness", in Matthew</a>.</p>
   <h2>Three ways to start</h2>
@@ -447,7 +469,7 @@ html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk,
 </style>
 <script data-home="./">
 (function () {
-  var LATEST = "2026-11-19#35", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-20#36", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
