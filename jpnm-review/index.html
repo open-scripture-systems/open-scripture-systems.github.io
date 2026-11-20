@@ -303,7 +303,7 @@ function confCls(c){return c==="check-with-a-native-reader"?"native":c}
 function markIn(text,part,cls){var i=text.indexOf(part);if(i<0)return [text];return [text.slice(0,i),el("mark",{cls:cls,text:part}),text.slice(i+part.length)]}
 function status(id){return (DEC[id]&&DEC[id].status)||"open"}
 function pad4(s){return ("000"+s).slice(-4)}
-function wsLink(s){return "https://vadneyk.github.io/open-word-study-site/word-study/#G"+pad4(s)}
+function wsLink(s){return "https://open-scripture-systems.github.io/word-study/#G"+pad4(s)}
 function enOf(w){return (w.gl||w.lg||"").replace(/[<>.,;:¶]/g,"").trim()}
 /* Greek in a reason, each word followed by its English meaning */
 function glossed(text,map){
