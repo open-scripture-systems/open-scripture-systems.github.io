@@ -231,6 +231,7 @@ window.WS = (function () {
     if (changed) { state.word = null; en = null; }
     if (view === 'A') store.set('ws.at', [state.book, state.ch, state.v]); else setAt();
     emit(changed ? 'chapter' : 'verse', origin);
+    if (changed) originalFront();
     syncChrome();
   }
   function step() { return route(stepIn, arguments); }
@@ -248,6 +249,7 @@ window.WS = (function () {
     state.book = book; state.ch = ch; state.v = v; state.word = v + ':' + i; state.strong = strong;
     if (view === 'A') store.set('ws.at', [book, ch, v]); else setAt();
     emit(changed ? 'chapter' : 'word', origin);
+    if (changed) originalFront();
     syncChrome();
     findEnglish();
   }
@@ -467,10 +469,12 @@ window.WS = (function () {
           /* the link set letter: a click moves the panel to the next set (A, B, C). Not focusable, like the x; the
            * command box does the same by keyboard ("set B"). */
           var b = document.createElement('span');
-          b.className = 'tabset'; b.textContent = setOf(id);
+          /* the letter is drawn by CSS (.tabset::after), so the tab's visible text is its title, the same as the name
+           * dockview gives it (aria-label); a letter in the text made the two differ for screen readers */
+          b.className = 'tabset'; b.dataset.set = setOf(id);
           b.title = t('setHint');
           b.addEventListener('pointerdown', function (ev) { ev.stopPropagation(); });
-          b.addEventListener('click', function (ev) { ev.stopPropagation(); cycleSet(id); b.textContent = setOf(id); });
+          b.addEventListener('click', function (ev) { ev.stopPropagation(); cycleSet(id); b.dataset.set = setOf(id); });
           el.appendChild(b);
         }
         el.appendChild(x);
@@ -485,7 +489,7 @@ window.WS = (function () {
     if (s !== 'A' && !SETS[s]) SETS[s] = view === 'A' ? snap() : SETS.A;  /* a new set starts where A is */
     var m = store.get('ws.psets', {}); if (s === 'A') delete m[id]; else m[id] = s; store.set('ws.psets', m);
     active = s; emit('set', id); syncChrome();
-    document.querySelectorAll('.tab[data-panel="' + id + '"] .tabset').forEach(function (b) { b.textContent = s; });
+    document.querySelectorAll('.tab[data-panel="' + id + '"] .tabset').forEach(function (b) { b.dataset.set = s; });
     say(t('setNow').replace('{p}', itemName(id)).replace('{s}', s));
   }
   function cycleSet(id) { var s = setOf(id); setPanelSet(id, s === 'A' ? 'B' : s === 'B' ? 'C' : 'A'); }
@@ -502,6 +506,26 @@ window.WS = (function () {
     if (p) { if (!p.api.isActive && id !== 'word') p.api.setActive(); else if (id === 'word' && !p.api.isVisible) p.api.setActive(); return p; }
     var g = dock.activeGroup;
     return add(id, id === 'word' && dock.panels.length ? { referencePanel: dock.panels[dock.panels.length - 1].id, direction: narrow() ? 'below' : 'right' } : (g ? { referenceGroup: g.id } : undefined));
+  }
+  /* The original language follows the book. In an Old Testament chapter the Hebrew stands in front where the Greek
+   * would, so a reader never lands on the "New Testament only" note first (on a phone the Greek is a tab of the top
+   * tile); back in the New Testament the Greek comes to the front again. A layout with a Greek panel and no Hebrew
+   * gets a Hebrew tab beside the Greek once. Only the tab in front of that group changes; the panel the reader was
+   * in keeps the focus. */
+  function originalFront() {
+    if (!dock || !ITEM.hebrew || !manifest) return;
+    var g = dock.getPanel('greek'), h = dock.getPanel('hebrew'), ot = !covers('grc') && covers('hbo');
+    if (!g) return;
+    var was = dock.activePanel, front = g.group.activePanel;
+    if (ot && !h) {
+      h = dock.addPanel({ id: 'hebrew', component: 'hebrew', params: {}, title: title('hebrew'),
+        position: { referencePanel: 'greek', direction: 'within' }, inactive: true });
+      var at = g.group.panels.indexOf(g);   /* just before the Greek tab, so on a phone it is not left in the overflow */
+      if (h.group === g.group && at >= 0 && h.api.moveTo) h.api.moveTo({ group: g.group, index: at });
+    }
+    var want = !h || h.group !== g.group ? front : ot && front === g ? h : !ot && front === h ? g : front;
+    if (want && dock.getPanel(want.id) && want.group.activePanel !== want) want.api.setActive();
+    if (was && was !== want && dock.getPanel(was.id) && dock.activePanel !== was) was.api.setActive();
   }
   var DEFAULTS = {
     nichiei: function () {
@@ -560,6 +584,7 @@ window.WS = (function () {
     var ok = false;
     if (saved) { try { dock.fromJSON(saved); ok = dock.panels.length > 0 && dock.panels.every(function (p) { return ITEM[p.id] && (!ITEM[p.id].text || manifest.texts[ITEM[p.id].text]); }); } catch (e) { ok = false; } }
     if (!ok) { dock.clear(); (narrow() ? phoneLayout : DEFAULTS[name])(name); }
+    originalFront();
     applying = false;
     retitle();
     if (!ok) store.set(layoutKey(name), dock.toJSON());

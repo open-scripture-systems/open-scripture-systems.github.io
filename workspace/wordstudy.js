@@ -14,6 +14,7 @@
   Object.assign(T, {
     word: { en: 'Word Study', ja: '語句研究' },
     pickWord: { en: 'Click a Greek word to study it.', ja: 'ギリシア語の語をクリックしてください。' },
+    pickHebrew: { en: 'In the Old Testament, tap a word in the Hebrew panel: it opens in Hebrew Word Study.', ja: '旧約では、ヘブライ語のパネルで語をタップしてください。ヘブライ語の語句研究で開きます。' },
     inNT: { en: 'in the New Testament', ja: '新約全体' },
     naCount: { en: 'NA28 as tagged by TAGNT', ja: 'TAGNT による NA28 の数' },
     thisForm: { en: 'This form', ja: 'この語形' }, forms: { en: 'Forms', ja: '語形' },
@@ -189,7 +190,7 @@
 
     function draw() {
       var s = state.strong, e = s && WS.lex[s];
-      if (!e || !data || data.s !== s) { el.innerHTML = '<p>' + esc(t('pickWord')) + '</p>'; return; }
+      if (!e || !data || data.s !== s) { el.innerHTML = '<p>' + esc(t(WS.covers('grc') ? 'pickWord' : 'pickHebrew')) + '</p>'; return; }
       if (scope !== 'NT' && !e.bk[scope]) scope = 'NT';
       if (sel && sel.kind === 'ja' && !state.align) sel = null;
       var names = ringNames(), ix = inScope(), cm = colours(ix, names);

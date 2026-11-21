@@ -77,6 +77,7 @@ rt { font-size: 9px; color: var(--mute); }
 .jl.st-ok, .j.st-ok { border-bottom: 2px solid var(--ok); }
 .jl.st-un, .j.st-un { border-bottom: 3px double var(--warn); }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; padding: 4px 12px; font-size: 12px; color: var(--mute); border-bottom: 1px solid var(--line); background: var(--panel); }
+.legend[hidden] { display: none; }  /* hidden on an Old Testament chapter and with the flag off */
 .legend .jl { cursor: default; color: var(--ink); }
 .legend b { color: var(--ink); }
 .gw { cursor: pointer; border-radius: 3px; }
@@ -307,6 +308,7 @@ html.noruby .t-ja { line-height: 1.9; }
 /* link set letter in a tab: a small button that moves the panel to the next set */
 .tabset { font-size: .78em; font-weight: 600; min-width: 1.5em; text-align: center; padding: 0 .35em; border: 1px solid var(--line); border-radius: 4px; cursor: pointer; color: var(--mute); }
 .tabset:hover { color: var(--accent); border-color: var(--accent); }
+.tabset::after { content: attr(data-set); }
 .pane[data-set="B"] { box-shadow: inset 3px 0 0 var(--accent); }
 .pane[data-set="C"] { box-shadow: inset 3px 0 0 var(--ok); }
 /* guided study: study picker, teacher tools, editor, hand-in view */
@@ -402,3 +404,5 @@ html.noruby .t-ja { line-height: 1.9; }
 .iw .k { display: block; font-size: .78em; color: var(--accent); line-height: 1.3; }
 .iw .k [lang="en"] { color: var(--mute); }
 .kn-note { margin-top: 0; }
+.kn-note p { margin: 4px 0 0; }
+.kn-note:not([open]) > p { display: none; }  /* closed: no box at all (Chrome keeps one for closed details content) */

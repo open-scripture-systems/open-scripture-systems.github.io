@@ -95,7 +95,7 @@
         var kn = kanaOn();
         el.innerHTML = heading('SBLGNT') + '<p class="small"><button class="btn" data-parts="1" aria-pressed="' + on + '">' + esc(PL(on ? PT.off : PT.on)) + '</button>' +
           (state.lang !== 'en' && WS.kana ? ' <button class="btn" data-kana="1" aria-pressed="' + kn + '">' + esc(PL(kn ? KN.off : KN.on)) + '</button>' : '') +
-          (on ? ' ' + esc(PL(PT.note)) : '') + '</p>' + (kn ? '<details class="small kn-note"><summary>読みについて（読み上げの助け）</summary>' + esc(KN.note.ja) + '</details>' : '') + verseNumbers().map(function (v) {
+          (on ? ' ' + esc(PL(PT.note)) : '') + '</p>' + (kn ? '<details class="small kn-note"><summary>読みについて（読み上げの助け）</summary><p>' + esc(KN.note.ja) + '</p></details>' : '') + verseNumbers().map(function (v) {
           var gv = WS.verse('grc', v);
           if (!gv) {
             var p = WS.pointer('grc', v);
