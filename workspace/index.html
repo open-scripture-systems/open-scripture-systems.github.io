@@ -9,7 +9,12 @@
 <meta property="og:description" content="A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku, the Denmo Bible draft in modern Japanese), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://open-scripture-systems.github.io/workspace/">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1f3a5f">
 <script>try{if(/[?&]lang=ja\b/.test(location.search)||(!/[?&]lang=en\b/.test(location.search)&&localStorage.getItem("ows-lang")!=="en"))document.documentElement.classList.add("owsja")}catch(e){}</script>
 <!-- ows-seo -->
 <link rel="canonical" href="https://open-scripture-systems.github.io/workspace/">
@@ -19,7 +24,11 @@
 <meta property="og:site_name" content="Word of God Workshop">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Study Workspace (prototype)", "alternateName": "スタディ・ワークスペース（試作）", "url": "https://open-scripture-systems.github.io/workspace/", "description": "A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku, the Denmo Bible draft in modern Japanese), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Open Scripture Systems", "url": "https://open-scripture-systems.github.io/"}, "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "audience": {"@type": "EducationalAudience", "educationalRole": "student, teacher, pastor"}, "isPartOf": {"@type": "WebSite", "name": "Word of God Workshop", "alternateName": ["みことば工房"], "url": "https://open-scripture-systems.github.io/"}, "disambiguatingDescription": "新約聖書の無料の学習用ワークスペース。口語訳・文語訳・電網聖書（現代語の草稿）（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。"}</script>
+<meta property="og:image" content="https://open-scripture-systems.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Scripture Systems ring logo: the word &quot;word&quot; in Greek, Hebrew, Aramaic and Japanese">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Study Workspace (prototype)", "alternateName": "スタディ・ワークスペース（試作）", "url": "https://open-scripture-systems.github.io/workspace/", "description": "A free study workspace for the New Testament: Japanese (Kougo-yaku, Bungo-yaku, the Denmo Bible draft in modern Japanese), Greek with grammar, English, a lexicon and word study, side by side in tiles you can drag.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Open Scripture Systems", "url": "https://open-scripture-systems.github.io/", "logo": "https://open-scripture-systems.github.io/icon-512.png"}, "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "audience": {"@type": "EducationalAudience", "educationalRole": "student, teacher, pastor"}, "isPartOf": {"@type": "WebSite", "name": "Word of God Workshop", "alternateName": ["みことば工房"], "url": "https://open-scripture-systems.github.io/"}, "disambiguatingDescription": "新約聖書の無料の学習用ワークスペース。口語訳・文語訳・電網聖書（現代語の草稿）（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。"}</script>
 <script>(function(){if(!document.documentElement.classList.contains("owsja"))return;var J={"t": "スタディ・ワークスペース（試作） | みことば工房", "d": "新約聖書の無料の学習用ワークスペース。口語訳・文語訳・電網聖書（現代語の草稿）（ふりがな付き）、文法付きのギリシア語本文、英訳、辞書、語句研究を、動かせるタイルに並べて読めます。", "u": "https://open-scripture-systems.github.io/workspace/?lang=ja"};function A(){document.title=J.t;var q=function(s){return document.querySelector(s)},c=q('link[rel="canonical"]');if(c)c.href=J.u;["meta[name=\"description\"]","meta[property=\"og:description\"]"].forEach(function(s){var m=q(s);if(m)m.content=J.d});var o=q('meta[property="og:title"]');if(o)o.content=J.t;o=q('meta[property="og:url"]');if(o)o.content=J.u;}A();addEventListener("DOMContentLoaded",A)})();</script>
 <!-- /ows-seo -->
 
@@ -29,7 +38,7 @@
 <body>
 <header class="top">
   <button id="railToggle" class="icon" aria-label="メニュー" aria-expanded="true">☰</button>
-  <h1 class="brand"><a href="../"><span id="brandName">Word of God Workshop</span></a> <span id="brandSub">ワークスペース（試作）</span></h1>
+  <h1 class="brand"><a href="../" class="wsbrand" style="display:inline-flex;align-items:center;gap:8px"><picture class="osslogo osslogo-ws" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="26" height="26" alt="" style="display:block"></picture><span id="brandName">Word of God Workshop</span></a> <span id="brandSub">ワークスペース（試作）</span></h1>
   <form id="cmd" role="search">
     <input id="cmdBox" type="search" autocomplete="off" spellcheck="false" aria-label="聖書箇所へ移動、ストロング番号、または語を検索">
   </form>

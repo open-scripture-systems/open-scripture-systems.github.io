@@ -13,7 +13,11 @@
 <meta property="og:site_name" content="Word of God Workshop">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Verse Finder", "alternateName": "節の検索", "url": "https://open-scripture-systems.github.io/finder/", "description": "Find New Testament verses that meet several conditions: words, people, places and grammar.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Open Scripture Systems", "url": "https://open-scripture-systems.github.io/"}, "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "audience": {"@type": "EducationalAudience", "educationalRole": "student, teacher, pastor"}, "isPartOf": {"@type": "WebSite", "name": "Word of God Workshop", "alternateName": ["みことば工房"], "url": "https://open-scripture-systems.github.io/"}, "disambiguatingDescription": "語、人物、場所、文法など、いくつかの条件を同時に満たす新約聖書の節を探します。"}</script>
+<meta property="og:image" content="https://open-scripture-systems.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Scripture Systems ring logo: the word &quot;word&quot; in Greek, Hebrew, Aramaic and Japanese">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Verse Finder", "alternateName": "節の検索", "url": "https://open-scripture-systems.github.io/finder/", "description": "Find New Testament verses that meet several conditions: words, people, places and grammar.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Open Scripture Systems", "url": "https://open-scripture-systems.github.io/", "logo": "https://open-scripture-systems.github.io/icon-512.png"}, "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "audience": {"@type": "EducationalAudience", "educationalRole": "student, teacher, pastor"}, "isPartOf": {"@type": "WebSite", "name": "Word of God Workshop", "alternateName": ["みことば工房"], "url": "https://open-scripture-systems.github.io/"}, "disambiguatingDescription": "語、人物、場所、文法など、いくつかの条件を同時に満たす新約聖書の節を探します。"}</script>
 <script>(function(){if(!document.documentElement.classList.contains("owsja"))return;var J={"t": "節の検索 | みことば工房", "d": "語、人物、場所、文法など、いくつかの条件を同時に満たす新約聖書の節を探します。", "u": "https://open-scripture-systems.github.io/finder/?lang=ja"};function A(){document.title=J.t;var q=function(s){return document.querySelector(s)},c=q('link[rel="canonical"]');if(c)c.href=J.u;["meta[name=\"description\"]","meta[property=\"og:description\"]"].forEach(function(s){var m=q(s);if(m)m.content=J.d});var o=q('meta[property="og:title"]');if(o)o.content=J.t;o=q('meta[property="og:url"]');if(o)o.content=J.u;}A();addEventListener("DOMContentLoaded",A)})();</script>
 <!-- /ows-seo -->
 <meta name="description" content="Find New Testament verses that meet several conditions: words, people, places and grammar.">
@@ -21,8 +25,12 @@
 <meta property="og:description" content="Find New Testament verses that meet several conditions: words, people, places and grammar.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://open-scripture-systems.github.io/finder/">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%230069a8' stroke-width='6'/%3E%3C/svg%3E">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1f3a5f">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;650;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap">
 <meta charset="utf-8">
@@ -124,6 +132,9 @@ h1 { font-size: clamp(30px, 5vw, 46px) !important; line-height: 1.05 !important;
 .a2bar span { color: var(--ink-2); }
 .a2foot { max-width: 1180px; margin: 0 auto 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
   font: 13px/1.5 var(--a2-ui); color: var(--ink-2); }
+.osslogo { display: inline-flex; flex: none; } .osslogo img { display: block; }
+.a2name { display: inline-flex; align-items: center; gap: 8px; }
+.a2by { display: flex; align-items: center; gap: 10px; }
 .owsload { max-width: 1180px; margin: 8px auto 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font: 14px/1.5 var(--a2-ui); color: var(--ink-2); }
 .owsload a { color: inherit; }
 </style>
@@ -152,7 +163,7 @@ addEventListener('error', function (e) {
   if (s) s.innerHTML = 'Something went wrong starting this tool. <a href="">Reload the page</a>, or try a newer browser.';
 });
 </script>
-<nav class="a2bar" aria-label="Site"><style>.a2home{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 8px;border:1px solid currentColor;border-radius:999px;font-weight:600;text-decoration:none}.a2home .a2ico{flex:none}.a2name{font-weight:600}</style><a class="a2home" href="../"><svg class="a2ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg><span>Home</span></a><span class="a2name">Word of God Workshop</span><a class="a2ws" href="../workspace/">Study Workspace</a><span>Free Bible study tools from open data</span><span class="owsctl"><button type="button" class="owslang-btn" lang="ja">日本語</button><button type="button" class="owsbig-btn" aria-pressed="false">Larger text</button></span></nav>
+<nav class="a2bar" aria-label="Site"><style>.a2home{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 8px;border:1px solid currentColor;border-radius:999px;font-weight:600;text-decoration:none}.a2home .a2ico{flex:none}.a2name{font-weight:600}</style><a class="a2home" href="../"><svg class="a2ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg><span>Home</span></a><span class="a2name"><picture class="osslogo" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="28" height="28" alt="" style="display:block"></picture>Word of God Workshop</span><a class="a2ws" href="../workspace/">Study Workspace</a><span>Free Bible study tools from open data</span><span class="owsctl"><button type="button" class="owslang-btn" lang="ja">日本語</button><button type="button" class="owsbig-btn" aria-pressed="false">Larger text</button></span></nav>
 <p class="owsload" id="ows-load" role="status">Loading the data for this tool.</p>
 <noscript><p class="owsload">This tool needs JavaScript turned on. このツールには JavaScript が必要です。</p></noscript>
 <div class="wrap" role="main">
@@ -306,7 +317,7 @@ $('more').onclick = () => { shown += 100; renderVerses(); };
 load(PRESETS[0][1]);
 if (LOADED < D.books.length) loadBooks();
 </script>
-<footer><p class="a2foot">Every source and its licence: see <a href="../sources/">sources and licences</a>.</p><p class="a2foot ows-nodata">This site collects no data about you: no accounts, no cookies, no analytics.</p><p class="a2foot"><a href="../updates/">Updates</a></p><p class="a2foot">Word of God Workshop (みことば工房), by Open Scripture Systems</p></footer>
+<footer><p class="a2foot">Every source and its licence: see <a href="../sources/">sources and licences</a>.</p><p class="a2foot ows-nodata">This site collects no data about you: no accounts, no cookies, no analytics.</p><p class="a2foot"><a href="../updates/">Updates</a></p><p class="a2foot a2by"><picture class="osslogo" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="40" height="40" alt="" style="display:block"></picture><span>Word of God Workshop (みことば工房), by Open Scripture Systems</span></p></footer>
 <script>if(!window.owsFailed){var l=document.getElementById('ows-load');if(l)l.hidden=true}</script>
 <script>
 (function () {
