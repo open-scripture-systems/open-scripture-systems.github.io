@@ -427,7 +427,7 @@ fetch('data/index.json').then(r => r.ok ? r.json() : Promise.reject()).then(list
     }
     var t0 = tr(norm(document.title)); if (t0) document.title = t0;
     var bar = document.querySelector('.a2bar');
-    if (bar && D.note) {
+    if (bar && D.note && page !== 'join' && page !== '') {  /* the group home and Join us have no English data on them */
       var note = document.createElement('p'); note.className = 'owsja-note';
       note.textContent = D.note + (D.pageNote && D.pageNote[page] ? ' ' + D.pageNote[page] : '');
       bar.parentNode.insertBefore(note, bar.nextSibling);
@@ -536,7 +536,7 @@ fetch('data/index.json').then(r => r.ok ? r.json() : Promise.reject()).then(list
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-20#37", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-23#38", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }

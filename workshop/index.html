@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script>try{if(/[?&]text=large\b/.test(location.search)||localStorage.getItem('ows-text')==='large')document.documentElement.classList.add('owsbig')}catch(e){}</script>
+<script>try{var m=/[?&]lang=(ja|en)\b/.exec(location.search),l=m?m[1]:localStorage.getItem('ows-lang');if(m)localStorage.setItem('ows-lang',l);if(l==='ja'){document.documentElement.classList.add('owsja');document.documentElement.lang='ja';setTimeout(function(){document.documentElement.classList.add('owsja-ready')},2500)}}catch(e){}</script>
+<style>html.owsja:not(.owsja-ready) body{visibility:hidden}.owsja-note{max-width:1180px;margin:6px auto 0;padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:14px/1.6 var(--a2-ui,system-ui,sans-serif);color:var(--ink-2,#473c39)}html.owsja body{font-family:var(--body,system-ui),"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-break:strict}</style>
+<!-- ows-seo -->
+<link rel="canonical" href="https://open-scripture-systems.github.io/workshop/">
+<link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/workshop/">
+<link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/workshop/?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/workshop/">
+<meta property="og:site_name" content="Word of God Workshop">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:image" content="https://open-scripture-systems.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Scripture Systems ring logo: the word &quot;word&quot; in Greek, Hebrew, Aramaic and Japanese">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Word of God Workshop", "alternateName": "みことば工房", "url": "https://open-scripture-systems.github.io/workshop/", "description": "Free Bible word study tools for Greek and Hebrew. No account, no cost. Every source and its licence is listed on the sources page.", "inLanguage": ["en", "ja"], "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Open Scripture Systems", "url": "https://open-scripture-systems.github.io/", "logo": "https://open-scripture-systems.github.io/icon-512.png"}, "disambiguatingDescription": "ギリシア語とヘブライ語で聖書のことばを学ぶための無料ツール集です。公開データだけで作っています。アカウント不要、無料、日本語で使えます。"}</script>
+<script>(function(){if(!document.documentElement.classList.contains("owsja"))return;var J={"t": "みことば工房 | ギリシア語・ヘブライ語で学ぶ無料の聖書研究ツール", "d": "ギリシア語とヘブライ語で聖書のことばを学ぶための無料ツール集です。公開データだけで作っています。アカウント不要、無料、日本語で使えます。", "u": "https://open-scripture-systems.github.io/workshop/?lang=ja"};function A(){document.title=J.t;var q=function(s){return document.querySelector(s)},c=q('link[rel="canonical"]');if(c)c.href=J.u;["meta[name=\"description\"]","meta[property=\"og:description\"]"].forEach(function(s){var m=q(s);if(m)m.content=J.d});var o=q('meta[property="og:title"]');if(o)o.content=J.t;o=q('meta[property="og:url"]');if(o)o.content=J.u;}A();addEventListener("DOMContentLoaded",A)})();</script>
+<!-- /ows-seo -->
+<meta name="description" content="Free Bible word study tools for Greek and Hebrew. No account, no cost. Every source and its licence is listed on the sources page.">
+<meta property="og:title" content="Word of God Workshop | Free Greek and Hebrew Bible study tools">
+<meta property="og:description" content="Free Bible word study tools for Greek and Hebrew. No account, no cost. Every source and its licence is listed on the sources page.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://open-scripture-systems.github.io/workshop/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1f3a5f">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;650;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Word of God Workshop | Free Greek and Hebrew Bible study tools</title>
+<style>
+/* Layout: a short shelf of tools. A plain statement of what this is, then one row per tool with what it helps you see. */
+:root {
+  --paper: #f3f5f7; --sheet: #ffffff; --ink: #1c2430; --ink-2: #4a5566; --rule: #d9dee5; --focus: #2f5fb3; --accent: #2f62ad;
+  --greek: "Gentium Book Plus", "Gentium Plus", "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12161c; --sheet: #1a2028; --ink: #e6eaf0; --ink-2: #a4aebb; --rule: #2c3540; --focus: #8fb3ff; --accent: #8fb3ff; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #12161c; --sheet: #1a2028; --ink: #e6eaf0; --ink-2: #a4aebb; --rule: #2c3540; --focus: #8fb3ff; --accent: #8fb3ff; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.6 var(--body); }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font: 700 34px/1.1 var(--greek); margin: 0; }
+.verse { font: italic 19px/1.5 var(--greek); color: var(--ink-2); margin: 14px 0 0; }
+.verse span { font-style: normal; font-size: 14px; font-family: var(--body); }
+p.lede { margin: 18px 0 0; max-width: 62ch; }
+ul { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 10px; }
+a.tool { display: grid; grid-template-columns: 9em minmax(0, 1fr); gap: 4px 16px; text-decoration: none; color: var(--ink);
+  background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+a.tool:hover { border-color: var(--accent); }
+a.tool:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+a.tool b { font: 700 18px var(--greek); color: var(--accent); }
+a.tool span { color: var(--ink-2); font-size: 15px; }
+@media (max-width: 560px) { a.tool { grid-template-columns: minmax(0, 1fr); } }
+.how { margin: 8px 0 0; padding-left: 1.3em; max-width: 62ch; display: grid; gap: 6px; }
+.how a { color: var(--accent); }
+h2 { font-size: 20px; margin: 28px 0 0; }
+h2 + ul { margin-top: 12px; }
+.try { margin: 10px 0 0; max-width: 62ch; color: var(--ink-2); }
+.try a, .about a, .note a { color: var(--accent); }
+.verse { margin-top: 32px !important; }
+.about { margin: 10px 0 0; max-width: 62ch; }
+.formerly { margin: 4px 0 0; font-size: 14px; color: var(--ink-2); }
+.sub { margin: 4px 0 0; color: var(--ink-2); max-width: 62ch; }
+/* The all-in-one workspace is shown as an app on purpose, so it reads as a different kind of thing from the single tools. */
+.allin { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 18px; align-items: center; margin: 26px 0 0;
+  padding: 20px; border-radius: 16px; background: #13263d; color: #eef4fb; }
+.allin .kicker { margin: 0; font: 600 13px var(--body); letter-spacing: .06em; color: #a9c7e8; }
+.allin h2 { margin: 2px 0 6px; font-size: 24px; color: #fff; }
+.allin p { margin: 0; color: #d6e2ef; max-width: 56ch; }
+.allin p.allin-lead { color: #fff; font-weight: 600; margin-bottom: 6px; }
+.allin-go { display: inline-block; margin-top: 14px; padding: 12px 20px; border-radius: 999px; background: #ffd166; color: #13263d;
+  font-weight: 700; text-decoration: none; }
+.allin-go:hover { background: #ffe08f; }
+.allin-go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.allin-pic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; height: 110px; }
+.allin-pic i { border-radius: 6px; background: #2a4a6e; border: 1px solid #4a7099; }
+.allin-pic i:first-child { grid-row: span 2; background: #34597f; }
+@media (max-width: 560px) { .allin { grid-template-columns: minmax(0, 1fr); } .allin-pic { display: none; } }
+.homelogo { margin: 8px 0 4px; } .homelogo img { display: block; }
+.note { margin-top: 24px; font-size: 13px; color: var(--ink-2); }
+/* The demo video: the one in the reader's language shows, the other is a link. Nothing downloads until Play (preload none). */
+.demo { margin: 26px 0 0; }
+.demo h2 { margin: 0 0 10px; }
+.demo video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; border: 1px solid var(--rule); }
+.demo figcaption { margin: 10px 0 0; font-size: 15px; color: var(--ink-2); max-width: 62ch; }
+.demo figcaption a { color: var(--accent); }
+html[lang="ja"] .demo-en { display: none; }
+html:not([lang="ja"]) .demo-ja { display: none; }
+</style>
+
+
+<style>
+:root {
+  --paper: #f3f1f1; --sheet: #ffffff; --ink: #1c1917; --ink-2: #473c39; --rule: rgba(71, 60, 57, 0.18); --focus: #0069a8;
+  --accent: #0069a8; --bar: #0069a8; --person: #0069a8; --place: #047857; --other: #a35f00;
+  --s1: #0069a8; --s2: #009966; --s3: #d48c00; --s4: #1d1816; --s5: #7a4f9e; --s6: #c2410c; --s7: #0e7490; --s8: #65a30d; --s9: #9f1239; --s0: #a89e93;
+  --l1: #b45309; --l2: #0069a8; --l3: #047857; --l4: #9f1239; --l5: #4d7c0f; --l6: #6d28d9;
+  --rare: #9f1239; --rep: #047857; --var: #a35f00; --c1: #0069a8; --c2: #a35f00; --c3: #047857; --c4: #9f1239;
+  --ot: #8a4b00; --nt: #0069a8; --note: #047857; --name: #9f1239;
+  --body: "Archivo", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; --display: "Archivo", system-ui, sans-serif;
+  --a2-ui: "Inter", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #1d1816; --sheet: #241f1d; --ink: #e7e5e4; --ink-2: #d8d2d0; --rule: rgba(255, 255, 255, 0.14); --focus: #ffb800;
+  --accent: #6cb6ea; --bar: #6cb6ea; --person: #6cb6ea; --place: #34c38f; --other: #ffb800;
+  --s1: #6cb6ea; --s2: #34c38f; --s3: #ffb800; --s4: #d8d2d0; --s5: #c4a3e6; --s6: #f08a5d; --s7: #5fd3e6; --s8: #a3d65c; --s9: #f27a9a; --s0: #78716c;
+  --l1: #ffb800; --l2: #6cb6ea; --l3: #34c38f; --l4: #f27a9a; --l5: #a3d65c; --l6: #c4a3e6;
+  --rare: #f27a9a; --rep: #34c38f; --var: #ffb800; --c1: #6cb6ea; --c2: #ffb800; --c3: #34c38f; --c4: #f27a9a;
+  --ot: #ffb800; --nt: #6cb6ea; --note: #34c38f; --name: #f27a9a; color-scheme: dark; } }
+body { font-family: var(--body); }
+h1, h2 { font-family: var(--display) !important; font-weight: 650 !important; letter-spacing: -0.01em; }
+h1 { font-size: clamp(30px, 5vw, 46px) !important; line-height: 1.05 !important; }
+.panel, .box, .text, .words, .card, .cond { border-radius: 24px !important; }
+.label, .eyebrow, th { font-family: var(--a2-ui) !important; }
+.a2bar { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; justify-content: space-between; max-width: 1180px; margin: 12px auto 0;
+  padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font: 500 14px var(--a2-ui); }
+.a2bar a { color: var(--ink); text-decoration: none; font-weight: 600; }
+.a2bar a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.a2bar span { color: var(--ink-2); }
+.a2foot { max-width: 1180px; margin: 0 auto 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font: 13px/1.5 var(--a2-ui); color: var(--ink-2); }
+.osslogo { display: inline-flex; flex: none; } .osslogo img { display: block; }
+.a2name { display: inline-flex; align-items: center; gap: 8px; }
+.a2by { display: flex; align-items: center; gap: 10px; }
+.owsload { max-width: 1180px; margin: 8px auto 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font: 14px/1.5 var(--a2-ui); color: var(--ink-2); }
+.owsload a { color: inherit; }
+</style>
+<style>
+.owsctl { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.owsbig-btn, .owslang-btn { font: 600 15px var(--a2-ui, system-ui, sans-serif); color: var(--ink, #1c1917); background: var(--sheet, #fff);
+  border: 2px solid currentColor; border-radius: 999px; padding: 8px 16px; min-height: 44px; cursor: pointer; }
+.owsbig-btn:hover, .owslang-btn:hover { background: var(--paper, #f3f1f1); }
+.owsbig-btn:focus-visible, .owslang-btn:focus-visible { outline: 3px solid var(--focus, #0069a8); outline-offset: 2px; }
+.owsbig-btn[aria-pressed="true"] { background: var(--ink, #1c1917); color: var(--sheet, #fff); }
+.a2bar-home { justify-content: flex-end; }
+html.owsbig body { zoom: 1.25; }
+html.owsbig { --ink-2: var(--ink); --muted: var(--fg, var(--ink)); }
+html.owsbig .owsctl { zoom: 0.8; }
+html.owsbig .owsctl button { font-size: 19px; min-height: 55px; }
+html.owsbig :is(p, li, td, dd, blockquote) { line-height: 1.7; }
+html.owsbig a { text-decoration-thickness: 2px; text-underline-offset: 3px; }
+html.owsbig :is(button, select, input, [role="button"], [role="tab"], [role="option"]) { min-height: 44px; }
+html.owsbig :is([lang="grc"], [lang="el"], [lang="he"], [lang="hbo"], .gk, .grk, .greek, .heb, .hebrew, .orig) { font-size: 112%; }
+</style>
+<nav class="a2bar" aria-label="Site"><style>.a2home{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 8px;border:1px solid currentColor;border-radius:999px;font-weight:600;text-decoration:none}.a2home .a2ico{flex:none}.a2name{font-weight:600}</style><a class="a2home" href="../"><svg class="a2ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg><span>Home</span></a><span class="a2name"><picture class="osslogo" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="28" height="28" alt="" style="display:block"></picture>Word of God Workshop</span><a class="a2ws" href="../workspace/">Study Workspace</a><span>Free Bible study tools from open data</span><span class="owsctl"><button type="button" class="owslang-btn" lang="ja">日本語</button><button type="button" class="owsbig-btn" aria-pressed="false">Larger text</button></span></nav>
+<div class="wrap" role="main">
+  <p class="homelogo"><picture><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="112" height="112" alt="Open Scripture Systems logo"></picture></p>
+  <h1>Word of God Workshop</h1>
+  <p class="formerly">Formerly Open Word Study.</p>
+  <p class="lede"><strong>Free tools for studying the words of the Bible in Greek and Hebrew.</strong> No account and no cost. Every source and its licence is listed on the <a href="../sources/">sources page</a>.</p>
+  <section class="allin" aria-labelledby="allin-h"><div><p class="kicker">All-in-one study</p><h2 id="allin-h">Study Workspace</h2><p class="allin-lead">Everything in one screen. To use one thing at a time, the single tools are below.</p><p>The texts side by side in tiles you can drag: Japanese (Kougo-yaku and Bungo-yaku with furigana, and the Denmo Bible, a modern Japanese draft of 13 books), the Greek with grammar under each word, English translations, a lexicon and Word Study. New Testament. A prototype. The links from Japanese words to Greek words are a machine draft. Only a small sample has been checked by a person, and the page marks them as a draft.</p><a class="allin-go" href="../workspace/">Open the Study Workspace</a></div><div class="allin-pic" aria-hidden="true"><i></i><i></i><i></i></div></section>
+  <p class="try">Try one: <a href="../reader/#Jhn.1.14">read John 1:14 with the Greek under each word</a>, see <a href="../wheel/#G4637/NT">σκηνόω, "to dwell", in its 5 New Testament places</a>, or <a href="../wheel/#G1343/Mat">δικαιοσύνη, "righteousness", in Matthew</a>.</p>
+  <h2>Three ways to start</h2>
+  <ol class="how">
+    <li><b>From a verse.</b> Open the <a href="../reader/#Jhn.3.16">Reader at John 3:16</a> and tap any word. From there you can see its cross references, compare translations, or color the grammar of the chapter.</li>
+    <li><b>From a word.</b> In <a href="../word-study/">Word Study</a>, type an English word like "love" or a spelling like "agape", and see everywhere it appears and how it is translated. For Old Testament words such as "hesed", use <a href="../hebrew/">Hebrew Word Study</a>.</li>
+    <li><b>From a person or place.</b> In the <a href="../factbook/">People and Places</a>, find Peter or Jerusalem and open any verse that names them.</li>
+  </ol>
+  <h2>Single tools</h2>
+  <p class="sub">Simple pages for one thing at a time: one word, one chapter, one comparison.</p>
+  <ul>
+    <li><a class="tool" href="../reader/"><b>Interlinear Reader</b><span>Read the English with the Greek or Hebrew word under each word. Start here if you do not read the original languages.</span></a></li>
+    <li><a class="tool" href="../compare/"><b>Compare Translations</b><span>Three open English translations of a New Testament verse, with differences traced back to the Greek.</span></a></li>
+    <li><a class="tool" href="../word-study/"><b>Word Study</b><span>Any Greek word: where it appears, its forms, how open translations render it, and words translated the same way.</span></a></li>
+    <li><a class="tool" href="../hebrew/"><b>Hebrew Word Study</b><span>The same for every word of the Old Testament. Start with חֶסֶד, "loving devotion".</span></a></li>
+    <li><a class="tool" href="../wheel/"><b>Word Wheel</b><span>One word, every occurrence, a ring per translation. Start with σκηνόω, "to dwell".</span></a></li>
+    <li><a class="tool" href="../workbench/"><b>Passage Workbench</b><span>Any New Testament chapter word by word: rare words, repeated words, and where Greek editions differ.</span></a></li>
+    <li><a class="tool" href="../companion/"><b>Passage Companion</b><span>Read any chapter of the Bible with the margin open: cross references readers found helpful and, in the New Testament, notes on hard phrases, people and places.</span></a></li>
+    <li><a class="tool" href="../lens/"><b>Grammar Lens</b><span>Color the commands, the participles, or one word through any chapter to see its shape: Greek in the New Testament, Hebrew in the Old.</span></a></li>
+    <li><a class="tool" href="../finder/"><b>Verse Finder</b><span>Verses that meet several conditions at once: words, people, places and grammar.</span></a></li>
+    <li><a class="tool" href="../factbook/"><b>People and Places</b><span>People, places and things the New Testament names, with every mention.</span></a></li>
+  </ul>
+  <p class="verse">“The Word became flesh and made His dwelling among us.” <span>John 1:14, BSB</span></p>
+  <p class="about">A side project and a work in progress, made to help people slow down with the words of Scripture. It is not a replacement for a full Bible software library. Spotted a mistake or have an idea? <a href="https://github.com/open-scripture-systems/open-scripture-systems.github.io/issues">Tell us on GitHub</a>.</p>
+  <p class="note">Data: STEPBible TAGNT, TAHOT and TIPNR (CC BY 4.0, Tyndale House Cambridge), Berean Standard Bible (public domain), unfoldingWord Literal and Simplified Texts and Translation Notes (CC BY-SA 4.0), OpenBible.info cross references (CC BY 4.0). Not affiliated with any Bible software company. <a href="../sources/">Full sources and licences</a>.</p>
+</div>
+<footer><p class="a2foot">Every source and its licence: see <a href="../sources/">sources and licences</a>.</p><p class="a2foot ows-nodata">This site collects no data about you: no accounts, no cookies, no analytics.</p><p class="a2foot"><a href="../updates/">Updates</a></p><p class="a2foot a2by"><picture class="osslogo" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="40" height="40" alt="" style="display:block"></picture><span>Word of God Workshop (みことば工房), by Open Scripture Systems</span></p></footer>
+<script>
+(function () {
+  var root = document.documentElement, KEY = 'ows-text', MIN = 14;
+  function floor(el) {
+    for (var n = el.firstChild; n; n = n.nextSibling) if (n.nodeType === 3 && n.textContent.trim()) {
+      var z = parseFloat(getComputedStyle(el).fontSize);
+      if (z && z < MIN) el.style.fontSize = MIN + 'px';
+      return;
+    }
+  }
+  function sweep(top) {
+    if (top.nodeType === 3) top = top.parentNode;
+    if (!top || top.nodeType !== 1) return;
+    if (top.closest('details:not([open])') && top.tagName !== 'DETAILS') return;
+    floor(top);
+    var all = top.getElementsByTagName('*');
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      if (el.tagName === 'DETAILS' && !el.open) {  // closed: only its summary is drawn; the rest is swept when it opens
+        var sum = el.querySelector('summary');
+        if (sum) { floor(sum); [].forEach.call(sum.getElementsByTagName('*'), floor); }
+        i += el.getElementsByTagName('*').length;
+        continue;
+      }
+      floor(el);
+    }
+  }
+  var pending = [];
+  function later(nodes) {
+    if (!pending.length) requestAnimationFrame(function () { var p = pending; pending = []; p.forEach(sweep); });
+    pending.push.apply(pending, nodes);
+  }
+  sweep(document.body);
+  document.addEventListener('toggle', function (e) { if (e.target.open) later([e.target]); }, true);
+  new MutationObserver(function (ms) { ms.forEach(function (m) { later([].slice.call(m.addedNodes)); }); })
+    .observe(document.body, { childList: true, subtree: true });
+  function show() {
+    var on = root.classList.contains('owsbig');
+    document.querySelectorAll('.owsbig-btn').forEach(function (b) {
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.textContent = on ? 'Normal text' : 'Larger text';
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.owsbig-btn');
+    if (!b) return;
+    var on = root.classList.toggle('owsbig');
+    try { localStorage.setItem(KEY, on ? 'large' : 'normal'); } catch (err) {}
+    show();
+  });
+  show();
+})();
+</script>
+<script data-home="../">
+(function () {
+  var root = document.documentElement, home = document.currentScript.getAttribute('data-home'), ja = root.classList.contains('owsja');
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.owslang-btn');
+    if (!b) return;
+    var to = ja ? 'en' : 'ja', u = new URL(location.href);
+    try { localStorage.setItem('ows-lang', to); } catch (err) {}
+    u.searchParams.set('lang', to);
+    location.href = u.toString();
+  });
+  if (!ja) return;
+  function ready() { root.classList.add('owsja-ready'); }
+  fetch(home + 'i18n/ja.json').then(function (r) { return r.json(); }).then(start).catch(function (e) { window.owsLangError = String(e && e.stack || e); ready(); });
+  function start(D) {
+    var norm = function (s) { return s.replace(/\s+/g, ' ').trim(); };
+    var pats = D.patterns.map(function (p) { return [new RegExp(p[0]), p[1]]; });
+    var esc = function (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); };
+    var refRe = new RegExp('^(' + Object.keys(D.books).sort(function (a, b) { return b.length - a.length; }).map(esc).join('|') + ') (\\d+)(?::(\\d+(?:[-,]\\d+)*))?$');
+    var abbrRe = new RegExp('^(' + Object.keys(D.bookAbbr).join('|') + ') (\\d+):(\\d+)$');
+    var OT = Object.keys(D.bookAbbr).slice(0, 39), page = (location.pathname.replace(/\/(index\.html)?$/, '').split('/').pop() || '');
+    /* Hebrew or Greek? The Hebrew word study, a Hebrew word (#H...) or an Old Testament chapter (#Gen.1) is Hebrew. */
+    function hebrew() { var h = location.hash.slice(1); return page === 'hebrew' || /^H\d/.test(h) || OT.indexOf(h.split(/[.\/]/)[0]) >= 0; }
+    var phrases = (D.grammarPhrases || []).map(function (p) { return [new RegExp(p[0], 'gi'), p[1]]; });
+    var tidy = (D.grammarTidy || []).map(function (p) { return [new RegExp(p[0], 'g'), p[1]]; });
+    function gram(s) {
+      phrases.forEach(function (p) { s = s.replace(p[0], p[1]); });
+      var parts = s.split(/(\s+|[·|,\/-]+)/), hit = false, out = [], heb = hebrew();
+      for (var i = 0; i < parts.length; i++) {
+        var w = parts[i];
+        if (!/[A-Za-z0-9]/.test(w)) { out.push(w); continue; }
+        var g = (!heb && D.grammarGreek && D.grammarGreek[w.toLowerCase()]) || D.grammar[w.toLowerCase()];
+        if (g === undefined) return null;
+        hit = true; out.push(g);
+      }
+      if (!hit) return null;
+      var r = out.join('').replace(/ +/g, ' ').trim();
+      tidy.forEach(function (p) { r = r.replace(p[0], p[1]); });
+      return r;
+    }
+    function tr(s) {
+      if (D.text[s] !== undefined) return D.text[s];
+      var m = refRe.exec(s);
+      if (m) return D.books[m[1]] + ' ' + m[2] + (m[3] ? ':' + m[3] : '章');
+      m = abbrRe.exec(s);
+      if (m) return D.bookAbbr[m[1]] + ' ' + m[2] + ':' + m[3];
+      for (var i = 0; i < pats.length; i++) {
+        m = pats[i][0].exec(s);
+        if (m) return pats[i][1].replace(/\{g:\$(\d)\}/g, function (_, n) { return gram(m[n]) || m[n]; })
+          .replace(/\{l:\$(\d)\}/g, function (_, n) {  // a list of names with notes in brackets, set in Japanese punctuation
+            var x = m[n].replace(/ \(([^)]*)\)/g, '（$1）').replace(/, /g, '、');
+            (D.listTerms || []).forEach(function (t) { x = x.split(t[0]).join(t[1]); });
+            return x; })
+          .replace(/\{\$(\d)\}/g, function (_, n) { return tr(m[n]) || D.books[m[n]] || m[n]; })
+          .replace(/\$(\d)/g, function (_, n) { return m[n]; });
+      }
+      return null;
+    }
+    var oneWordIn = D.oneWordIn, gramIn = D.grammarIn.join(','), abbrIn = D.abbrIn.join(',');
+    function text(n) {
+      var p = n.parentNode;
+      if (!p || p.nodeType !== 1 || /^(SCRIPT|STYLE|NOSCRIPT)$/.test(p.tagName)) return;
+      var raw = n.nodeValue, k = norm(raw);
+      if (!k || !/[A-Za-z]/.test(k)) return;
+      var r = null;
+      if (k.indexOf(' ') < 0 && D.text[k] !== undefined && !p.matches(oneWordIn)) r = null;
+      else r = tr(k);
+      if (p.tagName === 'OPTION' && D.grammarMenu && D.grammarMenu[k.toLowerCase()]) r = D.grammarMenu[k.toLowerCase()];
+      if (r === null && p.matches(gramIn)) r = gram(k);
+      if (r === null && p.closest(abbrIn) && D.bookAbbr[k]) r = D.bookAbbr[k];
+      if (r === null && p.tagName === 'OPTION' && D.books[k]) r = D.books[k];
+      if (r !== null && r !== k) n.nodeValue = raw.replace(/\S[\s\S]*\S|\S/, function () { return r; });
+    }
+    function block(el) {
+      if (!el.children.length || el.hasAttribute('data-ja')) return;
+      var t = el.textContent;
+      if (t.length > 1600) return;
+      var j = D.blocks[norm(t)];
+      if (j === undefined) return;
+      var kids = [].slice.call(el.children), frag = document.createDocumentFragment(), re = /<(\d+)>([\s\S]*?)<\/\1>/g, at = 0, m;
+      while ((m = re.exec(j))) {
+        if (m.index > at) frag.appendChild(document.createTextNode(j.slice(at, m.index)));
+        var c = kids[m[1] - 1] ? kids[m[1] - 1].cloneNode(false) : document.createElement('span');
+        c.textContent = m[2]; frag.appendChild(c); at = re.lastIndex;
+      }
+      if (at < j.length) frag.appendChild(document.createTextNode(j.slice(at)));
+      el.textContent = ''; el.appendChild(frag); el.setAttribute('data-ja', '1');
+    }
+    var ATTRS = ['placeholder', 'aria-label', 'title', 'alt'];
+    /* A label that is a list of books with a number ("John 1, Revelation 4"), as the charts give screen readers. */
+    function list(v) {
+      var parts = v.split(/, */), out = [];
+      for (var i = 0; i < parts.length; i++) {
+        var m = /^(.+?) (\d+)$/.exec(parts[i]);
+        if (!m || !D.books[m[1]]) return null;
+        out.push(D.books[m[1]] + ' ' + m[2]);
+      }
+      return out.length > 1 ? out.join('、') : null;
+    }
+    function attrs(el) {
+      for (var i = 0; i < ATTRS.length; i++) {
+        var v = el.getAttribute(ATTRS[i]);
+        if (v && /[A-Za-z]/.test(v)) { var r = tr(norm(v)); if (r === null) r = list(norm(v)); if (r !== null && r !== v) el.setAttribute(ATTRS[i], r); }
+      }
+    }
+    function sweep(top) {
+      if (top.nodeType === 3) { text(top); return; }
+      if (top.nodeType !== 1) return;
+      var up = top.closest('p,li');
+      if (up) block(up);
+      [].forEach.call(top.querySelectorAll('p,li'), block);
+      attrs(top);
+      [].forEach.call(top.querySelectorAll('[placeholder],[aria-label],[title],[alt]'), attrs);
+      var w = document.createTreeWalker(top, NodeFilter.SHOW_TEXT), n, all = [];
+      while ((n = w.nextNode())) all.push(n);
+      all.forEach(text);
+    }
+    var t0 = tr(norm(document.title)); if (t0) document.title = t0;
+    var bar = document.querySelector('.a2bar');
+    if (bar && D.note && page !== 'join' && page !== '') {  /* the group home and Join us have no English data on them */
+      var note = document.createElement('p'); note.className = 'owsja-note';
+      note.textContent = D.note + (D.pageNote && D.pageNote[page] ? ' ' + D.pageNote[page] : '');
+      bar.parentNode.insertBefore(note, bar.nextSibling);
+    }
+    sweep(document.body);
+    [].forEach.call(document.querySelectorAll('.owslang-btn'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        if (m.type === 'attributes') attrs(m.target);
+        else if (m.type === 'characterData') text(m.target);
+        else [].forEach.call(m.addedNodes, sweep);
+      });
+    }).observe(document.body, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ATTRS });
+    ready();
+  }
+})();
+</script>
+<!-- ows-feedback -->
+<style>
+.owsfb-btn { position: fixed; z-index: 50; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  font: 600 14px system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: #fff; background: #1c1917; border: 2px solid #fff;
+  border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.owsfb-btn:focus-visible, .owsfb button:focus-visible, .owsfb textarea:focus-visible, .owsfb input:focus-visible { outline: 3px solid #ffb800; outline-offset: 2px; }
+.owsfb { position: fixed; z-index: 51; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  width: min(380px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; box-sizing: border-box; padding: 16px;
+  font: 15px/1.6 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: #1c1917; background: #fff; border: 1px solid #a8a29e;
+  border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+.owsfb h2 { font: 650 17px/1.3 system-ui, -apple-system, "Hiragino Sans", sans-serif !important; margin: 0 0 6px; letter-spacing: 0; }
+.owsfb p { margin: 0 0 10px; font-size: 14px; color: #44403c; }
+.owsfb label { display: block; font-size: 14px; font-weight: 600; margin: 8px 0 4px; }
+.owsfb textarea, .owsfb input { width: 100%; box-sizing: border-box; font: inherit; color: inherit; background: #fff; border: 1px solid #78716c; border-radius: 8px; padding: 8px; }
+.owsfb textarea { min-height: 110px; resize: vertical; }
+.owsfb .row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.owsfb button { font: 600 15px system-ui, sans-serif; min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid #1c1917; background: #fff; color: #1c1917; cursor: pointer; }
+.owsfb button.send { background: #1c1917; color: #fff; }
+.owsfb .msg { font-weight: 600; color: #1c1917; }
+@media (prefers-color-scheme: dark) {
+  .owsfb { color: #e7e5e4; background: #292524; border-color: #57534e; } .owsfb p { color: #d6d3d1; } .owsfb .msg { color: #e7e5e4; }
+  .owsfb textarea, .owsfb input { background: #1c1917; border-color: #a8a29e; }
+  .owsfb button { background: #292524; color: #e7e5e4; border-color: #e7e5e4; } .owsfb button.send { background: #e7e5e4; color: #1c1917; }
+}
+</style>
+<script>
+(function () {
+  var CFG = {"endpoint": "https://docs.google.com/forms/d/e/1FAIpQLScbdIFMa6fK2oNm-3XzsN3w24x-2OJOV3LlElWYLEPMZq3wag/formResponse", "fields": {"message": "entry.1109621352", "page": "entry.1392149875", "lang": "entry.1696363649", "contact": "entry.720795985"}, "page": "workshop"}, root = document.documentElement;
+  var S = {
+    btn: ['Feedback', 'ご意見'], title: ['Tell us what you think', 'ご意見をお聞かせください'],
+    lead: ['What helped, what did not, what is missing? A mistake in the data is useful too.', '役に立った点、使いにくい点、足りないもの。データの誤りの指摘も助かります。'],
+    msg: ['Your note', 'ご意見'], contact: ['Email, only if you would like a reply (optional)', 'メールアドレス（返信が必要な場合のみ・任意）'],
+    priv: ['Your note goes to a Google Form, so Google receives it, as it does any web request. Sent with it: the name of this page and its language, and your email only if you write one. No account and no tracking on this site. Your words are read privately and are not published.',
+           'ご意見は Google フォームに送られるため、通常のウェブの通信と同じく Google が受け取ります。一緒に送られるのは、このページの名前と表示言語だけです（メールアドレスは書いた場合のみ）。このサイトにはアカウントも追跡もありません。いただいた文面は非公開で読み、公開しません。'],
+    send: ['Send', '送信'], close: ['Close', '閉じる'], empty: ['Please write a few words first.', '先にひとことお書きください。'],
+    ok: ['Sent. Thank you.', '送信しました。ありがとうございます。'],
+    fail: ['Could not send. Your note is still here; please check your connection and try again.', '送信できませんでした。文面は残っています。接続を確認して、もう一度お試しください。'],
+    preview: ['Preview only: the form is not connected yet, so nothing was sent.', 'プレビューです。フォームがまだつながっていないため、送信されていません。']
+  };
+  function ja() { return window.WS && WS.state ? WS.state.lang !== 'en' : root.classList.contains('owsja'); }
+  function s(k) { return S[k][ja() ? 1 : 0]; }
+  var btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'owsfb-btn'; btn.setAttribute('aria-haspopup', 'dialog');
+  function label() { btn.textContent = s('btn'); }
+  label(); setTimeout(label, 3000);
+  document.body.appendChild(btn);
+  var box = null;
+  function close() { if (box) { box.remove(); box = null; btn.hidden = false; btn.focus(); } }
+  function esc(x) { return x.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  btn.addEventListener('click', function () {
+    label();
+    box = document.createElement('div');
+    box.className = 'owsfb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-labelledby', 'owsfb-t'); box.lang = ja() ? 'ja' : 'en';
+    box.innerHTML = '<h2 id="owsfb-t">' + esc(s('title')) + '</h2><p>' + esc(s('lead')) + '</p>' +
+      '<label for="owsfb-m">' + esc(s('msg')) + '</label><textarea id="owsfb-m" maxlength="4000"></textarea>' +
+      '<label for="owsfb-c">' + esc(s('contact')) + '</label><input id="owsfb-c" type="email" autocomplete="off" maxlength="200">' +
+      '<p style="margin-top:10px">' + esc(s('priv')) + '</p><p class="msg" role="status" aria-live="polite"></p>' +
+      '<div class="row"><button type="button" class="x">' + esc(s('close')) + '</button><button type="button" class="send">' + esc(s('send')) + '</button></div>';
+    document.body.appendChild(box); btn.hidden = true;
+    var m = box.querySelector('#owsfb-m'), c = box.querySelector('#owsfb-c'), out = box.querySelector('.msg');
+    m.focus();
+    box.querySelector('.x').addEventListener('click', close);
+    box.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    box.querySelector('.send').addEventListener('click', function () {
+      var text = m.value.trim();
+      if (!text) { out.textContent = s('empty'); m.focus(); return; }
+      if (!CFG.endpoint) { out.textContent = s('preview'); return; }
+      var body = new URLSearchParams(), f = CFG.fields;
+      body.set(f.message, text); body.set(f.page, CFG.page); body.set(f.lang, ja() ? 'ja' : 'en');
+      if (c.value.trim()) body.set(f.contact, c.value.trim());
+      // no-cors: the browser sends the note and tells the page nothing back, so "Sent" means the request left without a network error
+      fetch(CFG.endpoint, { method: 'POST', mode: 'no-cors', body: body, credentials: 'omit', referrerPolicy: 'no-referrer' }).then(function () {
+        out.textContent = s('ok'); m.value = ''; c.value = ''; box.querySelector('.send').hidden = true;
+      }, function () { out.textContent = s('fail'); });
+    });
+  });
+})();
+</script>
+<!-- ows-updates -->
+<style>
+.owsup { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 0; box-sizing: border-box;
+  padding: 6px max(12px, env(safe-area-inset-right, 0px)) 6px max(12px, env(safe-area-inset-left, 0px));
+  font: 500 14px/1.4 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; background: #e8f1f8; color: #12324a; border-bottom: 1px solid #b9d3e6; }
+.owsup a { color: inherit; font-weight: 700; }
+.owsup button { font: inherit; line-height: 1; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px;
+  min-width: 32px; min-height: 32px; padding: 0 8px; cursor: pointer; }
+.owsup a:focus-visible, .owsup button:focus-visible { outline: 3px solid #0069a8; outline-offset: 2px; }
+@media (prefers-color-scheme: dark) { .owsup { background: #12324a; color: #e3f0fa; border-bottom-color: #2b5677; } }
+</style>
+<script data-home="../">
+(function () {
+  var LATEST = "2026-11-23#38", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var seen = null;
+  try { seen = localStorage.getItem(KEY); } catch (e) {}
+  if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
+  if (seen && seen >= LATEST) return;
+  function ja() { return window.WS && WS.state ? WS.state.lang !== 'en' : root.classList.contains('owsja'); }
+  function put() {
+    var bar = document.createElement('div'), j = ja();
+    bar.className = 'owsup'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', j ? '更新情報' : 'Updates');
+    bar.setAttribute('data-ja', '1'); bar.lang = j ? 'ja' : 'en';
+    var a = document.createElement('a'); a.href = HOME + 'updates/' + (j ? '?lang=ja' : ''); a.textContent = j ? '更新情報があります' : 'New updates';
+    var x = document.createElement('button'); x.type = 'button'; x.textContent = '\u00d7'; x.setAttribute('aria-label', j ? '閉じる' : 'Close');
+    x.addEventListener('click', function () { try { localStorage.setItem(KEY, LATEST); } catch (e) {} bar.remove(); });
+    bar.appendChild(a); bar.appendChild(x);
+    var spot = document.getElementById('notices');
+    if (spot) spot.insertBefore(bar, spot.firstChild); else document.body.insertBefore(bar, document.body.firstChild);
+  }
+  if (document.body) put(); else document.addEventListener('DOMContentLoaded', put);
+})();
+</script>
+
+</html>

@@ -13,6 +13,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/"/>
   </url>
   <url>
+    <loc>https://open-scripture-systems.github.io/workshop/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/workshop/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/workshop/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/workshop/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/workshop/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/workshop/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/workshop/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/workshop/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/join/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/join/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/join/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/join/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/join/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/join/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/join/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/join/"/>
+  </url>
+  <url>
     <loc>https://open-scripture-systems.github.io/workspace/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/workspace/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/workspace/?lang=ja"/>
