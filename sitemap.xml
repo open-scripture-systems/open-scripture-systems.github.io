@@ -37,6 +37,42 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/join/"/>
   </url>
   <url>
+    <loc>https://open-scripture-systems.github.io/lab/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/lab/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/lab/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/lab/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/lab/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/lab/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/lab/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/lab/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/lab/translation-benchmark/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/lab/translation-benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/lab/translation-benchmark/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/lab/translation-benchmark/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/lab/translation-benchmark/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/lab/translation-benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/lab/translation-benchmark/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/lab/translation-benchmark/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/lab/translation-system/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/lab/translation-system/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/lab/translation-system/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/lab/translation-system/"/>
+  </url>
+  <url>
+    <loc>https://open-scripture-systems.github.io/lab/translation-system/?lang=ja</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/lab/translation-system/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/lab/translation-system/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://open-scripture-systems.github.io/lab/translation-system/"/>
+  </url>
+  <url>
     <loc>https://open-scripture-systems.github.io/workspace/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://open-scripture-systems.github.io/workspace/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://open-scripture-systems.github.io/workspace/?lang=ja"/>

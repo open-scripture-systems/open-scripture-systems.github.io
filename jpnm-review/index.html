@@ -568,10 +568,12 @@ if(window.claude&&window.claude.use){
 <script data-home="../">
 (function () {
   var root = document.documentElement, home = document.currentScript.getAttribute('data-home'), ja = root.classList.contains('owsja');
+  [].forEach.call(document.querySelectorAll('.owslang-btn[data-lang]'), function (b) { b.setAttribute('aria-pressed', String((b.getAttribute('data-lang') === 'ja') === ja)); });
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('.owslang-btn');
     if (!b) return;
-    var to = ja ? 'en' : 'ja', u = new URL(location.href);
+    var to = b.getAttribute('data-lang') || (ja ? 'en' : 'ja'), u = new URL(location.href);
+    if ((to === 'ja') === ja) return;
     try { localStorage.setItem('ows-lang', to); } catch (err) {}
     u.searchParams.set('lang', to);
     location.href = u.toString();
@@ -684,13 +686,13 @@ if(window.claude&&window.claude.use){
     }
     var t0 = tr(norm(document.title)); if (t0) document.title = t0;
     var bar = document.querySelector('.a2bar');
-    if (bar && D.note && page !== 'join' && page !== '') {  /* the group home and Join us have no English data on them */
+    if (bar && D.note && ['', 'join', 'lab', 'translation-benchmark', 'translation-system'].indexOf(page) < 0 && !document.body.classList.contains('ows-page')) {  /* the group's own pages have no English data on them */
       var note = document.createElement('p'); note.className = 'owsja-note';
       note.textContent = D.note + (D.pageNote && D.pageNote[page] ? ' ' + D.pageNote[page] : '');
       bar.parentNode.insertBefore(note, bar.nextSibling);
     }
     sweep(document.body);
-    [].forEach.call(document.querySelectorAll('.owslang-btn'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
+    [].forEach.call(document.querySelectorAll('.owslang-btn:not([data-lang])'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
     new MutationObserver(function (ms) {
       ms.forEach(function (m) {
         if (m.type === 'attributes') attrs(m.target);

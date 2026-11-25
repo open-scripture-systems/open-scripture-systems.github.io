@@ -49,7 +49,9 @@
             (alt && WS.covers(alt === 'hebrew' ? 'hbo' : 'bungo') ? '<p><button class="btn" data-open-alt="' + alt + '">' + esc(t(alt === 'hebrew' ? 'openHebrew' : 'openBungo')) + '</button></p>' : '');
           return;
         }
-        el.innerHTML = heading(WS.textName(id)) + verseNumbers().map(function (v) {
+        /* a text can carry a one-line note shown above its verses (the Freedom Bible: a draft, with no word alignment) */
+        var note = info.note ? '<p class="small tnote">' + esc(state.lang === 'en' ? info.note.en : state.lang === 'ja' ? info.note.ja : info.note.ja + ' ' + info.note.en) + '</p>' : '';
+        el.innerHTML = heading(WS.textName(id)) + note + verseNumbers().map(function (v) {
           var html = WS.verseHTML(id, v);
           if (!html) return '';
           var vn = WS.vnote && WS.vnote(state.book, state.ch, v);
@@ -122,7 +124,7 @@
    * Differences are marked inside one language only, against the first version of that language in view:
    * English word by word (case and punctuation ignored), Japanese character by character (punctuation ignored;
    * an old character form counts as a different character). Greek is never marked. */
-  var ORDER = ['kougo', 'denmo', 'bungo', 'grc', 'bsb', 'web', 'kjv'];
+  var ORDER = ['kougo', 'denmo', 'jpnm', 'bungo', 'grc', 'bsb', 'web', 'kjv'];
   var PUNCT = /[\s、。，．・「」『』（）()\[\]―…！？!?,.;:'"“”‘’\-]/;
   /* which items of b are not part of the longest common subsequence with a */
   function differs(a, b) {
@@ -346,6 +348,7 @@
   WS.panel({ id: 'kougo', component: 'bible', params: { text: 'kougo' }, text: 'kougo', group: 'texts', build: bible });
   WS.panel({ id: 'bungo', component: 'bible', params: { text: 'bungo' }, text: 'bungo', group: 'texts' });
   WS.panel({ id: 'denmo', component: 'bible', params: { text: 'denmo' }, text: 'denmo', group: 'texts' });
+  WS.panel({ id: 'jpnm', component: 'bible', params: { text: 'jpnm' }, text: 'jpnm', group: 'texts' });
   WS.panel({ id: 'bsb', component: 'bible', params: { text: 'bsb' }, text: 'bsb', group: 'texts' });
   WS.panel({ id: 'web', component: 'bible', params: { text: 'web' }, text: 'web', group: 'texts' });
   WS.panel({ id: 'kjv', component: 'bible', params: { text: 'kjv' }, text: 'kjv', group: 'texts' });

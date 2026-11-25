@@ -151,6 +151,15 @@ window.WS = (function () {
   /* The Japanese text the layouts, search and the draft alignment start from. The build names it (manifest.ja), so a
    * site can be published with one Japanese translation or another without a change to the page. */
   function J() { return (manifest && manifest.ja) || 'kougo'; }
+  /* The Japanese text a new layout opens with: the Freedom Bible when the build has it (Kentaro, 2026-11-25:
+   * "フリーダム訳を最初に"), else J(). J() stays one tab behind it and keeps the draft alignment and search.
+   * A layout the reader already has (saved in this browser) is kept as it is. */
+  function JD() { return manifest && manifest.texts && manifest.texts.jpnm ? 'jpnm' : J(); }
+  function addJa(position) {
+    add(JD(), position);
+    if (JD() !== J()) add(J(), { referencePanel: JD(), direction: 'within' });
+    dock.getPanel(JD()).api.setActive();
+  }
   function textPath(id, key) { return 't/' + id + '/' + (key || here()) + '.json'; }
   /* Load the named texts for the chapter in view, and the draft alignment only while the flag is on. */
   /* Does this text have the book? A text that lists its books has only those (Greek: the NT; Hebrew: the OT). */
@@ -529,12 +538,12 @@ window.WS = (function () {
   }
   var DEFAULTS = {
     nichiei: function () {
-      add(J()); add('greek', { referencePanel: J(), direction: 'right' });
+      addJa(); add('greek', { referencePanel: JD(), direction: 'right' });
       add('bsb', { referencePanel: 'greek', direction: 'right' }); add('word', { referencePanel: 'bsb', direction: 'below' });
     },
     /* Passage study: Bible, commentary, details */
     passage: function () {
-      add('bsb'); add(J(), { referencePanel: 'bsb', direction: 'within' });
+      add('bsb'); addJa({ referencePanel: 'bsb', direction: 'within' });
       add('parallel', { referencePanel: 'bsb', direction: 'within' });
       add('commentary', { referencePanel: 'bsb', direction: 'right' });
       add('word', { referencePanel: 'commentary', direction: 'right' });
@@ -543,17 +552,17 @@ window.WS = (function () {
     },
     /* Guided study: the guide beside the text, the Greek, cross references and notes */
     guided: function () {
-      add('guide'); add(J(), { referencePanel: 'guide', direction: 'right' });
-      add('greek', { referencePanel: J(), direction: 'within' });
-      add('xrefs', { referencePanel: J(), direction: 'below' }); add('notes', { referencePanel: 'xrefs', direction: 'within' });
-      dock.getPanel(J()).api.setActive(); dock.getPanel('xrefs').api.setActive();
+      add('guide'); addJa({ referencePanel: 'guide', direction: 'right' });
+      add('greek', { referencePanel: JD(), direction: 'within' });
+      add('xrefs', { referencePanel: JD(), direction: 'below' }); add('notes', { referencePanel: 'xrefs', direction: 'within' });
+      dock.getPanel(JD()).api.setActive(); dock.getPanel('xrefs').api.setActive();
     },
     /* Word study: Bible, Word Study, lexicon */
     word: function () {
       add('greek'); add('word', { referencePanel: 'greek', direction: 'right' });
       add('lexicon', { referencePanel: 'word', direction: 'right' });
-      add(J(), { referencePanel: 'greek', direction: 'below' }); add('notes', { referencePanel: J(), direction: 'within' });
-      dock.getPanel(J()).api.setActive();
+      addJa({ referencePanel: 'greek', direction: 'below' }); add('notes', { referencePanel: JD(), direction: 'within' });
+      dock.getPanel(JD()).api.setActive();
     }
   };
   /* Phone: the same panels as tabs in two stacked tiles (texts above, study below), as Logos and AndBible do.
@@ -565,7 +574,13 @@ window.WS = (function () {
     guided: [['guide', '@ja', 'greek'], ['xrefs', 'notes', 'word']]
   };
   var PHONE = {};
-  function phoneRows(name) { return PHONE_[name].map(function (ids) { return ids.map(function (id) { return id === '@ja' ? J() : id; }); }); }
+  function phoneRows(name) {
+    return PHONE_[name].map(function (ids) {
+      var row = [];
+      ids.forEach(function (id) { if (id !== '@ja') row.push(id); else { row.push(JD()); if (JD() !== J()) row.push(J()); } });
+      return row;
+    });
+  }
   function layoutKey(name) { return 'ws.layout.' + name + (narrow() ? '.phone' : ''); }
   function phoneLayout(name) {
     PHONE[name] = phoneRows(name);

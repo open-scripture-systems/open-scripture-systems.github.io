@@ -36,6 +36,8 @@ button { cursor: pointer; }
 #cmd { flex: 1 1 220px; min-width: 160px; }
 #cmdBox { width: 100%; height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
 .chap { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+/* The language and text-size controls sit at the right end of the top bar, as on every page of the site (design/). */
+.wsctl { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
 .seg button { border: 0; background: transparent; padding: 5px 10px; }
 .seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
@@ -148,8 +150,8 @@ a { color: var(--accent); }
   #railToggle { order: 0; }
   .chap { order: 2; flex: 1 1 auto; }
   .chap #chLabel { overflow: hidden; text-overflow: ellipsis; max-width: 46vw; font-size: 13px; }
-  .seg { order: 3; } .lay { order: 4; } .flag { order: 5; font-size: 12px; }
-  .top .bigbtn { order: 1; min-width: 40px; padding: 0 6px; } .top .bigbtn .lbl { display: none; } .top .bigbtn .glyph { display: inline; }
+  .wsctl { order: 0; gap: 6px; } #cmd { flex-basis: 100%; } .lay { order: 4; } .flag { order: 5; font-size: 12px; }
+  .top .bigbtn { min-width: 40px; padding: 0 6px; } .top .bigbtn .lbl { display: none; } .top .bigbtn .glyph { display: inline; }
   .seg button { padding: 5px 7px; }
   .lay select { max-width: 34vw; margin-left: 0; }
   .body { position: relative; }

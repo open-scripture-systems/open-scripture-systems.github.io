@@ -101,32 +101,130 @@ svg { display: block; width: 100%; height: auto; }
 .note { margin-top: 28px; font-size: 13px; color: var(--ink-2); max-width: 80ch; }
 </style>
 
-
+<!-- ows-tokens: design/tokens.css -->
 <style>
+/* Open Scripture Systems design tokens. The one source of truth for color, type, spacing, radius and focus.
+
+   scripts/build_site.py puts this file inline in the head of every generated page (the tools, the group pages, the Lab,
+   sources, updates, the gallery) and before app.css in the Study Workspace. Pages use var(--name); a color written as a
+   literal anywhere else fails scripts/check_design.py (make check), unless it is one of the values defined here.
+
+   The values are the ones the site already rendered on 2026-11-25 (extracted, not invented). Names the tool templates
+   already use (--paper, --ink, --accent, --s1 ...) keep their names so nothing changes on screen.
+   Contrast: every text pair listed in design/README.md meets WCAG AA in both themes (tests/test_design.py computes it). */
+
 :root {
-  --paper: #f3f1f1; --sheet: #ffffff; --ink: #1c1917; --ink-2: #473c39; --rule: rgba(71, 60, 57, 0.18); --focus: #0069a8;
-  --accent: #0069a8; --bar: #0069a8; --person: #0069a8; --place: #047857; --other: #a35f00;
+  /* ---- Surfaces and text ---- */
+  --paper: #f3f1f1;          /* page background */
+  --sheet: #ffffff;          /* cards, panels, inputs */
+  --ink: #1c1917;            /* body text */
+  --ink-2: #473c39;          /* secondary text (AA on paper and sheet) */
+  --rule: rgba(71, 60, 57, 0.18); /* hairlines and card borders (decoration, not text) */
+  --accent: #0069a8;         /* links, the main interactive color */
+  --focus: #0069a8;          /* focus ring */
+  --bar: #0069a8;            /* charts: the one-series bar */
+  --brand: #1f3a5f;          /* the group's navy: main call-to-action buttons, theme-color */
+  --on-brand: #ffffff;
+
+  /* ---- Meaning: labels on scripture, added words, conflicts, drafts ---- */
+  --scripture: #047857;      /* text of the Bible itself */
+  --added: #8a4b00;          /* words a translation added, machine work, anything not in the source */
+  --conflict: #9f1239;       /* sources disagree, a variant, a warning */
+  --draft-bg: #fff0d6;       /* draft and "under construction" banners */
+  --draft-ink: #8a4b00;
+  --draft-line: #e0a84f;
+
+  /* ---- Data colors the tools already use (kept by name) ---- */
+  --person: #0069a8; --place: #047857; --other: #a35f00;
   --s1: #0069a8; --s2: #009966; --s3: #d48c00; --s4: #1d1816; --s5: #7a4f9e; --s6: #c2410c; --s7: #0e7490; --s8: #65a30d; --s9: #9f1239; --s0: #a89e93;
   --l1: #b45309; --l2: #0069a8; --l3: #047857; --l4: #9f1239; --l5: #4d7c0f; --l6: #6d28d9;
   --rare: #9f1239; --rep: #047857; --var: #a35f00; --c1: #0069a8; --c2: #a35f00; --c3: #047857; --c4: #9f1239;
   --ot: #8a4b00; --nt: #0069a8; --note: #047857; --name: #9f1239;
-  --body: "Archivo", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; --display: "Archivo", system-ui, sans-serif;
-  --a2-ui: "Inter", system-ui, sans-serif;
+
+  /* ---- The feature panel (the Study Workspace card on the tool shelf): dark in both themes ---- */
+  --feature-bg: #13263d; --feature-ink: #eef4fb; --feature-muted: #d6e2ef; --feature-kicker: #a9c7e8;
+  --feature-cta: #ffd166; --feature-cta-hover: #ffe08f; --feature-cta-ink: #13263d;
+  --feature-tile: #2a4a6e; --feature-tile-2: #34597f; --feature-tile-line: #4a7099;
+
+  /* ---- Shared chrome injected on every page (feedback button, updates notice). Own names so a page's palette
+         (the Study Workspace redefines --ink and --accent) never changes them. ---- */
+  --ows-fab-bg: #1c1917; --ows-fab-ink: #ffffff; --ows-fab-focus: #ffb800;
+  --ows-panel-bg: #ffffff; --ows-panel-ink: #1c1917; --ows-panel-muted: #44403c; --ows-panel-line: #a8a29e;
+  --ows-field-bg: #ffffff; --ows-field-line: #78716c;
+  --ows-notice-bg: #e8f1f8; --ows-notice-ink: #12324a; --ows-notice-line: #b9d3e6; --ows-notice-focus: #0069a8;
+  --ows-shadow: rgba(0, 0, 0, 0.25); --ows-shadow-strong: rgba(0, 0, 0, 0.3);
+  --ows-video-bg: #000000;
+
+  /* ---- Type ---- */
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body: "Archivo", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Archivo", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --greek: "Gentium Book Plus", "Gentium Plus", "SBL Greek", "Times New Roman", serif;
+  --hebrew: "SBL Hebrew", "Ezra SIL", "Noto Serif Hebrew", "Times New Roman", serif;
+  --ja-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  --ja-serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --a2-ui: var(--font-ui);   /* older name, still used by tool pages */
+  --fs-sm: 14px;             /* the floor: nothing on the site is drawn smaller (the text-size script raises it) */
+  --fs-base: 16px;
+  --fs-md: 18px;             /* lede paragraphs */
+  --fs-lg: 22px;             /* h2 */
+  --fs-xl: 28px;
+  --fs-display: clamp(30px, 5vw, 46px); /* h1 */
+  --lh-body: 1.6; --lh-tight: 1.1;
+  --measure: 62ch;           /* longest comfortable line */
+
+  /* ---- Space, size, shape ---- */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 40px; --sp-8: 56px;
+  --page-max: 1180px;        /* tool pages */
+  --col-max: 760px;          /* reading pages: group home, Join us, Lab, sources, updates */
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --tap: 44px;               /* smallest touch target */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-pill: 999px;
+  --focus-width: 3px; --focus-offset: 2px;
 }
+
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --paper: #1d1816; --sheet: #241f1d; --ink: #e7e5e4; --ink-2: #d8d2d0; --rule: rgba(255, 255, 255, 0.14); --focus: #ffb800;
-  --accent: #6cb6ea; --bar: #6cb6ea; --person: #6cb6ea; --place: #34c38f; --other: #ffb800;
+  --paper: #1d1816; --sheet: #241f1d; --ink: #e7e5e4; --ink-2: #d8d2d0; --rule: rgba(255, 255, 255, 0.14);
+  --accent: #6cb6ea; --focus: #ffb800; --bar: #6cb6ea; --brand: #1f3a5f; --on-brand: #ffffff;
+  --scripture: #34c38f; --added: #ffb800; --conflict: #f27a9a; --draft-bg: #3a2a10; --draft-ink: #ffc56e; --draft-line: #7a5a20;
+  --person: #6cb6ea; --place: #34c38f; --other: #ffb800;
   --s1: #6cb6ea; --s2: #34c38f; --s3: #ffb800; --s4: #d8d2d0; --s5: #c4a3e6; --s6: #f08a5d; --s7: #5fd3e6; --s8: #a3d65c; --s9: #f27a9a; --s0: #78716c;
   --l1: #ffb800; --l2: #6cb6ea; --l3: #34c38f; --l4: #f27a9a; --l5: #a3d65c; --l6: #c4a3e6;
   --rare: #f27a9a; --rep: #34c38f; --var: #ffb800; --c1: #6cb6ea; --c2: #ffb800; --c3: #34c38f; --c4: #f27a9a;
-  --ot: #ffb800; --nt: #6cb6ea; --note: #34c38f; --name: #f27a9a; color-scheme: dark; } }
+  --ot: #ffb800; --nt: #6cb6ea; --note: #34c38f; --name: #f27a9a;
+  --ows-panel-bg: #292524; --ows-panel-ink: #e7e5e4; --ows-panel-muted: #d6d3d1; --ows-panel-line: #57534e;
+  --ows-field-bg: #1c1917; --ows-field-line: #a8a29e;
+  --ows-notice-bg: #12324a; --ows-notice-ink: #e3f0fa; --ows-notice-line: #2b5677; --ows-notice-focus: #ffb800;
+  color-scheme: dark; } }
+
+:root[data-theme="dark"] {
+  --paper: #1d1816; --sheet: #241f1d; --ink: #e7e5e4; --ink-2: #d8d2d0; --rule: rgba(255, 255, 255, 0.14);
+  --accent: #6cb6ea; --focus: #ffb800; --bar: #6cb6ea; --brand: #1f3a5f; --on-brand: #ffffff;
+  --scripture: #34c38f; --added: #ffb800; --conflict: #f27a9a; --draft-bg: #3a2a10; --draft-ink: #ffc56e; --draft-line: #7a5a20;
+  --person: #6cb6ea; --place: #34c38f; --other: #ffb800;
+  --s1: #6cb6ea; --s2: #34c38f; --s3: #ffb800; --s4: #d8d2d0; --s5: #c4a3e6; --s6: #f08a5d; --s7: #5fd3e6; --s8: #a3d65c; --s9: #f27a9a; --s0: #78716c;
+  --l1: #ffb800; --l2: #6cb6ea; --l3: #34c38f; --l4: #f27a9a; --l5: #a3d65c; --l6: #c4a3e6;
+  --rare: #f27a9a; --rep: #34c38f; --var: #ffb800; --c1: #6cb6ea; --c2: #ffb800; --c3: #34c38f; --c4: #f27a9a;
+  --ot: #ffb800; --nt: #6cb6ea; --note: #34c38f; --name: #f27a9a;
+  --ows-panel-bg: #292524; --ows-panel-ink: #e7e5e4; --ows-panel-muted: #d6d3d1; --ows-panel-line: #57534e;
+  --ows-field-bg: #1c1917; --ows-field-line: #a8a29e;
+  --ows-notice-bg: #12324a; --ows-notice-ink: #e3f0fa; --ows-notice-line: #2b5677; --ows-notice-focus: #ffb800;
+  color-scheme: dark;
+}
+</style>
+
+<style>
 body { font-family: var(--body); }
 h1, h2 { font-family: var(--display) !important; font-weight: 650 !important; letter-spacing: -0.01em; }
 h1 { font-size: clamp(30px, 5vw, 46px) !important; line-height: 1.05 !important; }
 .panel, .box, .text, .words, .card, .cond { border-radius: 24px !important; }
 .label, .eyebrow, th { font-family: var(--a2-ui) !important; }
-.a2bar { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; justify-content: space-between; max-width: 1180px; margin: 12px auto 0;
-  padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); font: 500 14px var(--a2-ui); }
+.a2bar { gap: 8px 16px; align-items: start; max-width: var(--page-max); margin: 12px auto 0;
+  padding-block: 10px; padding-left: var(--gutter); padding-right: var(--gutter-r); font: 500 14px var(--font-ui); }
+.a2links { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; flex: 1 1 auto; min-width: 0; min-height: var(--tap); }
+.a2home .a2ico { width: 18px; height: 18px; }
 .a2bar a { color: var(--ink); text-decoration: none; font-weight: 600; }
 .a2bar a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .a2bar span { color: var(--ink-2); }
@@ -139,17 +237,38 @@ h1 { font-size: clamp(30px, 5vw, 46px) !important; line-height: 1.05 !important;
 .owsload a { color: inherit; }
 </style>
 <style>
-.owsctl { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
-.owsbig-btn, .owslang-btn { font: 600 15px var(--a2-ui, system-ui, sans-serif); color: var(--ink, #1c1917); background: var(--sheet, #fff);
-  border: 2px solid currentColor; border-radius: 999px; padding: 8px 16px; min-height: 44px; cursor: pointer; }
-.owsbig-btn:hover, .owslang-btn:hover { background: var(--paper, #f3f1f1); }
-.owsbig-btn:focus-visible, .owslang-btn:focus-visible { outline: 3px solid var(--focus, #0069a8); outline-offset: 2px; }
-.owsbig-btn[aria-pressed="true"] { background: var(--ink, #1c1917); color: var(--sheet, #fff); }
+/* Header controls: one row, top right. Below 480px (600px in larger text) the bar stacks and the controls stay on top, right. */
+.a2bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.a2bar-home { grid-template-columns: minmax(0, 1fr); }
+.owsctl { grid-column: -2; grid-row: 1; justify-self: end; display: flex; flex-wrap: nowrap; gap: var(--sp-2); align-items: center; }
+.owsseg { display: inline-flex; }
+.owslang-btn, .owsbig-btn { font: 600 15px/1 var(--font-ui); color: var(--ink); background: var(--sheet); border: 2px solid var(--ink);
+  min-height: var(--tap); min-width: var(--tap); padding: 0 14px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin: 0; }
+.owsseg .owslang-btn:first-child { border-radius: var(--r-pill) 0 0 var(--r-pill); border-right-width: 1px; }
+.owsseg .owslang-btn:last-child { border-radius: 0 var(--r-pill) var(--r-pill) 0; border-left-width: 1px; }
+.owsbig-btn { border-radius: var(--r-pill); }
+.owslang-btn:hover, .owsbig-btn:hover { background: var(--paper); }
+.owslang-btn[aria-pressed="true"], .owsbig-btn[aria-pressed="true"] { background: var(--ink); color: var(--sheet); }
+.owslang-btn:focus-visible, .owsbig-btn:focus-visible { outline: var(--focus-width) solid var(--focus); outline-offset: var(--focus-offset); position: relative; z-index: 1; }
+.a2bar .owsctl span { color: inherit; }
+.owsbig-glyph { font-weight: 700; }
+.owsbig-btn[aria-pressed="true"] .owsbig-glyph::after { content: "−"; margin-left: 2px; }
+.owsbig-btn[aria-pressed="false"] .owsbig-glyph::after { content: "+"; margin-left: 2px; }
+@media (max-width: 599px) {
+  .owsbig-lbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .owslang-btn, .owsbig-btn { padding: 0 10px; }
+  html.owsbig .a2bar { grid-template-columns: minmax(0, 1fr); }
+  html.owsbig .owsctl { grid-column: 1; }
+}
+@media (max-width: 479px) { .a2bar { grid-template-columns: minmax(0, 1fr); } .owsctl { grid-column: 1; } }
+.a2links { grid-row: 1; }
+@media (max-width: 479px) { .a2links { grid-row: 2; } }
+@media (max-width: 599px) { html.owsbig .a2links { grid-row: 2; } }
+</style>
+<style>
 .a2bar-home { justify-content: flex-end; }
 html.owsbig body { zoom: 1.25; }
 html.owsbig { --ink-2: var(--ink); --muted: var(--fg, var(--ink)); }
-html.owsbig .owsctl { zoom: 0.8; }
-html.owsbig .owsctl button { font-size: 19px; min-height: 55px; }
 html.owsbig :is(p, li, td, dd, blockquote) { line-height: 1.7; }
 html.owsbig a { text-decoration-thickness: 2px; text-underline-offset: 3px; }
 html.owsbig :is(button, select, input, [role="button"], [role="tab"], [role="option"]) { min-height: 44px; }
@@ -163,7 +282,7 @@ addEventListener('error', function (e) {
   if (s) s.innerHTML = 'Something went wrong starting this tool. <a href="">Reload the page</a>, or try a newer browser.';
 });
 </script>
-<nav class="a2bar" aria-label="Site"><style>.a2home{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 8px;border:1px solid currentColor;border-radius:999px;font-weight:600;text-decoration:none}.a2home .a2ico{flex:none}.a2name{font-weight:600}</style><a class="a2home" href="../"><svg class="a2ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg><span>Home</span></a><span class="a2name"><picture class="osslogo" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="28" height="28" alt="" style="display:block"></picture>Word of God Workshop</span><a class="a2ws" href="../workspace/">Study Workspace</a><span>Free Bible study tools from open data</span><span class="owsctl"><button type="button" class="owslang-btn" lang="ja">日本語</button><button type="button" class="owsbig-btn" aria-pressed="false">Larger text</button></span></nav>
+<nav class="a2bar" aria-label="Site"><div class="a2links"><style>.a2home{display:inline-flex;align-items:center;gap:6px;padding:4px 12px 4px 8px;border:1px solid currentColor;border-radius:999px;font-weight:600;text-decoration:none}.a2home .a2ico{flex:none}.a2name{font-weight:600}</style><a class="a2home" href="../"><svg class="a2ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 11.2 12 4l9 7.2V20a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="currentColor"/></svg><span>Home</span></a><span class="a2name"><picture class="osslogo" style="display:inline-flex;flex:none;vertical-align:middle"><source srcset="../brand/oss-mark-dark.svg" media="(prefers-color-scheme: dark)"><img src="../brand/oss-mark.svg" width="28" height="28" alt="" style="display:block"></picture>Word of God Workshop</span><a class="a2ws" href="../workspace/">Study Workspace</a><span>Free Bible study tools from open data</span></div><div class="owsctl" data-ows-controls role="group" aria-label="Language and text size"><span class="owsseg" role="group" aria-label="Language / 言語"><button type="button" class="owslang-btn" data-ows-control="lang" data-lang="en" lang="en" aria-pressed="true">EN</button><button type="button" class="owslang-btn" data-ows-control="lang" data-lang="ja" lang="ja" aria-pressed="false">日本語</button></span><button type="button" class="owsbig-btn" data-ows-control="big" aria-pressed="false"><span class="owsbig-glyph" aria-hidden="true">Aa</span><span class="owsbig-lbl">Larger text</span></button></div></nav>
 <p class="owsload" id="ows-load" role="status">Loading the data for this tool.</p>
 <noscript><p class="owsload">This tool needs JavaScript turned on. このツールには JavaScript が必要です。</p></noscript>
 <div class="wrap" role="main">
@@ -297,7 +416,8 @@ renderKinds(); renderList(); show(cur);
     var on = root.classList.contains('owsbig');
     document.querySelectorAll('.owsbig-btn').forEach(function (b) {
       b.setAttribute('aria-pressed', on ? 'true' : 'false');
-      b.textContent = on ? 'Normal text' : 'Larger text';
+      var l = b.querySelector('.owsbig-lbl');
+      (l || b).textContent = on ? 'Normal text' : 'Larger text';
     });
   }
   document.addEventListener('click', function (e) {
@@ -313,10 +433,12 @@ renderKinds(); renderList(); show(cur);
 <script data-home="../">
 (function () {
   var root = document.documentElement, home = document.currentScript.getAttribute('data-home'), ja = root.classList.contains('owsja');
+  [].forEach.call(document.querySelectorAll('.owslang-btn[data-lang]'), function (b) { b.setAttribute('aria-pressed', String((b.getAttribute('data-lang') === 'ja') === ja)); });
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('.owslang-btn');
     if (!b) return;
-    var to = ja ? 'en' : 'ja', u = new URL(location.href);
+    var to = b.getAttribute('data-lang') || (ja ? 'en' : 'ja'), u = new URL(location.href);
+    if ((to === 'ja') === ja) return;
     try { localStorage.setItem('ows-lang', to); } catch (err) {}
     u.searchParams.set('lang', to);
     location.href = u.toString();
@@ -429,13 +551,13 @@ renderKinds(); renderList(); show(cur);
     }
     var t0 = tr(norm(document.title)); if (t0) document.title = t0;
     var bar = document.querySelector('.a2bar');
-    if (bar && D.note && page !== 'join' && page !== '') {  /* the group home and Join us have no English data on them */
+    if (bar && D.note && ['', 'join', 'lab', 'translation-benchmark', 'translation-system'].indexOf(page) < 0 && !document.body.classList.contains('ows-page')) {  /* the group's own pages have no English data on them */
       var note = document.createElement('p'); note.className = 'owsja-note';
       note.textContent = D.note + (D.pageNote && D.pageNote[page] ? ' ' + D.pageNote[page] : '');
       bar.parentNode.insertBefore(note, bar.nextSibling);
     }
     sweep(document.body);
-    [].forEach.call(document.querySelectorAll('.owslang-btn'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
+    [].forEach.call(document.querySelectorAll('.owslang-btn:not([data-lang])'), function (b) { b.textContent = D.switch.toEn; b.lang = 'en'; });
     new MutationObserver(function (ms) {
       ms.forEach(function (m) {
         if (m.type === 'attributes') attrs(m.target);
@@ -450,27 +572,23 @@ renderKinds(); renderList(); show(cur);
 <!-- ows-feedback -->
 <style>
 .owsfb-btn { position: fixed; z-index: 50; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-  font: 600 14px system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: #fff; background: #1c1917; border: 2px solid #fff;
-  border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
-.owsfb-btn:focus-visible, .owsfb button:focus-visible, .owsfb textarea:focus-visible, .owsfb input:focus-visible { outline: 3px solid #ffb800; outline-offset: 2px; }
+  font: 600 14px system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: var(--ows-fab-ink); background: var(--ows-fab-bg); border: 2px solid var(--ows-fab-ink);
+  border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; box-shadow: 0 2px 10px var(--ows-shadow); }
+.owsfb-btn:focus-visible, .owsfb button:focus-visible, .owsfb textarea:focus-visible, .owsfb input:focus-visible { outline: 3px solid var(--ows-fab-focus); outline-offset: 2px; }
 .owsfb { position: fixed; z-index: 51; right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   width: min(380px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; box-sizing: border-box; padding: 16px;
-  font: 15px/1.6 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: #1c1917; background: #fff; border: 1px solid #a8a29e;
-  border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+  font: 15px/1.6 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; color: var(--ows-panel-ink); background: var(--ows-panel-bg); border: 1px solid var(--ows-panel-line);
+  border-radius: 14px; box-shadow: 0 8px 30px var(--ows-shadow-strong); }
 .owsfb h2 { font: 650 17px/1.3 system-ui, -apple-system, "Hiragino Sans", sans-serif !important; margin: 0 0 6px; letter-spacing: 0; }
-.owsfb p { margin: 0 0 10px; font-size: 14px; color: #44403c; }
+.owsfb p { margin: 0 0 10px; font-size: 14px; color: var(--ows-panel-muted); }
 .owsfb label { display: block; font-size: 14px; font-weight: 600; margin: 8px 0 4px; }
-.owsfb textarea, .owsfb input { width: 100%; box-sizing: border-box; font: inherit; color: inherit; background: #fff; border: 1px solid #78716c; border-radius: 8px; padding: 8px; }
+.owsfb textarea, .owsfb input { width: 100%; box-sizing: border-box; font: inherit; color: inherit; background: var(--ows-field-bg); border: 1px solid var(--ows-field-line); border-radius: 8px; padding: 8px; }
 .owsfb textarea { min-height: 110px; resize: vertical; }
 .owsfb .row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
-.owsfb button { font: 600 15px system-ui, sans-serif; min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid #1c1917; background: #fff; color: #1c1917; cursor: pointer; }
-.owsfb button.send { background: #1c1917; color: #fff; }
-.owsfb .msg { font-weight: 600; color: #1c1917; }
-@media (prefers-color-scheme: dark) {
-  .owsfb { color: #e7e5e4; background: #292524; border-color: #57534e; } .owsfb p { color: #d6d3d1; } .owsfb .msg { color: #e7e5e4; }
-  .owsfb textarea, .owsfb input { background: #1c1917; border-color: #a8a29e; }
-  .owsfb button { background: #292524; color: #e7e5e4; border-color: #e7e5e4; } .owsfb button.send { background: #e7e5e4; color: #1c1917; }
-}
+.owsfb button { font: 600 15px system-ui, sans-serif; min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 2px solid var(--ows-panel-ink); background: var(--ows-panel-bg); color: var(--ows-panel-ink); cursor: pointer; }
+.owsfb button.send { background: var(--ows-panel-ink); color: var(--ows-panel-bg); }
+.owsfb .msg { font-weight: 600; color: var(--ows-panel-ink); }
+/* dark mode: the --ows-* tokens change with the theme (design/tokens.css) */
 </style>
 <script>
 (function () {
@@ -529,16 +647,15 @@ renderKinds(); renderList(); show(cur);
 <style>
 .owsup { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 0; box-sizing: border-box;
   padding: 6px max(12px, env(safe-area-inset-right, 0px)) 6px max(12px, env(safe-area-inset-left, 0px));
-  font: 500 14px/1.4 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; background: #e8f1f8; color: #12324a; border-bottom: 1px solid #b9d3e6; }
+  font: 500 14px/1.4 system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif; background: var(--ows-notice-bg); color: var(--ows-notice-ink); border-bottom: 1px solid var(--ows-notice-line); }
 .owsup a { color: inherit; font-weight: 700; }
 .owsup button { font: inherit; line-height: 1; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px;
   min-width: 32px; min-height: 32px; padding: 0 8px; cursor: pointer; }
-.owsup a:focus-visible, .owsup button:focus-visible { outline: 3px solid #0069a8; outline-offset: 2px; }
-@media (prefers-color-scheme: dark) { .owsup { background: #12324a; color: #e3f0fa; border-bottom-color: #2b5677; } }
+.owsup a:focus-visible, .owsup button:focus-visible { outline: 3px solid var(--ows-notice-focus); outline-offset: 2px; }
 </style>
 <script data-home="../">
 (function () {
-  var LATEST = "2026-11-23#38", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
+  var LATEST = "2026-11-25#41", KEY = 'ows-updates-seen', HOME = document.currentScript.getAttribute('data-home') || './', root = document.documentElement;
   var seen = null;
   try { seen = localStorage.getItem(KEY); } catch (e) {}
   if (/\/updates\/?(index\.html)?$/.test(location.pathname)) { try { localStorage.setItem(KEY, LATEST); } catch (e) {} return; }
